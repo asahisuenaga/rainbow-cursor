@@ -198,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gradientColors = getGradientColors(currentGradient);
     const gradientCSS = `linear-gradient(-45deg, ${gradientColors.join(', ')})`;
     const previewBox = document.getElementById('settingsLivePreview');
-    // Using the same variable name and check for the label
     const livePreviewLabel = chrome.i18n.getMessage('livePreviewLabel') || 'Live Preview';
     const labelElement = previewBox.parentElement.querySelector('#settingsLivePreviewLabel');
     if(labelElement) labelElement.textContent = livePreviewLabel;
@@ -215,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let backgroundStyle = gradientCSS;
     
     if (blinkObj.blink) {
-      // Simplified blink duration logic, kept the 0.5x logic
       const duration = blinkObj.speed === 0.5 ? '2.8s' : '1.4s';
       animationStyle = `animation: caret-blink ${duration} steps(1) infinite, gradientAnimation 20s linear infinite;`;
     } else {
