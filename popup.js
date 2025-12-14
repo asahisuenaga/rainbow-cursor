@@ -486,8 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderGradientDropdown(selectedValue) {
     currentGradient = selectedValue;
     const selected = gradientOptions.find(o => o.value === selectedValue) || gradientOptions[0];
-    const translucentModeObj = translucentModeOptions.find(o => o.value === currentTranslucentMode) || translucentModeOptions[0];
-    const selectedGradColors = getGradientColors(selected.value, translucentModeObj.translucent);
+    const selectedGradColors = getGradientColors(selected.value);
     const selectedGradCSS = `linear-gradient(-45deg, ${selectedGradColors.join(', ')})`;
     gradientDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="gradientDropdownSelected">
@@ -497,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="cursor-dropdown-list" id="gradientDropdownList">
         ${gradientOptions.map(o => {
-      const gradColors = getGradientColors(o.value, translucentModeObj.translucent);
+      const gradColors = getGradientColors(o.value);
       const gradCSS = `linear-gradient(-45deg, ${gradColors.join(', ')})`;
       return `
             <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
@@ -604,8 +603,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
       chrome.storage.sync.set({ TranslucentMode: value === 'true' });
       renderTranslucentModeDropdown(value);
-      // Re-render gradient dropdown to update preview with new translucent mode
-      renderGradientDropdown(currentGradient);
     }
   });
 });
