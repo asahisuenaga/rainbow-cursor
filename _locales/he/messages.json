@@ -96,7 +96,7 @@
     "message": "תודה על ההורדה. קרא את פרטי הגרסה ב-$githubLink$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>גיטהאב</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>גיטהאב</a>"
       }
     }
   },

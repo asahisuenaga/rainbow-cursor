@@ -92,20 +92,20 @@
   "notInDocsMessage": {
     "message": "Nu te afli în Google Docs."
   },
-    "thankYouTitle": {
-      "message": "Mulțumim pentru descărcare. Citiți notele de lansare pe&nbsp;$githubLink$.",
-      "placeholders": {
-        "githubLink": {
-          "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Github</a>"
-        }
-      }
-    },
-    "ratingTitle": {
-      "message": "Îți place extensia? Evalueaz-o pe&nbsp;$chromeWebStoreLink$!",
-      "placeholders": {
-        "chromeWebStoreLink": {
-          "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome Web Store</a>"
-        }
+  "thankYouTitle": {
+    "message": "Mulțumim pentru descărcare. Citiți notele de lansare pe&nbsp;$githubLink$.",
+    "placeholders": {
+      "githubLink": {
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>"
       }
     }
+  },
+  "ratingTitle": {
+    "message": "Îți place extensia? Evalueaz-o pe&nbsp;$chromeWebStoreLink$!",
+    "placeholders": {
+      "chromeWebStoreLink": {
+        "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome Web Store</a>"
+      }
+    }
+  }
 }

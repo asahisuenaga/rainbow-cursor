@@ -96,7 +96,7 @@
     "message": "از دانلود شما سپاسگزاریم. یادداشت‌های نسخه را در&nbsp;$githubLink$ بخوانید.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>گیت‌هاب</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>گیت‌هاب</a>"
       }
     }
   },

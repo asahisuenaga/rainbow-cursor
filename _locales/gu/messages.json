@@ -96,7 +96,7 @@
     "message": "ડાઉનલોડ કરવા બદલ આભાર. રિલીઝ નોંધો&nbsp;$githubLink$ પર વાંચો.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Github</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>"
       }
     }
   },

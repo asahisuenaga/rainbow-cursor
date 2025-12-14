@@ -96,7 +96,7 @@
     "message": "Gracias por descargar. Lee las notas de la versión en&nbsp;$githubLink$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Github</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>"
       }
     }
   },

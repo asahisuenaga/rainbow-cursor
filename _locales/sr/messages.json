@@ -96,7 +96,7 @@
     "message": "Хвала на преузимању. Прочитајте белешке о издању на&нбсп;$гитхубЛинк$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Гитхуб</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Гитхуб</a>"
       }
     }
   },

@@ -96,7 +96,7 @@
     "message": "ഡൗൺലോഡ് ചെയ്തതിനു നന്ദി. റിലീസ് നോട്ടുകൾ&nbsp;$githubLink$-ൽ വായിക്കുക.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>ഗിറ്റ്‌ഹബ്</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>ഗിറ്റ്‌ഹബ്</a>"
       }
     }
   },

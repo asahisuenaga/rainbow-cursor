@@ -96,7 +96,7 @@
     "message": "ለመከታተያ አመሰግናለሁ። የእትም ማስታወቂያዎችን በ&nbsp;$githubLink$ ያንብቡ።",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>ጊትሀብ</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>ጊትሀብ</a>"
       }
     }
   },

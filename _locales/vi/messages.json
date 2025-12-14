@@ -96,7 +96,7 @@
     "message": "Cảm ơn bạn đã tải xuống. Đọc ghi chú phát hành tại&nbsp;$githubLink$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Github</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>"
       }
     }
   },

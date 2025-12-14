@@ -96,7 +96,7 @@
     "message": "다운로드해 주셔서 감사합니다. 릴리즈 노트를&nbsp;$githubLink$에서 읽어보세요.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>깃허브</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>깃허브</a>"
       }
     }
   },

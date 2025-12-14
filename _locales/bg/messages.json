@@ -96,7 +96,7 @@
     "message": "Благодарим ви за изтеглянето. Прочетете бележките към изданието на&nbsp;$githubLink$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Гитхъб</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Гитхъб</a>"
       }
     }
   },

@@ -96,7 +96,7 @@
     "message": "Спасибо за загрузку. Читайте заметки о выпуске на&nbsp;$githubLink$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>Гитхаб</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Гитхаб</a>"
       }
     }
   },

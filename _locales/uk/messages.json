@@ -96,7 +96,7 @@
     "message": "Дякуємо за завантаження. Прочитайте примітки до випуску на&nbsp;$githubLink$.",
     "placeholders": {
       "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/ccgd' target='_blank'>GitHub</a>"
+        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>GitHub</a>"
       }
     }
   },

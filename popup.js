@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setLocalizedText('ThicknessLabel', 'ThicknessLabel');
   setLocalizedText('BlinkLabel', 'BlinkLabel');
   setLocalizedText('SmoothAnimationLabel', 'SmoothAnimationLabel');
+  setLocalizedText('TranslucentModeLabel', 'TranslucentModeLabel');
   setLocalizedText('gradientLabel', 'gradientLabel');
   setLocalizedText('infoMessageText', 'infoMessage');
   setLocalizedText('redirectButton', 'openDocsButton');
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setLocalizedText('settingsLivePreviewLabel', 'livePreviewLabel');
 
   // Load saved settings (only needed to trigger renderDropdown functions later)
-  chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle'], () => {
+  chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle', 'TranslucentMode'], () => {
     // No need to set values here as dropdowns are rendered later
   });
 
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Show message and button if not in Google Docs
       infoMessage.innerHTML = `<p>${chrome.i18n.getMessage("notInDocsMessage")}</p>`;
       redirectContainer.style.display = 'block';
-      
+
       // Hide settings elements
       if (optionsContainer) optionsContainer.style.display = 'none';
       if (saveButton) saveButton.style.display = 'none';
@@ -153,11 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (localeToHelloIndex.hasOwnProperty(baseLocale)) {
       // Handles 'pt' and 'zh' base locales which map to a different index than their variants
       if (baseLocale === 'pt' && userLocale !== 'pt_PT') {
-          helloIndex = localeToHelloIndex['pt_BR']; // Use pt_BR for base 'pt' and other variants
+        helloIndex = localeToHelloIndex['pt_BR']; // Use pt_BR for base 'pt' and other variants
       } else if (baseLocale === 'zh' && userLocale !== 'zh_TW') {
-          helloIndex = localeToHelloIndex['zh_CN']; // Use zh_CN for base 'zh' and other variants
+        helloIndex = localeToHelloIndex['zh_CN']; // Use zh_CN for base 'zh' and other variants
       } else {
-          helloIndex = localeToHelloIndex[baseLocale];
+        helloIndex = localeToHelloIndex[baseLocale];
       }
     } else {
       helloIndex = 0;
@@ -167,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // in the original code. I kept the original messy map and simplified the logic
   // to avoid breaking the expected behavior, but the map itself is still used.
 
-  function getGradientColors(gradientValue) {
+  function getGradientColors(gradientValue, applyTranslucent = false) {
     // Match the color arrays from script.js
     const gradientStyles = {
       rainbow: ['#FFB6C1', '#FF69B4', '#DA70D6', '#9370DB', '#48C9B0', '#F0E68C', '#FFD700'],
@@ -187,7 +188,17 @@ document.addEventListener('DOMContentLoaded', () => {
       floral: ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFE4E1'],
       candy: ['#FFC3A0', '#FF85A1', '#FF6D6A', '#FFC1CC', '#FF99A8']
     };
-    return gradientStyles[gradientValue] || gradientStyles.rainbow;
+    let colors = gradientStyles[gradientValue] || gradientStyles.rainbow;
+
+    // Apply translucent mode if enabled
+    if (applyTranslucent) {
+      colors = colors.map(color => {
+        // Add 80 hex opacity to each color
+        return color + '80';
+      });
+    }
+
+    return colors;
   }
 
   function updateSettingsLivePreview(updateCaretOnly = false) {
@@ -195,12 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const thicknessObj = thicknessOptions.find(o => o.value === currentThickness) || thicknessOptions[0];
     const blinkObj = blinkOptions.find(o => o.value === currentBlink) || blinkOptions[0];
     const smoothAnimationObj = smoothAnimationOptions.find(o => o.value === currentSmoothAnimation) || smoothAnimationOptions[0];
-    const gradientColors = getGradientColors(currentGradient);
+    const translucentModeObj = translucentModeOptions.find(o => o.value === currentTranslucentMode) || translucentModeOptions[0];
+    const gradientColors = getGradientColors(currentGradient, translucentModeObj.translucent);
     const gradientCSS = `linear-gradient(-45deg, ${gradientColors.join(', ')})`;
     const previewBox = document.getElementById('settingsLivePreview');
     const livePreviewLabel = chrome.i18n.getMessage('livePreviewLabel') || 'Live Preview';
     const labelElement = previewBox.parentElement.querySelector('#settingsLivePreviewLabel');
-    if(labelElement) labelElement.textContent = livePreviewLabel;
+    if (labelElement) labelElement.textContent = livePreviewLabel;
 
     // Typing animation logic
     const helloText = helloTranslations[helloIndex % helloTranslations.length];
@@ -208,24 +220,24 @@ document.addEventListener('DOMContentLoaded', () => {
       typingState = { text: helloText, phase: 'typing', charIndex: 0 };
     }
     let displayText = helloText.slice(0, typingState.charIndex);
-    
+
     // Calculate animation duration based on blink speed
     let animationStyle = '';
     let backgroundStyle = gradientCSS;
-    
+
     if (blinkObj.blink) {
       const duration = blinkObj.speed === 0.5 ? '2.8s' : '1.4s';
       animationStyle = `animation: caret-blink ${duration} steps(1) infinite, gradientAnimation 20s linear infinite;`;
     } else {
       animationStyle = `animation: gradientAnimation 20s linear infinite;`;
     }
-    
+
     // Add smooth transition if enabled
     let smoothTransition = '';
     if (smoothAnimationObj.smooth) {
       smoothTransition = 'transition: all 80ms ease;';
     }
-    
+
     let caretClass = `live-gradient-bar live-gradient-animated`;
     let caretStyle = `display:inline-block;vertical-align:bottom;width:${thicknessObj.width}px;height:20px;margin-left:8px;border-radius:3px;background:${backgroundStyle};background-size:400% 400%;${animationStyle}${smoothTransition}`;
 
@@ -249,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (updateCaretOnly) return;
     if (typingTimeout) clearTimeout(typingTimeout);
-    
+
     // Typing loop logic
     if (typingState.phase === 'typing') {
       if (typingState.charIndex < helloText.length) {
@@ -347,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderBlinkDropdown(selectedValue) {
     currentBlink = selectedValue;
     const selected = blinkOptions.find(o => o.value === selectedValue) || blinkOptions[0];
-    
+
     blinkDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="blinkDropdownSelected">
         ${createBlinkPreviewBar(selected)}
@@ -385,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderSmoothAnimationDropdown(selectedValue) {
     currentSmoothAnimation = selectedValue;
     const selected = smoothAnimationOptions.find(o => o.value === selectedValue) || smoothAnimationOptions[0];
-    
+
     smoothAnimationDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="smoothAnimationDropdownSelected">
         ${createSmoothPreviewBar(selected)}
@@ -407,6 +419,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Note: The result from storage can be a boolean, but dropdown values are strings. The original code
     // handled this with a String() cast, which is preserved.
     renderSmoothAnimationDropdown(result.SmoothAnimation !== undefined ? String(result.SmoothAnimation) : 'false');
+  });
+
+  // --- Rainbow Dropdown for Translucent Mode ---
+  const translucentModeOptions = [
+    { value: 'true', label: chrome.i18n.getMessage("trueOption") || 'Yes', translucent: true },
+    { value: 'false', label: chrome.i18n.getMessage("falseOption") || 'No', translucent: false }
+  ];
+  const translucentModeDropdownContainer = document.getElementById('translucentModeDropdownContainer');
+  let currentTranslucentMode = 'false';
+
+  function createTranslucentPreviewBar(option, thickness = 4) {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const opacity = option.translucent ? '0.5' : '1';
+    return `<span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${thickness}px;height:20px;border-radius:3px;background:#111;opacity:${opacity};"></span>`;
+  }
+
+  function renderTranslucentModeDropdown(selectedValue) {
+    currentTranslucentMode = selectedValue;
+    const selected = translucentModeOptions.find(o => o.value === selectedValue) || translucentModeOptions[0];
+
+    translucentModeDropdownContainer.innerHTML = `
+      <div class="cursor-dropdown-selected" id="translucentModeDropdownSelected">
+        ${createTranslucentPreviewBar(selected)}
+        <span class="cursor-label">${selected.label}</span>
+        <span class="cursor-dropdown-arrow">▼</span>
+      </div>
+      <div class="cursor-dropdown-list" id="translucentModeDropdownList">
+        ${translucentModeOptions.map(o => `
+          <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
+            ${createTranslucentPreviewBar(o)}
+            <span class="cursor-label">${o.label}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    updateSettingsLivePreview(true);
+  }
+  chrome.storage.sync.get(['TranslucentMode'], (result) => {
+    renderTranslucentModeDropdown(result.TranslucentMode !== undefined ? String(result.TranslucentMode) : 'false');
   });
 
   // --- Rainbow Dropdown for Gradient ---
@@ -435,7 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderGradientDropdown(selectedValue) {
     currentGradient = selectedValue;
     const selected = gradientOptions.find(o => o.value === selectedValue) || gradientOptions[0];
-    const selectedGradColors = getGradientColors(selected.value);
+    const translucentModeObj = translucentModeOptions.find(o => o.value === currentTranslucentMode) || translucentModeOptions[0];
+    const selectedGradColors = getGradientColors(selected.value, translucentModeObj.translucent);
     const selectedGradCSS = `linear-gradient(-45deg, ${selectedGradColors.join(', ')})`;
     gradientDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="gradientDropdownSelected">
@@ -445,15 +497,15 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="cursor-dropdown-list" id="gradientDropdownList">
         ${gradientOptions.map(o => {
-          const gradColors = getGradientColors(o.value);
-          const gradCSS = `linear-gradient(-45deg, ${gradColors.join(', ')})`;
-          return `
+      const gradColors = getGradientColors(o.value, translucentModeObj.translucent);
+      const gradCSS = `linear-gradient(-45deg, ${gradColors.join(', ')})`;
+      return `
             <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
               <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${gradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
               <span class="cursor-label">${o.label}</span>
             </div>
           `;
-        }).join('')}
+    }).join('')}
       </div>
     `;
     updateSettingsLivePreview(true);
@@ -535,6 +587,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
       chrome.storage.sync.set({ gradientStyle: value });
       renderGradientDropdown(value);
+    }
+  });
+
+  // Translucent Mode dropdown listener
+  translucentModeDropdownContainer.addEventListener('click', (e) => {
+    if (e.target.closest('.cursor-dropdown-selected')) {
+      e.stopPropagation();
+      closeAllDropdowns('translucentModeDropdownList');
+      const listDiv = document.getElementById('translucentModeDropdownList');
+      const selectedDiv = document.getElementById('translucentModeDropdownSelected');
+      listDiv.classList.toggle('open');
+      selectedDiv.classList.toggle('open');
+    } else if (e.target.closest('.cursor-dropdown-option')) {
+      e.stopPropagation();
+      const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
+      chrome.storage.sync.set({ TranslucentMode: value === 'true' });
+      renderTranslucentModeDropdown(value);
+      // Re-render gradient dropdown to update preview with new translucent mode
+      renderGradientDropdown(currentGradient);
     }
   });
 });
