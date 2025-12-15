@@ -9,13 +9,16 @@
     "message": "Gökkuşağı İmleci Google Docs'ta"
   },
   "ThicknessLabel": {
-    "message": "Kalınlık"
+    "message": "İmleç Kalınlığı"
   },
   "BlinkLabel": {
-    "message": "Parlaklık Animasyonu"
+    "message": "Yanıp Sönme Animasyonu"
   },
   "SmoothAnimationLabel": {
-    "message": "Pürüzsüz Animasyon"
+    "message": "Daktilo Efekti"
+  },
+  "TranslucentModeLabel": {
+    "message": "Yarı Saydam Mod"
   },
   "trueOption": {
     "message": "Açık"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Şeker"
+  },
+  "gradientEmerald": {
+    "message": "Zümrüt"
+  },
+  "gradientSunset": {
+    "message": "Gün Batımı"
+  },
+  "gradientGalaxy": {
+    "message": "Galaksi"
+  },
+  "gradientAurora": {
+    "message": "Kutup Işıkları"
   },
   "notInDocsMessage": {
     "message": "Google Docs'ta değilsiniz."

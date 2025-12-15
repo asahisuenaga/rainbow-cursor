@@ -8,14 +8,17 @@
   "title": {
     "message": "Szivárványkurzor a Google Docsban"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Vastagság"
   },
   "BlinkLabel": {
-    "message": "Villogás animáció"
+    "message": "Pislogás animáció"
   },
   "SmoothAnimationLabel": {
-    "message": "Glatka animáció"
+    "message": "Írógép effektus"
+  },
+  "TranslucentModeLabel": {
+    "message": "Áttetsző mód"
   },
   "trueOption": {
     "message": "Be"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Cukorka"
+  },
+  "gradientEmerald": {
+    "message": "Smaragdzöld"
+  },
+  "gradientSunset": {
+    "message": "Naplemente"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxis"
+  },
+  "gradientAurora": {
+    "message": "Sarkfény"
   },
   "notInDocsMessage": {
     "message": "Nincs a Google Docs-ban."

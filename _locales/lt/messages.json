@@ -8,14 +8,17 @@
   "title": {
     "message": "Vaivorykštės žymeklis Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Storis"
   },
   "BlinkLabel": {
-    "message": "Mirksėjimas animacija"
+    "message": "Mirksėjimo animacija"
   },
   "SmoothAnimationLabel": {
-    "message": "Sujaus animacija"
+    "message": "Rašomosios mašinėlės efektas"
+  },
+  "TranslucentModeLabel": {
+    "message": "Permatomas režimas"
   },
   "trueOption": {
     "message": "Įjungta"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Saldainiai"
+  },
+  "gradientEmerald": {
+    "message": "Smaragdas"
+  },
+  "gradientSunset": {
+    "message": "Saulėlydis"
+  },
+  "gradientGalaxy": {
+    "message": "Galaktika"
+  },
+  "gradientAurora": {
+    "message": "Pašvaistė"
   },
   "notInDocsMessage": {
     "message": "Jūs nesate Google Docs."

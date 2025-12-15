@@ -8,14 +8,17 @@
   "title": {
     "message": "Kursor Pelangi di Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Ketebalan"
   },
   "BlinkLabel": {
-    "message": "Animasi Kedip"
+    "message": "Animasi Berkedip"
   },
   "SmoothAnimationLabel": {
-    "message": "Animasi Halus"
+    "message": "Efek Typewriter"
+  },
+  "TranslucentModeLabel": {
+    "message": "Mode Transparan"
   },
   "trueOption": {
     "message": "Aktif"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Permen"
+  },
+  "gradientEmerald": {
+    "message": "Emerald"
+  },
+  "gradientSunset": {
+    "message": "Sunset"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxy"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Anda tidak berada di Google Docs."

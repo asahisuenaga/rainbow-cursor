@@ -8,14 +8,17 @@
   "title": {
     "message": "ગૂગલ ડૉક્સમાં રેઈન્બો કર્સર"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "જાડાઈ"
   },
   "BlinkLabel": {
-    "message": "ઝપકન અનિમેશન"
+    "message": "બ્લિંક એનિમેશન"
   },
   "SmoothAnimationLabel": {
-    "message": "સ્મૂથ અનિમેશન"
+    "message": "ટાઈપરાઈટર ઈફેક્ટ"
+  },
+  "TranslucentModeLabel": {
+    "message": "પારદર્શક મોડ"
   },
   "trueOption": {
     "message": "ઓન"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "કંદી"
+  },
+  "gradientEmerald": {
+    "message": "નીલમ"
+  },
+  "gradientSunset": {
+    "message": "સૂર્યાસ્ત"
+  },
+  "gradientGalaxy": {
+    "message": "ગેલેક્સી"
+  },
+  "gradientAurora": {
+    "message": "ઓરોરા"
   },
   "notInDocsMessage": {
     "message": "તમે ગૂગલ ડોક્સમાં નથી."

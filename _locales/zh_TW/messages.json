@@ -9,13 +9,16 @@
     "message": "Google Docs中的彩虹遊標"
   },
   "ThicknessLabel": {
-    "message": "粗細"
+    "message": "遊標粗細"
   },
   "BlinkLabel": {
-    "message": "眨眼動畫"
+    "message": "閃爍動畫"
   },
   "SmoothAnimationLabel": {
-    "message": "流暢的動畫"
+    "message": "打字機效果"
+  },
+  "TranslucentModeLabel": {
+    "message": "半透明模式"
   },
   "trueOption": {
     "message": "開啟"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "糖果"
+  },
+  "gradientEmerald": {
+    "message": "翡翠綠"
+  },
+  "gradientSunset": {
+    "message": "日落"
+  },
+  "gradientGalaxy": {
+    "message": "星空"
+  },
+  "gradientAurora": {
+    "message": "極光"
   },
   "notInDocsMessage": {
     "message": "您不在 Google Docs 中。"

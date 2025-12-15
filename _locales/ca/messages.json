@@ -8,14 +8,17 @@
   "title": {
     "message": "Cursor arc de Sant Martí a Google Docs"
   },
-  "caretWidthLabel": {
-    "message": "Gruix"
+  "ThicknessLabel": {
+    "message": "Gruix del signe circumflex"
   },
   "BlinkLabel": {
-    "message": "Animació parpellejar"
+    "message": "Animació de parpelleig"
   },
   "SmoothAnimationLabel": {
-    "message": "Animació fluida"
+    "message": "Efecte de màquina d'escriure"
+  },
+  "TranslucentModeLabel": {
+    "message": "Mode translúcid"
   },
   "trueOption": {
     "message": "Activat"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Caramel"
+  },
+  "gradientEmerald": {
+    "message": "Emerald"
+  },
+  "gradientSunset": {
+    "message": "Posta de sol"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxy"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "No estàs a Google Docs."

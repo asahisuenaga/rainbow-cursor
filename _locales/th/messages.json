@@ -9,13 +9,16 @@
     "message": "เคอร์เซอร์สีรุ้งใน Google Docs"
   },
   "ThicknessLabel": {
-    "message": "ความหนา"
+    "message": "ความหนาของเคอร์เซอร์"
   },
   "BlinkLabel": {
-    "message": "กระพริบอนิเมชัน"
+    "message": "แอนิเมชั่นกระพริบ"
   },
   "SmoothAnimationLabel": {
-    "message": "การเคลื่อนไหวที่คมชัด"
+    "message": "เอฟเฟกต์เครื่องพิมพ์ดีด"
+  },
+  "TranslucentModeLabel": {
+    "message": "โหมดโปร่งแสง"
   },
   "trueOption": {
     "message": "เปิด"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "ลูกกวาด"
+  },
+  "gradientEmerald": {
+    "message": "มรกต"
+  },
+  "gradientSunset": {
+    "message": "พระอาทิตย์ตก"
+  },
+  "gradientGalaxy": {
+    "message": "กาแล็กซี"
+  },
+  "gradientAurora": {
+    "message": "แสงเหนือ"
   },
   "notInDocsMessage": {
     "message": "คุณไม่ได้อยู่ใน Google Docs."

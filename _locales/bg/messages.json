@@ -8,14 +8,17 @@
   "title": {
     "message": "Курсор тип „Дъга“ в Google Docs"
   },
-  "caretWidthLabel": {
-    "message": "дебелина"
+  "ThicknessLabel": {
+    "message": "Дебелина на каретката"
   },
   "BlinkLabel": {
-    "message": "Мигаща анимация"
+    "message": "Анимация на мигане"
   },
   "SmoothAnimationLabel": {
-    "message": "Плавна анимация"
+    "message": "Ефект на пишеща машина"
+  },
+  "TranslucentModeLabel": {
+    "message": "Режим на прозрачност"
   },
   "trueOption": {
     "message": "Включено"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Бонбон"
+  },
+  "gradientEmerald": {
+    "message": "Изумрудено"
+  },
+  "gradientSunset": {
+    "message": "Залез"
+  },
+  "gradientGalaxy": {
+    "message": "Галактика"
+  },
+  "gradientAurora": {
+    "message": "Аурора"
   },
   "notInDocsMessage": {
     "message": "Не сте в Google Docs."

@@ -8,14 +8,17 @@
   "title": {
     "message": "Kursor u duginim bojama u Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Debljina"
   },
   "BlinkLabel": {
-    "message": "Treperenje animacija"
+    "message": "Animacija treptanja"
   },
   "SmoothAnimationLabel": {
-    "message": "Glatka animacija"
+    "message": "Efekt pisaćeg stroja"
+  },
+  "TranslucentModeLabel": {
+    "message": "Prozirni način rada"
   },
   "trueOption": {
     "message": "Uključeno"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Bomboni"
+  },
+  "gradientEmerald": {
+    "message": "Smaragdno"
+  },
+  "gradientSunset": {
+    "message": "Zalazak sunca"
+  },
+  "gradientGalaxy": {
+    "message": "Galaksija"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Niste u Google Docs."

@@ -8,14 +8,17 @@
   "title": {
     "message": "Duhový kurzor v Google Docs"
   },
-  "caretWidthLabel": {
-    "message": "Tloušťka"
+  "ThicknessLabel": {
+    "message": "Tloušťka stříšky"
   },
   "BlinkLabel": {
-    "message": "Blikání animace"
+    "message": "Animace mrknutí"
   },
   "SmoothAnimationLabel": {
-    "message": "Hladká animace"
+    "message": "Efekt psacího stroje"
+  },
+  "TranslucentModeLabel": {
+    "message": "Průsvitný režim"
   },
   "trueOption": {
     "message": "Zapnuto"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Cukrový"
+  },
+  "gradientEmerald": {
+    "message": "Smaragd"
+  },
+  "gradientSunset": {
+    "message": "Západ slunce"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxie"
+  },
+  "gradientAurora": {
+    "message": "Polární záře"
   },
   "notInDocsMessage": {
     "message": "Nejste v Google Docs."

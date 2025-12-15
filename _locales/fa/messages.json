@@ -8,14 +8,17 @@
   "title": {
     "message": "مکان‌نمای رنگین‌کمانی در گوگل داکس"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "ضخامت"
   },
   "BlinkLabel": {
     "message": "انیمیشن چشمک زدن"
   },
   "SmoothAnimationLabel": {
-    "message": "انیمیشن روان"
+    "message": "افکت ماشین تحریر"
+  },
+  "TranslucentModeLabel": {
+    "message": "حالت شفاف"
   },
   "trueOption": {
     "message": "فعال"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "شیرینی"
+  },
+  "gradientEmerald": {
+    "message": "زمردی"
+  },
+  "gradientSunset": {
+    "message": "غروب خورشید"
+  },
+  "gradientGalaxy": {
+    "message": "کهکشان"
+  },
+  "gradientAurora": {
+    "message": "شفق قطبی"
   },
   "notInDocsMessage": {
     "message": "شما در Google Docs نیستید."

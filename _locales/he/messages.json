@@ -8,14 +8,17 @@
   "title": {
     "message": "סמן הקשת בגוגל דוקס"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "עובי"
   },
   "BlinkLabel": {
-    "message": "הבהוב מונה"
+    "message": "אנימציית מצמוץ"
   },
   "SmoothAnimationLabel": {
-    "message": "הבהוב מונה"
+    "message": "אפקט מכונת כתיבה"
+  },
+  "TranslucentModeLabel": {
+    "message": "מצב שקוף"
   },
   "trueOption": {
     "message": "דולק"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "ממתק"
+  },
+  "gradientEmerald": {
+    "message": "אזמרגד"
+  },
+  "gradientSunset": {
+    "message": "שקיעה"
+  },
+  "gradientGalaxy": {
+    "message": "גלקסיה"
+  },
+  "gradientAurora": {
+    "message": "זוהר הקוטב"
   },
   "notInDocsMessage": {
     "message": "אתה לא נמצא ב-Google Docs."

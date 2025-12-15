@@ -8,14 +8,17 @@
   "title": {
     "message": "Regenboogcursor in Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Tykkelse"
   },
   "BlinkLabel": {
-    "message": "Knipperen animatie"
+    "message": "Knipperanimatie"
   },
   "SmoothAnimationLabel": {
-    "message": "Vloeiende animatie"
+    "message": "Typemachine-effect"
+  },
+  "TranslucentModeLabel": {
+    "message": "Doorzichtige modus"
   },
   "trueOption": {
     "message": "Aan"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Snoep"
+  },
+  "gradientEmerald": {
+    "message": "Smaragd"
+  },
+  "gradientSunset": {
+    "message": "Zonsondergang"
+  },
+  "gradientGalaxy": {
+    "message": "Melkweg"
+  },
+  "gradientAurora": {
+    "message": "Noorderlicht"
   },
   "notInDocsMessage": {
     "message": "Je zit niet in Google Docs."

@@ -9,13 +9,16 @@
     "message": "Regnbågsmarkör i Google Docs"
   },
   "ThicknessLabel": {
-    "message": "Tjocklek"
+    "message": "Markörtjocklek"
   },
   "BlinkLabel": {
-    "message": "Blinka animerad"
+    "message": "Blinkanimering"
   },
   "SmoothAnimationLabel": {
-    "message": "Animera"
+    "message": "Skrivmaskinseffekt"
+  },
+  "TranslucentModeLabel": {
+    "message": "Genomskinligt läge"
   },
   "trueOption": {
     "message": "På"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Godis"
+  },
+  "gradientEmerald": {
+    "message": "Smaragd"
+  },
+  "gradientSunset": {
+    "message": "Solnedgång"
+  },
+  "gradientGalaxy": {
+    "message": "Galax"
+  },
+  "gradientAurora": {
+    "message": "Norrsken"
   },
   "notInDocsMessage": {
     "message": "Du är inte i Google Docs."

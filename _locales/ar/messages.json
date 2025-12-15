@@ -8,14 +8,17 @@
   "title": {
     "message": "مؤشر قوس قزح في مستندات جوجل"
   },
-  "caretWidthLabel": {
-    "message": "سمك"
+  "ThicknessLabel": {
+    "message": "سمك المؤشر"
   },
   "BlinkLabel": {
-    "message": "رسوم متحركة سريعة"
+    "message": "رسوم متحركة للوميض"
   },
   "SmoothAnimationLabel": {
-    "message": "رسوم متحركة سلسة"
+    "message": "تأثير الآلة الكاتبة"
+  },
+  "TranslucentModeLabel": {
+    "message": "وضع الشفافية"
   },
   "trueOption": {
     "message": "تشغيل"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "حلوى"
+  },
+  "gradientEmerald": {
+    "message": "الزمردي"
+  },
+  "gradientSunset": {
+    "message": "الغروب"
+  },
+  "gradientGalaxy": {
+    "message": "الكوكب"
+  },
+  "gradientAurora": {
+    "message": "الشمس"
   },
   "notInDocsMessage": {
     "message": "أنت لست في جوجل دوكس."

@@ -9,13 +9,16 @@
     "message": "Google Docs రెయిన్‌బో కర్సర్"
   },
   "ThicknessLabel": {
-    "message": "మందం"
+    "message": "కర్సర్ మందం"
   },
   "BlinkLabel": {
-    "message": "బ్లింక్ అనిమేషన్"
+    "message": "బ్లింక్ యానిమేషన్"
   },
   "SmoothAnimationLabel": {
-    "message": "స్మూథ అనిమేషన్"
+    "message": "టైప్‌రైటర్ ప్రభావం"
+  },
+  "TranslucentModeLabel": {
+    "message": "పారదర్శక మోడ్"
   },
   "trueOption": {
     "message": "ఆన్"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "క్యాండి"
+  },
+  "gradientEmerald": {
+    "message": "ఎమరాల్డ్"
+  },
+  "gradientSunset": {
+    "message": "సూర్యాస్తమయం"
+  },
+  "gradientGalaxy": {
+    "message": "గెలాక్సీ"
+  },
+  "gradientAurora": {
+    "message": "అరోరా"
   },
   "notInDocsMessage": {
     "message": "మీరు గూగుల్ డాక్స్‌లో లేరు."

@@ -8,14 +8,17 @@
   "title": {
     "message": "Kursor tęczowy w Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Grubość"
   },
   "BlinkLabel": {
-    "message": "Mruganie animacja"
+    "message": "Animacja migania"
   },
   "SmoothAnimationLabel": {
-    "message": "Animacja płynna"
+    "message": "Efekt maszyny do pisania"
+  },
+  "TranslucentModeLabel": {
+    "message": "Tryb przezroczystości"
   },
   "trueOption": {
     "message": "Włącz"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Cukierki"
+  },
+  "gradientEmerald": {
+    "message": "Szmaragdowy"
+  },
+  "gradientSunset": {
+    "message": "Zachód słońca"
+  },
+  "gradientGalaxy": {
+    "message": "Galaktyka"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Nie jesteś w Google Docs."

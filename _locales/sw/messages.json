@@ -12,10 +12,13 @@
     "message": "Unene"
   },
   "BlinkLabel": {
-    "message": "Kukosa animasi"
+    "message": "Uhuishaji wa Kupepesa"
   },
   "SmoothAnimationLabel": {
-    "message": "Animasi halisi"
+    "message": "Athari ya Kichapishi"
+  },
+  "TranslucentModeLabel": {
+    "message": "Hali ya Kung'aa"
   },
   "trueOption": {
     "message": "Wazi"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Keki"
+  },
+  "gradientEmerald": {
+    "message": "Zamaradi"
+  },
+  "gradientSunset": {
+    "message": "Machweo"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxi"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Hauko katika Google Docs."

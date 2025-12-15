@@ -8,14 +8,17 @@
   "title": {
     "message": "Dúhový kurzor v Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Šírka"
   },
   "BlinkLabel": {
-    "message": "Hrúbka animácia"
+    "message": "Animácia blikania"
   },
   "SmoothAnimationLabel": {
-    "message": "Hladká animácia"
+    "message": "Efekt písacieho stroja"
+  },
+  "TranslucentModeLabel": {
+    "message": "Priesvitný režim"
   },
   "trueOption": {
     "message": "Zapnuté"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Cukríky"
+  },
+  "gradientEmerald": {
+    "message": "Smaragd"
+  },
+  "gradientSunset": {
+    "message": "Západ slnca"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxia"
+  },
+  "gradientAurora": {
+    "message": "Polárna žiara"
   },
   "notInDocsMessage": {
     "message": "Nie ste v Google Docs."

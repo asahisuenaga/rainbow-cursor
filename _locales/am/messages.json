@@ -8,14 +8,17 @@
   "title": {
     "message": "የቀስተ ደመና ጠቋሚ በGoogle Docs ውስጥ"
   },
-  "caretWidthLabel": {
-    "message": "ውፍረት"
+  "ThicknessLabel": {
+    "message": "የካሬት ውፍረት"
   },
   "BlinkLabel": {
-    "message": "ብልጭ ድርግም የሚለው አኒሜሽን"
+    "message": "የብልጭታ አኒሜሽን"
   },
   "SmoothAnimationLabel": {
-    "message": "ለስላሳ እነማ"
+    "message": "የጽሕፈት መኪና ውጤት"
+  },
+  "TranslucentModeLabel": {
+    "message": "ትራንስሉሰንት ሁነታ"
   },
   "trueOption": {
     "message": "ተከልከለ"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "ካንዲ"
+  },
+  "gradientEmerald": {
+    "message": "ኤመራልድ"
+  },
+  "gradientSunset": {
+    "message": "ፀሐይ መውጣት"
+  },
+  "gradientGalaxy": {
+    "message": "ጋላክሲ"
+  },
+  "gradientAurora": {
+    "message": "አውሮራ"
   },
   "notInDocsMessage": {
     "message": "አሁን በGoogle Docs አልተገኘም።"

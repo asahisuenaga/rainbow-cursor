@@ -15,7 +15,10 @@
     "message": "点滅アニメーション"
   },
   "SmoothAnimationLabel": {
-    "message": "スムーズアニメーション"
+    "message": "タイプライター効果"
+  },
+  "TranslucentModeLabel": {
+    "message": "半透明モード"
   },
   "trueOption": {
     "message": "オン"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "キャンディ"
+  },
+  "gradientEmerald": {
+    "message": "エメラルド"
+  },
+  "gradientSunset": {
+    "message": "サンセット"
+  },
+  "gradientGalaxy": {
+    "message": "ギャラクシー"
+  },
+  "gradientAurora": {
+    "message": "オーロラ"
   },
   "notInDocsMessage": {
     "message": "Google Docsにいません。"

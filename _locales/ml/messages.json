@@ -8,14 +8,17 @@
   "title": {
     "message": "ഗൂഗിൾ ഡോക്സിലെ റെയിൻബോ കഴ്‌സർ"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "കനം"
   },
   "BlinkLabel": {
-    "message": "മറിച്ചെടുക്കുക അനിമേശന"
+    "message": "ബ്ലിങ്ക് ആനിമേഷൻ"
   },
   "SmoothAnimationLabel": {
-    "message": "സ്മൂഥ അനിമേശന"
+    "message": "ടൈപ്പ്റൈറ്റർ ഇഫക്റ്റ്"
+  },
+  "TranslucentModeLabel": {
+    "message": "ട്രാൻസ്ലുസെന്റ് മോഡ്"
   },
   "trueOption": {
     "message": "ഓൺ"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "കാൻഡി"
+  },
+  "gradientEmerald": {
+    "message": "എമറാൾഡ്"
+  },
+  "gradientSunset": {
+    "message": "സൂര്യാസ്തമയം"
+  },
+  "gradientGalaxy": {
+    "message": "ഗാലക്സി"
+  },
+  "gradientAurora": {
+    "message": "അറോറ"
   },
   "notInDocsMessage": {
     "message": "നിങ്ങൾ ഗൂഗിൾ ഡോക്സിൽ അല്ല."

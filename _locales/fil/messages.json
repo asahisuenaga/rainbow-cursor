@@ -8,14 +8,17 @@
   "title": {
     "message": "Rainbow Cursor sa Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Kapal"
   },
   "BlinkLabel": {
-    "message": "Blink Animation"
+    "message": "Animasyon ng Kumikislap"
   },
   "SmoothAnimationLabel": {
-    "message": "Smooth Animation"
+    "message": "Epekto ng Makinilya"
+  },
+  "TranslucentModeLabel": {
+    "message": "Translucent na Mode"
   },
   "trueOption": {
     "message": "On"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Kandy"
+  },
+  "gradientEmerald": {
+    "message": "Esmeralda"
+  },
+  "gradientSunset": {
+    "message": "Paglubog ng Araw"
+  },
+  "gradientGalaxy": {
+    "message": "Kalawakan"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Hindi ka nasa Google Docs."

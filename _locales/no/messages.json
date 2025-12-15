@@ -8,14 +8,17 @@
   "title": {
     "message": "Regnbuemarkør i Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Dikte"
   },
   "BlinkLabel": {
-    "message": "Blink animasjon"
+    "message": "Blinkanimasjon"
   },
   "SmoothAnimationLabel": {
-    "message": "Sjakk animasjon"
+    "message": "Skrivemaskineffekt"
+  },
+  "TranslucentModeLabel": {
+    "message": "Gjennomsiktig Modus"
   },
   "trueOption": {
     "message": "På"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Godteri"
+  },
+  "gradientEmerald": {
+    "message": "Smaragd"
+  },
+  "gradientSunset": {
+    "message": "Solnedgang"
+  },
+  "gradientGalaxy": {
+    "message": "Galakse"
+  },
+  "gradientAurora": {
+    "message": "Nordlys"
   },
   "notInDocsMessage": {
     "message": "Du er ikke i Google Docs."

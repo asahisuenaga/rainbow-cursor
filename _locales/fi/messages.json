@@ -8,14 +8,17 @@
   "title": {
     "message": "Sateenkaarikursori Google Docsissa"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Paksuus"
   },
   "BlinkLabel": {
-    "message": "Blink-animaatio"
+    "message": "Vilkkausanimaatio"
   },
   "SmoothAnimationLabel": {
-    "message": "Sujuva animaatio"
+    "message": "Kirjoituskonetehoste"
+  },
+  "TranslucentModeLabel": {
+    "message": "Läpikuultava tila"
   },
   "trueOption": {
     "message": "Päällä"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Karkki"
+  },
+  "gradientEmerald": {
+    "message": "Smaragdi"
+  },
+  "gradientSunset": {
+    "message": "Auringonlasku"
+  },
+  "gradientGalaxy": {
+    "message": "Galaksi"
+  },
+  "gradientAurora": {
+    "message": "Revontulet"
   },
   "notInDocsMessage": {
     "message": "Et ole Google Docsissa."

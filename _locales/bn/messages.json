@@ -8,14 +8,17 @@
   "title": {
     "message": "গুগল ডক্সে রেইনবো কার্সার"
   },
-  "caretWidthLabel": {
-    "message": "ঘনত্ব"
+  "ThicknessLabel": {
+    "message": "ক্যারেটের পুরুত্ব"
   },
   "BlinkLabel": {
-    "message": "ব্লিঙ্ক অ্যানিমেশন"
+    "message": "ব্লিংক অ্যানিমেশন"
   },
   "SmoothAnimationLabel": {
-    "message": "মসৃণ অ্যানিমেশন"
+    "message": "টাইপরাইটার ইফেক্ট"
+  },
+  "TranslucentModeLabel": {
+    "message": "স্বচ্ছ মোড"
   },
   "trueOption": {
     "message": "চালু"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "মিষ্টি"
+  },
+  "gradientEmerald": {
+    "message": "এমারাল্ড"
+  },
+  "gradientSunset": {
+    "message": "সানসেট"
+  },
+  "gradientGalaxy": {
+    "message": "গ্যালাক্সি"
+  },
+  "gradientAurora": {
+    "message": "অরোরা"
   },
   "notInDocsMessage": {
     "message": "আপনি Google Docs-এ নেই।"

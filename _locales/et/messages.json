@@ -8,14 +8,17 @@
   "title": {
     "message": "Vikerkaarekursor Google Docsis"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Paksus"
   },
   "BlinkLabel": {
-    "message": "Vilkuv animatsioon"
+    "message": "Pilgutuse animatsioon"
   },
   "SmoothAnimationLabel": {
-    "message": "Sujuv animatsioon"
+    "message": "Kirjutusmasina efekt"
+  },
+  "TranslucentModeLabel": {
+    "message": "Läbipaistev režiim"
   },
   "trueOption": {
     "message": "Peal"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Kommi"
+  },
+  "gradientEmerald": {
+    "message": "Smaragdroheline"
+  },
+  "gradientSunset": {
+    "message": "Päikeseloojang"
+  },
+  "gradientGalaxy": {
+    "message": "Galaktika"
+  },
+  "gradientAurora": {
+    "message": "Virmalised"
   },
   "notInDocsMessage": {
     "message": "Sa ei ole Google Docsis."

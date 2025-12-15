@@ -9,13 +9,16 @@
     "message": "Google Docs中的彩虹光标"
   },
   "ThicknessLabel": {
-    "message": "粗细"
+    "message": "光标粗细"
   },
   "BlinkLabel": {
-    "message": "眨眼动画"
+    "message": "闪烁动画"
   },
   "SmoothAnimationLabel": {
-    "message": "流畅的动画"
+    "message": "打字机效果"
+  },
+  "TranslucentModeLabel": {
+    "message": "半透明模式"
   },
   "trueOption": {
     "message": "开启"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "糖果"
+  },
+  "gradientEmerald": {
+    "message": "翡翠绿"
+  },
+  "gradientSunset": {
+    "message": "日落橙"
+  },
+  "gradientGalaxy": {
+    "message": "星系紫"
+  },
+  "gradientAurora": {
+    "message": "极光蓝"
   },
   "notInDocsMessage": {
     "message": "您不在 Google Docs 中。"

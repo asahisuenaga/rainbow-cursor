@@ -8,14 +8,17 @@
   "title": {
     "message": "Varavīksnes kursors pakalpojumā Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Biezums"
   },
   "BlinkLabel": {
-    "message": "Mirgošana animācija"
+    "message": "Mirkšķināšanas animācija"
   },
   "SmoothAnimationLabel": {
-    "message": "Sujaus animacija"
+    "message": "Rakstāmmašīnas efekts"
+  },
+  "TranslucentModeLabel": {
+    "message": "Caurspīdīgs režīms"
   },
   "trueOption": {
     "message": "Ieslēgts"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Konfekte"
+  },
+  "gradientEmerald": {
+    "message": "Smaragds"
+  },
+  "gradientSunset": {
+    "message": "Saulriets"
+  },
+  "gradientGalaxy": {
+    "message": "Galaktika"
+  },
+  "gradientAurora": {
+    "message": "Blāzma"
   },
   "notInDocsMessage": {
     "message": "Jūs neesat Google Docs."

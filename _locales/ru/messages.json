@@ -9,13 +9,16 @@
     "message": "Радужный курсор в Google Docs"
   },
   "ThicknessLabel": {
-    "message": "Толщина"
+    "message": "Толщина курсора"
   },
   "BlinkLabel": {
-    "message": "Мигание анимация"
+    "message": "Анимация мигания"
   },
   "SmoothAnimationLabel": {
-    "message": "Плавная анимация"
+    "message": "Эффект пишущей машинки"
+  },
+  "TranslucentModeLabel": {
+    "message": "Полупрозрачный режим"
   },
   "trueOption": {
     "message": "Включено"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Конфета"
+  },
+  "gradientEmerald": {
+    "message": "Изумрудный"
+  },
+  "gradientSunset": {
+    "message": "Закат"
+  },
+  "gradientGalaxy": {
+    "message": "Галактика"
+  },
+  "gradientAurora": {
+    "message": "Северное сияние"
   },
   "notInDocsMessage": {
     "message": "Вы не в Google Docs."

@@ -8,14 +8,17 @@
   "title": {
     "message": "Google Docsನಲ್ಲಿ રેઇನ್‌બો ಕರ್ಸರ್"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "ದಪ್ಪ"
   },
   "BlinkLabel": {
-    "message": "ಹರಿದುಹೋಗಿ ಅನಿಮೇಶನ"
+    "message": "ಬ್ಲಿಂಕ್ ಅನಿಮೇಷನ್"
   },
   "SmoothAnimationLabel": {
-    "message": "ಸ್ಮೂಥ ಅನಿಮೇಶನ"
+    "message": "ಟೈಪ್‌ರೈಟರ್ ಪರಿಣಾಮ"
+  },
+  "TranslucentModeLabel": {
+    "message": "ಅರೆಪಾರದರ್ಶಕ ಮೋಡ್"
   },
   "trueOption": {
     "message": "ಆನ್"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "ಕ್ಯಾಂಡಿ"
+  },
+  "gradientEmerald": {
+    "message": "ಪಚ್ಚೆ"
+  },
+  "gradientSunset": {
+    "message": "ಸೂರ್ಯಾಸ್ತ"
+  },
+  "gradientGalaxy": {
+    "message": "ಗ್ಯಾಲಕ್ಸಿ"
+  },
+  "gradientAurora": {
+    "message": "ಅರೋರಾ"
   },
   "notInDocsMessage": {
     "message": "ನೀವು ಗೂಗಲ್ ಡಾಕ್ಸ್‌ನಲ್ಲಿ ಇಲ್ಲ."

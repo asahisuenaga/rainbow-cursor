@@ -8,14 +8,17 @@
   "title": {
     "message": "Google Docs में इंद्रधनुष कर्सर"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "मोटाई"
   },
   "BlinkLabel": {
-    "message": "झपकना अनिमेशन"
+    "message": "ब्लिंक एनिमेशन"
   },
   "SmoothAnimationLabel": {
-    "message": "स्मूथ अनिमेशन"
+    "message": "टाइपराइटर इफ़ेक्ट"
+  },
+  "TranslucentModeLabel": {
+    "message": "पारदर्शी मोड"
   },
   "trueOption": {
     "message": "चालू"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "कैंडी"
+  },
+  "gradientEmerald": {
+    "message": "एमराल्ड"
+  },
+  "gradientSunset": {
+    "message": "सनसेट"
+  },
+  "gradientGalaxy": {
+    "message": "गैलेक्सी"
+  },
+  "gradientAurora": {
+    "message": "ऑरोरा"
   },
   "notInDocsMessage": {
     "message": "आप Google Docs में नहीं हैं।"

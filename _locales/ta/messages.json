@@ -9,13 +9,16 @@
     "message": "கூகிள் டாக்ஸில் ரெயின்போ கர்சர்"
   },
   "ThicknessLabel": {
-    "message": "தடிப்பு"
+    "message": "கர்சர் தடிமன்"
   },
   "BlinkLabel": {
-    "message": "மின்சாரம் அனிமேஷன்"
+    "message": "மின்னும் அசைவூட்டம்"
   },
   "SmoothAnimationLabel": {
-    "message": "சமையல் அனிமேஷன்"
+    "message": "தட்டச்சுப்பொறி விளைவு"
+  },
+  "TranslucentModeLabel": {
+    "message": "ஒளிபுகும் முறை"
   },
   "trueOption": {
     "message": "ஆன்"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "கேண்டி"
+  },
+  "gradientEmerald": {
+    "message": "எமரால்டு"
+  },
+  "gradientSunset": {
+    "message": "சூரிய அஸ்தமனம்"
+  },
+  "gradientGalaxy": {
+    "message": "கேலக்ஸி"
+  },
+  "gradientAurora": {
+    "message": "அரோரா"
   },
   "notInDocsMessage": {
     "message": "நீங்கள் கூகுள் டாக்ஸில் இல்லை."

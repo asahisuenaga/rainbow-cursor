@@ -15,7 +15,7 @@
     "message": "Blink Animation"
   },
   "SmoothAnimationLabel": {
-    "message": "Smooth Animation"
+    "message": "Typewriter Effect"
   },
   "TranslucentModeLabel": {
     "message": "Translucent Mode"
@@ -91,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Candy"
+  },
+  "gradientEmerald": {
+    "message": "Emerald"
+  },
+  "gradientSunset": {
+    "message": "Sunset"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxy"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "You are not in Google Docs."

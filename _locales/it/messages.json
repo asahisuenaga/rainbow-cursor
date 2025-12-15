@@ -15,7 +15,10 @@
     "message": "Animazione lampeggiante"
   },
   "SmoothAnimationLabel": {
-    "message": "Animazione fluida"
+    "message": "Effetto macchina da scrivere"
+  },
+  "TranslucentModeLabel": {
+    "message": "Modalità traslucida"
   },
   "trueOption": {
     "message": "Attivo"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Caramella"
+  },
+  "gradientEmerald": {
+    "message": "Smeraldo"
+  },
+  "gradientSunset": {
+    "message": "Tramonto"
+  },
+  "gradientGalaxy": {
+    "message": "Galassia"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Non sei in Google Docs."

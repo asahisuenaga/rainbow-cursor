@@ -8,14 +8,17 @@
   "title": {
     "message": "Ουράνιο τόξο σε Google Docs"
   },
-  "caretWidthLabel": {
-    "message": "Πάχος"
+  "ThicknessLabel": {
+    "message": "Πάχος κέρσορα"
   },
   "BlinkLabel": {
-    "message": "Αναβοσβήνει κινούμενα σχέδια"
+    "message": "Κίνηση αναλαμπής"
   },
   "SmoothAnimationLabel": {
-    "message": "Ομαλή κινούμενη εικόνα"
+    "message": "Εφέ γραφομηχανής"
+  },
+  "TranslucentModeLabel": {
+    "message": "Λειτουργία διαφανούς"
   },
   "trueOption": {
     "message": "Ενεργό"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Καραμέλα"
+  },
+  "gradientEmerald": {
+    "message": "Εμέραδος"
+  },
+  "gradientSunset": {
+    "message": "Ανάκαμψη"
+  },
+  "gradientGalaxy": {
+    "message": "Γαλαξία"
+  },
+  "gradientAurora": {
+    "message": "Αυρορά"
   },
   "notInDocsMessage": {
     "message": "Δεν είστε στο Google Docs."

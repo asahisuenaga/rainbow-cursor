@@ -9,13 +9,16 @@
     "message": "Con trỏ cầu vồng trong Google Docs"
   },
   "ThicknessLabel": {
-    "message": "Độ dày"
+    "message": "Độ dày con trỏ"
   },
   "BlinkLabel": {
-    "message": "Hoạt ảnh chớp mắt"
+    "message": "Hiệu ứng nhấp nháy"
   },
   "SmoothAnimationLabel": {
-    "message": "Hoạt ảnh mượt mà"
+    "message": "Hiệu ứng máy đánh chữ"
+  },
+  "TranslucentModeLabel": {
+    "message": "Chế độ trong suốt"
   },
   "trueOption": {
     "message": "Bật"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Kẹo"
+  },
+  "gradientEmerald": {
+    "message": "Ngọc lục bảo"
+  },
+  "gradientSunset": {
+    "message": "Hoàng hôn"
+  },
+  "gradientGalaxy": {
+    "message": "Thiên hà"
+  },
+  "gradientAurora": {
+    "message": "Cực quang"
   },
   "notInDocsMessage": {
     "message": "Bạn không ở trong Google Docs."

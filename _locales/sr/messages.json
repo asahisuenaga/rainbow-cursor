@@ -9,13 +9,16 @@
     "message": "Курсор у дугиним бојама у Google Docs"
   },
   "ThicknessLabel": {
-    "message": "Дебљина"
+    "message": "Дебљина курсора"
   },
   "BlinkLabel": {
-    "message": "Треперење анимација"
+    "message": "Анимација трептаја"
   },
   "SmoothAnimationLabel": {
-    "message": "Плавна анимација"
+    "message": "Ефекат писаће машине"
+  },
+  "TranslucentModeLabel": {
+    "message": "Провидни режим"
   },
   "trueOption": {
     "message": "Укључено"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Бомбоне"
+  },
+  "gradientEmerald": {
+    "message": "Смарагд"
+  },
+  "gradientSunset": {
+    "message": "Залазак сунца"
+  },
+  "gradientGalaxy": {
+    "message": "Галаксија"
+  },
+  "gradientAurora": {
+    "message": "Аурора"
   },
   "notInDocsMessage": {
     "message": "Нисте у Google Docs."

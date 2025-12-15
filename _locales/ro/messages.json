@@ -8,14 +8,17 @@
   "title": {
     "message": "Cursor personalizat în Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Grosime"
   },
   "BlinkLabel": {
-    "message": "Clipoire animat"
+    "message": "Animație clipire"
   },
   "SmoothAnimationLabel": {
-    "message": "Animatie fluidă"
+    "message": "Efect mașină de scris"
+  },
+  "TranslucentModeLabel": {
+    "message": "Mod translucid"
   },
   "trueOption": {
     "message": "Activat"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Bomboane"
+  },
+  "gradientEmerald": {
+    "message": "Smarald"
+  },
+  "gradientSunset": {
+    "message": "Apus de soare"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxie"
+  },
+  "gradientAurora": {
+    "message": "Auroră"
   },
   "notInDocsMessage": {
     "message": "Nu te afli în Google Docs."

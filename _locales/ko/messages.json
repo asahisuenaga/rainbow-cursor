@@ -9,13 +9,16 @@
     "message": "Google Docs의 무지개 커서"
   },
   "ThicknessLabel": {
-    "message": "두께"
+    "message": "커서 두께"
   },
   "BlinkLabel": {
     "message": "깜빡임 애니메이션"
   },
   "SmoothAnimationLabel": {
-    "message": "부드러운 애니메이션"
+    "message": "타자기 효과"
+  },
+  "TranslucentModeLabel": {
+    "message": "반투명 모드"
   },
   "trueOption": {
     "message": "켜기"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "사탕"
+  },
+  "gradientEmerald": {
+    "message": "에메랄드"
+  },
+  "gradientSunset": {
+    "message": "선셋"
+  },
+  "gradientGalaxy": {
+    "message": "갤럭시"
+  },
+  "gradientAurora": {
+    "message": "오로라"
   },
   "notInDocsMessage": {
     "message": "Google Docs에 있지 않습니다."

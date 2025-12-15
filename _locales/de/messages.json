@@ -9,13 +9,16 @@
     "message": "Regenbogen-Cursor in Google Docs"
   },
   "ThicknessLabel": {
-    "message": "Dicke"
+    "message": "Cursorstärke"
   },
   "BlinkLabel": {
-    "message": "Blink-Animation"
+    "message": "Blinkanimation"
   },
   "SmoothAnimationLabel": {
-    "message": "Flüssige Animation"
+    "message": "Schreibmaschineneffekt"
+  },
+  "TranslucentModeLabel": {
+    "message": "Transparenzmodus"
   },
   "trueOption": {
     "message": "An"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Süßigkeiten"
+  },
+  "gradientEmerald": {
+    "message": "Smaragd"
+  },
+  "gradientSunset": {
+    "message": "Sonnenuntergang"
+  },
+  "gradientGalaxy": {
+    "message": "Galaxie"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Du bist nicht in Google Docs."

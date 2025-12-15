@@ -8,14 +8,17 @@
   "title": {
     "message": "Mavrični kazalec v Google Docs"
   },
-  "caretWidthLabel": {
+  "ThicknessLabel": {
     "message": "Debelina"
   },
   "BlinkLabel": {
-    "message": "Utripanje animacija"
+    "message": "Animacija utripanja"
   },
   "SmoothAnimationLabel": {
-    "message": "Animacija suha"
+    "message": "Učinek pisalnega stroja"
+  },
+  "TranslucentModeLabel": {
+    "message": "Prosojni način"
   },
   "trueOption": {
     "message": "Vklopljeno"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Bomboni"
+  },
+  "gradientEmerald": {
+    "message": "Smaragdno modra"
+  },
+  "gradientSunset": {
+    "message": "Sončni zahod"
+  },
+  "gradientGalaxy": {
+    "message": "Galaksija"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Niste v Google Docs."

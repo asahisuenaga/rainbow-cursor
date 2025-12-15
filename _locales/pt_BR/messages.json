@@ -12,10 +12,13 @@
     "message": "Espessura"
   },
   "BlinkLabel": {
-    "message": "Piscada animada"
+    "message": "Animação de piscar"
   },
   "SmoothAnimationLabel": {
-    "message": "Animada suave"
+    "message": "Efeito de máquina de escrever"
+  },
+  "TranslucentModeLabel": {
+    "message": "Modo translúcido"
   },
   "trueOption": {
     "message": "Ligado"
@@ -88,6 +91,18 @@
   },
   "gradientCandy": {
     "message": "Doce"
+  },
+  "gradientEmerald": {
+    "message": "Esmeralda"
+  },
+  "gradientSunset": {
+    "message": "Pôr do sol"
+  },
+  "gradientGalaxy": {
+    "message": "Galáxia"
+  },
+  "gradientAurora": {
+    "message": "Aurora"
   },
   "notInDocsMessage": {
     "message": "Você não está no Google Docs."
