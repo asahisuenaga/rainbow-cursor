@@ -171,22 +171,26 @@ document.addEventListener('DOMContentLoaded', () => {
   function getGradientColors(gradientValue, applyTranslucent = false) {
     // Match the color arrays from script.js
     const gradientStyles = {
-      rainbow: ['#FFB6C1', '#FF69B4', '#DA70D6', '#9370DB', '#48C9B0', '#F0E68C', '#FFD700'],
-      red: ['#FF0000', '#B22222', '#8B0000', '#DC143C', '#FF6347'],
+      rainbow: ['#ffb6c1', '#ff69b4', '#da70d6', '#9370db', '#48c9b0', '#f0e68c', '#ffd700'],
+      red: ['#ff0000', '#c43a3a', '#8b0000', '#e34e5b', '#ff6347'],
       dynamic: ['#e6e6e6', '#333333'],
-      snow: ['#00BFFF', '#1E90FF', '#4682B4', '#ADD8E6', '#F0F8FF'],
-      ocean: ['#2193B0', '#6DD5ED', '#B2FEFA', '#2F80ED', '#56CCF2'],
-      forest: ['#005C1E', '#228B22', '#8FBC8F', '#2E8B57', '#006400'],
-      fire: ['#FF4500', '#FF8C00', '#FFD700', '#FFA500', '#FF6347'],
-      ice: ['#00FFFF', '#E0FFFF', '#AFEEEE', '#7FFFD4', '#40E0D0'],
-      neon: ['#39FF14', '#FF073A', '#FFD700', '#DA22FF', '#7FFF00'],
-      gold: ['#FFD700', '#FFB84D', '#FFA500', '#FF8C00', '#DAA520'],
-      silver: ['#C0C0C0', '#D3D3D3', '#A9A9A9', '#808080', '#B0C4DE'],
-      twilight: ['#FFA07A', '#FA8072', '#E9967A', '#8B4513', '#2E2E2E'],
-      vintage: ['#eacda3', '#d6ae7b'],
-      tropical: ['#FFD700', '#FF4500', '#FF8C00', '#00FA9A', '#20B2AA'],
-      floral: ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFE4E1'],
-      candy: ['#FFC3A0', '#FF85A1', '#FF6D6A', '#FFC1CC', '#FF99A8']
+      snow: ['#00bfff', '#1e90ff', '#4682b4', '#add8e6', '#e0f0ff'],
+      ocean: ['#2193b0', '#6dd5ed', '#b2fefa', '#2f80ed', '#56ccf2'],
+      forest: ['#005c1e', '#228b22', '#6b8e23', '#2e8b57', '#006400'],
+      fire: ['#ff4500', '#ff8c00', '#ffd700', '#ffa500', '#ff6347'],
+      ice: ['#00ffff', '#e0ffff', '#afeeee', '#7fffd4', '#d0f8ff'],
+      neon: ['#39ff14', '#ff073a', '#ffd700', '#da22ff', '#7fff00'],
+      gold: ['#ffd700', '#ffb84d', '#ffa500', '#ff8c00', '#daa520'],
+      silver: ['#c0c0c0', '#d3d3d3', '#a9a9a9', '#555555', '#e6e6fa'],
+      twilight: ['#ffa07a', '#fa8072', '#e9967a', '#a0522d', '#2e2e2e'],
+      vintage: ['#eacda3', '#d6ae7b', '#b08968', '#7f6a5b', '#4a413a'],
+      tropical: ['#ffd700', '#ff4500', '#ff8c00', '#00fa9a', '#1e90ff'],
+      floral: ['#ff69b4', '#ffb6c1', '#ffc0cb', '#ffdab9', '#ffe4e1'],
+      candy: ['#ffc3a0', '#ff85a1', '#ff6d6a', '#ffc1cc', '#ff99a8'],
+      emerald: ['#50c878', '#2e8b57', '#3cb371', '#00fa9a', '#00ff7f'],
+      sunset: ['#ff5e62', '#ff9966', '#ffc371', '#d62828', '#9400d3'],
+      galaxy: ['#663399', '#4b0082', '#0000ff', '#8a2be2', '#9932cc'],
+      aurora: ['#00c9ff', '#92fe9d', '#00f260', '#0575e6']
     };
     let colors = gradientStyles[gradientValue] || gradientStyles.rainbow;
 
@@ -362,14 +366,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     blinkDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="blinkDropdownSelected">
-        ${createBlinkPreviewBar(selected)}
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
       <div class="cursor-dropdown-list" id="blinkDropdownList">
         ${blinkOptions.map(o => `
           <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
-            ${createBlinkPreviewBar(o)}
             <span class="cursor-label">${o.label}</span>
           </div>
         `).join('')}
@@ -389,25 +391,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const smoothAnimationDropdownContainer = document.getElementById('smoothAnimationDropdownContainer');
   let currentSmoothAnimation = 'false';
 
-  function createSmoothPreviewBar(option, thickness = 4) {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return `<span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${thickness}px;height:20px;border-radius:3px;background:#111;${option.smooth ? 'transition: all 80ms ease;' : ''}"></span>`;
-  }
-
   function renderSmoothAnimationDropdown(selectedValue) {
     currentSmoothAnimation = selectedValue;
     const selected = smoothAnimationOptions.find(o => o.value === selectedValue) || smoothAnimationOptions[0];
 
     smoothAnimationDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="smoothAnimationDropdownSelected">
-        ${createSmoothPreviewBar(selected)}
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
       <div class="cursor-dropdown-list" id="smoothAnimationDropdownList">
         ${smoothAnimationOptions.map(o => `
           <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
-            ${createSmoothPreviewBar(o)}
             <span class="cursor-label">${o.label}</span>
           </div>
         `).join('')}
@@ -429,26 +424,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const translucentModeDropdownContainer = document.getElementById('translucentModeDropdownContainer');
   let currentTranslucentMode = 'false';
 
-  function createTranslucentPreviewBar(option, thickness = 4) {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const opacity = option.translucent ? '0.5' : '1';
-    return `<span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${thickness}px;height:20px;border-radius:3px;background:#111;opacity:${opacity};"></span>`;
-  }
-
   function renderTranslucentModeDropdown(selectedValue) {
     currentTranslucentMode = selectedValue;
     const selected = translucentModeOptions.find(o => o.value === selectedValue) || translucentModeOptions[0];
 
     translucentModeDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="translucentModeDropdownSelected">
-        ${createTranslucentPreviewBar(selected)}
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
       <div class="cursor-dropdown-list" id="translucentModeDropdownList">
         ${translucentModeOptions.map(o => `
           <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
-            ${createTranslucentPreviewBar(o)}
             <span class="cursor-label">${o.label}</span>
           </div>
         `).join('')}
@@ -478,7 +465,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { value: 'vintage', label: chrome.i18n.getMessage("gradientVintage") || 'Vintage' },
     { value: 'tropical', label: chrome.i18n.getMessage("gradientTropical") || 'Tropical' },
     { value: 'floral', label: chrome.i18n.getMessage("gradientFloral") || 'Floral' },
-    { value: 'candy', label: chrome.i18n.getMessage("gradientCandy") || 'Candy' }
+    { value: 'candy', label: chrome.i18n.getMessage("gradientCandy") || 'Candy' },
+    { value: 'emerald', label: chrome.i18n.getMessage("gradientEmerald") || 'Emerald' },
+    { value: 'sunset', label: chrome.i18n.getMessage("gradientSunset") || 'Sunset' },
+    { value: 'galaxy', label: chrome.i18n.getMessage("gradientGalaxy") || 'Galaxy' },
+    { value: 'aurora', label: chrome.i18n.getMessage("gradientAurora") || 'Aurora' }
   ];
   const gradientDropdownContainer = document.getElementById('gradientDropdownContainer');
   let currentGradient = 'rainbow';
