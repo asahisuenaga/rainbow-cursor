@@ -1,0 +1,23 @@
+# .github/release.yml
+
+changelog:
+  categories:
+    - title: New Features and Enhancements
+      labels:
+        - enhancement
+        - feature
+        - documentation
+    - title: Bug Fixes
+      labels:
+        - bug
+        - fix
+    - title: Maintenance and Refactoring
+      labels:
+        - chore
+        - refactor
+        - dependencies
+        - ci
+        - build
+    - title: Other Changes
+      labels:
+        - "*"
