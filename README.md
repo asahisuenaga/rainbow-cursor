@@ -1,12 +1,12 @@
-# Hide Google AI Overviews and Mode
+# Rainbow Cursor in Google Docs
 
 <img src="icons/icon128.png" width="64" height="64">
 
-**Remove AI-generated text overviews and AI Mode in Google search results. Get the extension if you prefer a cleaner, traditional search result page without AI-powered summaries.**
+**Swap the default cursor in Google Docs with a sleek, animated caret! Great for students, writers, and anyone who wants a better editing experience.**
 
 <kbd>
 <div style="border: 1 solid black; padding: 10;">
-  <a href="https://chromewebstore.google.com/detail/pkbhdojajlnigelihhbclnikhidgnbeo">
+  <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc">
     <img src="https://fwextensions.github.io/QuicKey/img/webstore.png" width="186" height="56.25">
   </a>
 </div>
