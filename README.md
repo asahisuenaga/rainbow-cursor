@@ -1,12 +1,12 @@
-# Rainbow Cursor in Google Docs
+# Hide Google AI Overviews and Mode
 
 <img src="icons/icon128.png" width="64" height="64">
 
-**Swap the default cursor in Google Docs with a sleek, animated caret! Great for students, writers, and anyone who wants a better editing experience.**
+**Remove AI-generated text overviews and AI Mode in Google search results. Get the extension if you prefer a cleaner, traditional search result page without AI-powered summaries.**
 
 <kbd>
 <div style="border: 1 solid black; padding: 10;">
-  <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc">
+  <a href="https://chromewebstore.google.com/detail/pkbhdojajlnigelihhbclnikhidgnbeo">
     <img src="https://fwextensions.github.io/QuicKey/img/webstore.png" width="186" height="56.25">
   </a>
 </div>
@@ -22,17 +22,15 @@
 ### Chrome
 
 1. Download the repository and unzip the downloaded folder.
-2. Open the folder, delete `manifest_firefox.json`, and change `manifest_chrome.json` to `manifest.json`.
-3. Open Chrome andgo to `chrome://extensions/`.
+3. Open Chrome and go to `chrome://extensions/`.
 4. Enable Developer Mode and click 'Load unpacked' and select the directory where you unzipped the extension files.
 
 ### Firefox
 
 1. Download the repository and unzip the downloaded folder.
-2. Open the folder, delete `manifest_chrome.json`, and change `manifest_firefox.json` to `manifest.json`.
 3. Go to `about:debugging#/runtime/this-firefox`
 5. Click **Load Temporary Add-on** and select the `manifest.json`. *(Note: this temporary install is only active until Firefox is closed.)*
 
 ## Support
 
-To report a bug, [create a new issue](https://github.com/asahisuenaga/custom-cursor/issues/new) or send me a message on [X (formerly Twitter)](https://twitter.com/asahisuenaga).
+To report a bug, [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) or send me a message on [X (formerly Twitter)](https://twitter.com/asahisuenaga).
