@@ -170,6 +170,8 @@
     }
 
     .cursor-dropdown-arrow {
+      position: absolute;
+      right: 10px;
       margin-left: 10px;
       font-size: 8px;
       color: #888;
@@ -177,7 +179,7 @@
     }
 
     .cursor-dropdown-selected.open .cursor-dropdown-arrow {
-      transform: rotate(180deg);
+      transform: rotate(-90deg);
     }
 
     .cursor-dropdown-list {
@@ -214,7 +216,7 @@
       display: flex;
       align-items: center;
       cursor: pointer;
-      transition: background 0.18s;
+      transition: 0.18s ease-in-out;
       font-size: 14px;
     }
 
