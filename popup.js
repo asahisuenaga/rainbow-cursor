@@ -1,55 +1,19 @@
 const helloTranslations = [
-  'Hello', // en
-  'ሰላም', // am
-  'مرحبا', // ar
-  'Здравей', // bg
-  'হ্যালো', // bn
-  'Hola', // ca
-  'Ahoj', // cs
-  'Hej', // da
-  'Hallo', // de
-  'Γειά', // el
-  'Hola', // es
-  'Tere', // et
-  'سلام', // fa
-  'Hei', // fi
-  'Kumusta', // fil
-  'Bonjour', // fr
-  'હેલો', // gu
-  'שלום', // he
-  'नमस्ते', // hi
-  'Bok', // hr
-  'Helló', // hu
-  'Halo', // id
-  'Ciao', // it
-  'こんにちは', // ja
-  'ಹಲೋ', // kn
-  '안녕하세요', // ko
-  'Labas', // lt
-  'Sveiki', // lv
-  'ഹലോ', // ml
-  'नमस्कार', // mr
-  'Halo', // ms
-  'Hallo', // nl
-  'Hei', // no
-  'Cześć', // pl
-  'Olá', // pt_BR
-  'Olá', // pt_PT
-  'Salut', // ro
-  'Привет', // ru
-  'Ahoj', // sk
-  'Živjo', // sl
-  'Здраво', // sr
-  'Hej', // sv
-  'Hujambo', // sw
-  'வணக்கம்', // ta
-  'హలో', // te
-  'สวัสดี', // th
-  'Merhaba', // tr
-  'Привіт', // uk
-  'Xin chào', // vi
-  '你好', // zh_CN
-  '你好', // zh_TW
+  'Hello',       // English
+  '你好',        // Chinese
+  'नमस्ते',      // Hindi
+  'مرحبا',       // Arabic
+  'Hola',        // Spanish
+  'こんにちは',    // Japanese
+  '안녕하세요',    // Korean
+  'Olá',         // Portuguese
+  'Bonjour',     // French
+  'Ciao',        // Italian
+  'Привет',      // Russian
+  'Γειά',        // Greek 
+  'سلام',         // Persian
+  'Hej',         // Swedish
+  'Hei',         // Norwegian
 ];
 
 let helloIndex = 0;
@@ -137,36 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
       updateSettingsLivePreview();
     }
   });
-  // The redundant block of code that ran the Google Docs check a second time was removed.
-
-  // Map of locale codes to helloTranslations index
-  const localeToHelloIndex = {
-    'en': 0, 'am': 1, 'ar': 2, 'bg': 3, 'bn': 4, 'ca': 5, 'cs': 6, 'da': 7, 'de': 8, 'el': 9, 'es': 10, 'et': 11, 'fa': 12, 'fi': 13, 'fil': 14, 'fr': 15, 'gu': 16, 'he': 17, 'hi': 18, 'hr': 19, 'hu': 20, 'id': 21, 'it': 22, 'ja': 23, 'kn': 24, 'ko': 25, 'lt': 26, 'lv': 27, 'ml': 28, 'mr': 29, 'ms': 30, 'nl': 31, 'no': 32, 'pl': 33, 'pt': 34, 'pt_BR': 34, 'pt_PT': 35, 'ro': 36, 'ru': 37, 'sk': 38, 'sl': 39, 'sr': 40, 'sv': 41, 'sw': 42, 'ta': 43, 'te': 44, 'th': 45, 'tr': 46, 'uk': 47, 'vi': 48, 'zh': 49, 'zh_CN': 49, 'zh_TW': 50
-  };
-
-  // On first load, set helloIndex to user's locale
-  (function setHelloIndexToLocale() {
-    const userLocale = (chrome.i18n.getUILanguage() || '').replace('-', '_');
-    // Simplified locale lookup logic by combining 'pt' and 'zh' cases
-    const baseLocale = userLocale.split('_')[0];
-    if (localeToHelloIndex.hasOwnProperty(userLocale)) {
-      helloIndex = localeToHelloIndex[userLocale];
-    } else if (localeToHelloIndex.hasOwnProperty(baseLocale)) {
-      // Handles 'pt' and 'zh' base locales which map to a different index than their variants
-      if (baseLocale === 'pt' && userLocale !== 'pt_PT') {
-        helloIndex = localeToHelloIndex['pt_BR']; // Use pt_BR for base 'pt' and other variants
-      } else if (baseLocale === 'zh' && userLocale !== 'zh_TW') {
-        helloIndex = localeToHelloIndex['zh_CN']; // Use zh_CN for base 'zh' and other variants
-      } else {
-        helloIndex = localeToHelloIndex[baseLocale];
-      }
-    } else {
-      helloIndex = 0;
-    }
-  })();
-  // NOTE: The localeToHelloIndex mapping for 'pt' and 'zh' is a little messy 
-  // in the original code. I kept the original messy map and simplified the logic
-  // to avoid breaking the expected behavior, but the map itself is still used.
 
   function getGradientColors(gradientValue, applyTranslucent = false) {
     // Match the color arrays from script.js
@@ -327,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cursor-dropdown-selected" id="thicknessDropdownSelected">
         <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${selected.width}px;height:20px;border-radius:3px;background:#111;"></span>
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">▼</span>
+        <span class="cursor-dropdown-arrow">◀</span>
       </div>
       <div class="cursor-dropdown-list" id="thicknessDropdownList">
         ${thicknessOptions.map(o => `
@@ -367,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     blinkDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="blinkDropdownSelected">
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">▼</span>
+        <span class="cursor-dropdown-arrow">◀</span>
       </div>
       <div class="cursor-dropdown-list" id="blinkDropdownList">
         ${blinkOptions.map(o => `
@@ -398,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
     smoothAnimationDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="smoothAnimationDropdownSelected">
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">▼</span>
+        <span class="cursor-dropdown-arrow">◀</span>
       </div>
       <div class="cursor-dropdown-list" id="smoothAnimationDropdownList">
         ${smoothAnimationOptions.map(o => `
@@ -431,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     translucentModeDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="translucentModeDropdownSelected">
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">▼</span>
+        <span class="cursor-dropdown-arrow">◀</span>
       </div>
       <div class="cursor-dropdown-list" id="translucentModeDropdownList">
         ${translucentModeOptions.map(o => `
@@ -483,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cursor-dropdown-selected" id="gradientDropdownSelected">
         <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${selectedGradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">▼</span>
+        <span class="cursor-dropdown-arrow">◀</span>
       </div>
       <div class="cursor-dropdown-list" id="gradientDropdownList">
         ${gradientOptions.map(o => {
