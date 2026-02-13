@@ -8,14 +8,17 @@
   "title": {
     "message": "Rainbow Cursor in Google Docs"
   },
+  "gradientLabel": {
+    "message": "Gradient"
+  },
   "ThicknessLabel": {
     "message": "Thickness"
   },
   "BlinkLabel": {
-    "message": "Blink Animation"
+    "message": "Blink Mode"
   },
   "SmoothAnimationLabel": {
-    "message": "Typewriter Effect"
+    "message": "Typewriter Mode"
   },
   "TranslucentModeLabel": {
     "message": "Translucent Mode"
@@ -25,9 +28,6 @@
   },
   "falseOption": {
     "message": "Off"
-  },
-  "gradientLabel": {
-    "message": "Gradient"
   },
   "livePreviewLabel": {
     "message": "Live Preview"

@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       </style>
       <div class='cursor-dropdown-selected' style='overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 0; cursor: default;'>
-        <span style='font-size: 14px; font-family: inherit; color: inherit; user-select: none;'>${displayText}</span>
+        <span style='font-size: 14px; font-family: inherit; letter-spacing: .2px; color: inherit; user-select: none;'>${displayText}</span>
         <span class='${caretClass}' style='${caretStyle}'></span>
       </div>
     `;

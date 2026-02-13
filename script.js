@@ -381,7 +381,7 @@
         toast.tabIndex = -1;
         toast.style.cssText = `
         background: linear-gradient(145deg, #f0f2f5, #ffffff);
-        color: #333;
+        color: #5f6368;
         border-radius: 12px;
         box-shadow: 0 4px 16px rgba(0,0,0,0.18);
         min-width: 260px;
@@ -402,7 +402,7 @@
         // Only show the message (no title)
         if (message && message.trim() !== '') {
             const textSpan = document.createElement('span');
-            textSpan.style.cssText = 'font-weight: 500; display: flex; align-items: center; gap: 0px;';
+            textSpan.style.cssText = 'font-weight: 400; display: flex; align-items: center; gap: 0px;';
             textSpan.innerHTML = message; // Use innerHTML for clickable links
             toast.appendChild(textSpan);
         }
@@ -425,9 +425,9 @@
                 border-radius: 8px;
                 font-family: 'Inter', sans-serif;
                 font-size: 14px;
-                color: #333;
+                color: #5f6368;
                 cursor: pointer;
-                font-weight: 500;
+                font-weight: 400;
                 text-decoration: none;
                 margin: 0;
                 box-shadow: inset 1px 1px 3px rgba(255,255,255,0.6),

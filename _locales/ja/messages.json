@@ -8,6 +8,9 @@
   "title": {
     "message": "GoogleDocsの虹色キャレット"
   },
+  "gradientLabel": {
+    "message": "グラデーション"
+  },
   "ThicknessLabel": {
     "message": "太さ"
   },
@@ -25,9 +28,6 @@
   },
   "falseOption": {
     "message": "オフ"
-  },
-  "gradientLabel": {
-    "message": "グラデーション"
   },
   "livePreviewLabel": {
     "message": "ライブプレビュー"
