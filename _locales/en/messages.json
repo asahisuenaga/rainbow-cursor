@@ -12,10 +12,10 @@
     "message": "Thickness"
   },
   "BlinkLabel": {
-    "message": "Blink Animation"
+    "message": "Blink Mode"
   },
   "SmoothAnimationLabel": {
-    "message": "Typewriter Effect"
+    "message": "Typewriter Mode"
   },
   "TranslucentModeLabel": {
     "message": "Translucent Mode"
