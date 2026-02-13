@@ -453,7 +453,7 @@
 
         // Close button
         const closeBtn = document.createElement('button');
-        closeBtn.innerHTML = '✖';
+        closeBtn.innerHTML = '✕';
         closeBtn.setAttribute('aria-label', 'Close');
         closeBtn.style.cssText = `
         background: none;

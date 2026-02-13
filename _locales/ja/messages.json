@@ -1,21 +1,21 @@
 {
   "extension_name": {
-    "message": "GoogleDocsのレインボーカーソル"
+    "message": "GoogleDocsの虹色キャレット"
   },
   "extension_description": {
-    "message": "デフォルトのカーソルを洗練されたアニメーションカーソルに交換しましょう！"
+    "message": "規定の設定のキャレットを洗練されたアニメーションキャレットに交換します。"
   },
   "title": {
-    "message": "Google Docs用カスタムカーソル"
+    "message": "GoogleDocsの虹色キャレット"
   },
   "ThicknessLabel": {
     "message": "太さ"
   },
   "BlinkLabel": {
-    "message": "点滅アニメーション"
+    "message": "点滅モード"
   },
   "SmoothAnimationLabel": {
-    "message": "タイプライター効果"
+    "message": "タイプライターモード"
   },
   "TranslucentModeLabel": {
     "message": "半透明モード"
@@ -42,7 +42,7 @@
     "message": "保存して終了"
   },
   "maker": {
-    "message": "拡張機能を支援する"
+    "message": "このツールを気に入ってくれましたか？開発者にコーヒーをご馳走しましょう！☕"
   },
   "gradientDynamic": {
     "message": "ダイナミック"

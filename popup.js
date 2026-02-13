@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setLocalizedText('SmoothAnimationLabel', 'SmoothAnimationLabel');
   setLocalizedText('TranslucentModeLabel', 'TranslucentModeLabel');
   setLocalizedText('gradientLabel', 'gradientLabel');
-  setLocalizedText('infoMessageText', 'infoMessage');
+  setLocalizedText('infoMessage', 'infoMessage');
   setLocalizedText('redirectButton', 'openDocsButton');
   setLocalizedText('saveButton', 'saveButton');
   setLocalizedText('maker', 'maker');
