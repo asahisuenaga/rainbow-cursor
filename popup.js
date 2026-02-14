@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let caretClass = `live-gradient-bar live-gradient-animated`;
-    let caretStyle = `display:inline-block;vertical-align:bottom;width:${thicknessObj.width}px;height:20px;margin-left:8px;border-radius:3px;background:${backgroundStyle};background-size:400% 400%;${animationStyle}${smoothTransition}`;
+    let caretStyle = `display:inline-block;vertical-align:bottom;width:${thicknessObj.width}px;height:1.25rem;margin-left:0.5rem;border-radius:0.1875rem;background:${backgroundStyle};background-size:400% 400%;${animationStyle}${smoothTransition}`;
 
     previewBox.innerHTML = `
   <style>
@@ -228,14 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     thicknessDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="thicknessDropdownSelected" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
-        <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${selected.width}px;height:20px;border-radius:3px;background:#111;"></span>
+        <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:0.5rem;width:${selected.width}px;height:1.25rem;border-radius:0.1875rem;background:#111;"></span>
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
       <div class="cursor-dropdown-list" id="thicknessDropdownList" role="listbox">
         ${thicknessOptions.map(o => `
           <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}" tabindex="0" role="option" aria-selected="${o.value === selectedValue}">
-            <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${o.width}px;height:20px;border-radius:3px;background:#111;"></span>
+            <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:0.5rem;width:${o.width}px;height:1.25rem;border-radius:0.1875rem;background:#111;"></span>
             <span class="cursor-label">${o.label}</span>
           </div>
         `).join('')}
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedGradCSS = `linear-gradient(-45deg, ${selectedGradColors.join(', ')})`;
     gradientDropdownContainer.innerHTML = `
       <div class="cursor-dropdown-selected" id="gradientDropdownSelected" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
-        <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${selectedGradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
+        <span style="display:inline-block;vertical-align:middle;margin-right:0.5rem;width:0.375rem;height:1.25rem;border-radius:0.1875rem;background:${selectedGradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const gradCSS = `linear-gradient(-45deg, ${gradColors.join(', ')})`;
       return `
             <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}" tabindex="0" role="option" aria-selected="${o.value === selectedValue}">
-              <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${gradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
+              <span style="display:inline-block;vertical-align:middle;margin-right:0.5rem;width:0.375rem;height:1.25rem;border-radius:0.1875rem;background:${gradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
               <span class="cursor-label">${o.label}</span>
             </div>
           `;
