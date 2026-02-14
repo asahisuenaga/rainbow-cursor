@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isCurrentlyOn = currenttypewriterAnimation === 'true';
     const newState = !isCurrentlyOn;
     currenttypewriterAnimation = newState ? 'true' : 'false';
-    chrome.storage.sync.set({ typewriterAnimation: newState }); // Storing boolean is fine, handled as string 'true'/'false' above
+    chrome.storage.sync.set({ typewriterAnimation: newState });
     updateToggleUI(typewriterAnimationToggle, newState);
     updateSettingsLivePreview(true);
   });
