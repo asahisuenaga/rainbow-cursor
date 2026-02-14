@@ -50,11 +50,6 @@
       background: #f7f7f7;
     }
 
-    button:focus {
-      outline: none;
-      border-color: #4A90E2;
-    }
-
     button {
       color: #fff;
       border: none;
@@ -105,8 +100,11 @@
       font-size: 1rem;
     }
 
-    .cursor-dropdown-selected.open {
+    .cursor-dropdown-selected.open,
+    .cursor-dropdown-selected:focus,
+    button:focus {
       border-color: #4A90E2;
+      outline: none;
     }
 
     .cursor-dropdown-arrow {
@@ -170,6 +168,11 @@
 
     .cursor-dropdown-option.selected {
       background: #e1e3e1;
+    }
+
+    .cursor-dropdown-option:focus {
+      outline: none;
+      background: #ededed;
     }
 
     .cursor-preview-box {
@@ -366,8 +369,9 @@
         color: #f5f5f5;
       }
 
-      .cursor-dropdown-option:hover {
-        background: #787878;
+      .cursor-dropdown-option:hover,
+      .cursor-dropdown-option:focus {
+        background: #5b5b5b;
       }
 
       .cursor-dropdown-option.selected {

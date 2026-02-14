@@ -215,7 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!exceptId || list.id !== exceptId) list.classList.remove('open');
     });
     document.querySelectorAll('.cursor-dropdown-selected.open').forEach(sel => {
-      if (!exceptId || sel.id !== exceptId.replace('List', 'Selected')) sel.classList.remove('open');
+      if (!exceptId || sel.id !== exceptId.replace('List', 'Selected')) {
+        sel.classList.remove('open');
+        sel.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -224,14 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const selected = thicknessOptions.find(o => o.value === selectedValue) || thicknessOptions[0];
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     thicknessDropdownContainer.innerHTML = `
-      <div class="cursor-dropdown-selected" id="thicknessDropdownSelected">
+      <div class="cursor-dropdown-selected" id="thicknessDropdownSelected" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
         <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${selected.width}px;height:20px;border-radius:3px;background:#111;"></span>
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
-      <div class="cursor-dropdown-list" id="thicknessDropdownList">
+      <div class="cursor-dropdown-list" id="thicknessDropdownList" role="listbox">
         ${thicknessOptions.map(o => `
-          <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
+          <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}" tabindex="0" role="option" aria-selected="${o.value === selectedValue}">
             <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${o.width}px;height:20px;border-radius:3px;background:#111;"></span>
             <span class="cursor-label">${o.label}</span>
           </div>
@@ -346,17 +349,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedGradColors = getGradientColors(selected.value);
     const selectedGradCSS = `linear-gradient(-45deg, ${selectedGradColors.join(', ')})`;
     gradientDropdownContainer.innerHTML = `
-      <div class="cursor-dropdown-selected" id="gradientDropdownSelected">
+      <div class="cursor-dropdown-selected" id="gradientDropdownSelected" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
         <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${selectedGradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
         <span class="cursor-label">${selected.label}</span>
         <span class="cursor-dropdown-arrow">▼</span>
       </div>
-      <div class="cursor-dropdown-list" id="gradientDropdownList">
+      <div class="cursor-dropdown-list" id="gradientDropdownList" role="listbox">
         ${gradientOptions.map(o => {
       const gradColors = getGradientColors(o.value);
       const gradCSS = `linear-gradient(-45deg, ${gradColors.join(', ')})`;
       return `
-            <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
+            <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}" tabindex="0" role="option" aria-selected="${o.value === selectedValue}">
               <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${gradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
               <span class="cursor-label">${o.label}</span>
             </div>
@@ -377,6 +380,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+    }
+  });
+
   // Thickness dropdown listener
   thicknessDropdownContainer.addEventListener('click', (e) => {
     if (e.target.closest('.cursor-dropdown-selected')) {
@@ -386,11 +395,57 @@ document.addEventListener('DOMContentLoaded', () => {
       const selectedDiv = document.getElementById('thicknessDropdownSelected');
       listDiv.classList.toggle('open');
       selectedDiv.classList.toggle('open');
+      selectedDiv.setAttribute('aria-expanded', selectedDiv.classList.contains('open'));
     } else if (e.target.closest('.cursor-dropdown-option')) {
       e.stopPropagation();
       const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
       chrome.storage.sync.set({ Thickness: value });
       renderThicknessDropdown(value);
+      document.getElementById('thicknessDropdownSelected').focus();
+    }
+  });
+
+  thicknessDropdownContainer.addEventListener('keydown', (e) => {
+    const isTrigger = document.activeElement.classList.contains('cursor-dropdown-selected');
+    const list = document.getElementById('thicknessDropdownList');
+    const isOpen = list.classList.contains('open');
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === ' ') e.preventDefault();
+      if (isTrigger) {
+        // Toggle dropdown
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+        document.activeElement.dispatchEvent(clickEvent);
+      } else if (document.activeElement.classList.contains('cursor-dropdown-option')) {
+        // Select option
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+        document.activeElement.dispatchEvent(clickEvent);
+      }
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+
+      // Main Navigation if dropdown is closed
+      if (isTrigger && !isOpen) {
+        if (e.key === 'ArrowDown') document.getElementById('blinkToggle').focus();
+        if (e.key === 'ArrowUp') document.getElementById('gradientDropdownSelected').focus();
+        return;
+      }
+
+      // Dropdown Option Navigation
+      const options = Array.from(thicknessDropdownContainer.querySelectorAll('.cursor-dropdown-option'));
+      const currentIndex = options.indexOf(document.activeElement);
+      let nextIndex;
+      if (e.key === 'ArrowDown') {
+        nextIndex = (currentIndex + 1) % options.length;
+      } else {
+        nextIndex = (currentIndex - 1 + options.length) % options.length;
+      }
+
+      if (currentIndex === -1 && options.length > 0) {
+        options[0].focus();
+      } else if (options.length > 0) {
+        options[nextIndex].focus();
+      }
     }
   });
 
@@ -403,12 +458,92 @@ document.addEventListener('DOMContentLoaded', () => {
       const selectedDiv = document.getElementById('gradientDropdownSelected');
       listDiv.classList.toggle('open');
       selectedDiv.classList.toggle('open');
+      selectedDiv.setAttribute('aria-expanded', selectedDiv.classList.contains('open'));
     } else if (e.target.closest('.cursor-dropdown-option')) {
       e.stopPropagation();
       const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
       chrome.storage.sync.set({ gradientStyle: value });
       renderGradientDropdown(value);
+      document.getElementById('gradientDropdownSelected').focus();
     }
+  });
+
+  gradientDropdownContainer.addEventListener('keydown', (e) => {
+    const isTrigger = document.activeElement.classList.contains('cursor-dropdown-selected');
+    const list = document.getElementById('gradientDropdownList');
+    const isOpen = list.classList.contains('open');
+
+    // Tab Loop (Reverse)
+    if (e.shiftKey && e.key === 'Tab' && isTrigger) {
+      e.preventDefault();
+      document.getElementById('translucentModeToggle').focus();
+      return;
+    }
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === ' ') e.preventDefault();
+      if (isTrigger) {
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+        document.activeElement.dispatchEvent(clickEvent);
+      } else if (document.activeElement.classList.contains('cursor-dropdown-option')) {
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+        document.activeElement.dispatchEvent(clickEvent);
+      }
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+
+      // Main Navigation if dropdown is closed
+      if (isTrigger && !isOpen) {
+        if (e.key === 'ArrowDown') document.getElementById('thicknessDropdownSelected').focus();
+        if (e.key === 'ArrowUp') document.getElementById('translucentModeToggle').focus();
+        return;
+      }
+
+      const options = Array.from(gradientDropdownContainer.querySelectorAll('.cursor-dropdown-option'));
+      const currentIndex = options.indexOf(document.activeElement);
+      let nextIndex;
+      if (e.key === 'ArrowDown') {
+        nextIndex = (currentIndex + 1) % options.length;
+      } else {
+        nextIndex = (currentIndex - 1 + options.length) % options.length;
+      }
+
+      if (currentIndex === -1 && options.length > 0) {
+        options[0].focus();
+      } else if (options.length > 0) {
+        options[nextIndex].focus();
+      }
+    }
+  });
+
+  // Toggle Buttons Navigation
+  [blinkToggle, typewriterAnimationToggle, translucentModeToggle].forEach(btn => {
+    btn.addEventListener('keydown', (e) => {
+      // Prevent default scrolling for arrows
+      if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  });
+
+  blinkToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') document.getElementById('typewriterAnimationToggle').focus();
+    if (e.key === 'ArrowUp') document.getElementById('thicknessDropdownSelected').focus();
+  });
+
+  typewriterAnimationToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') document.getElementById('translucentModeToggle').focus();
+    if (e.key === 'ArrowUp') document.getElementById('blinkToggle').focus();
+  });
+
+  translucentModeToggle.addEventListener('keydown', (e) => {
+    // Tab Loop (Forward)
+    if (e.key === 'Tab' && !e.shiftKey) {
+      e.preventDefault();
+      document.getElementById('gradientDropdownSelected').focus();
+    }
+    if (e.key === 'ArrowDown') document.getElementById('gradientDropdownSelected').focus();
+    if (e.key === 'ArrowUp') document.getElementById('typewriterAnimationToggle').focus();
   });
 
 
