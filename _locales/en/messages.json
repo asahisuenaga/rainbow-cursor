@@ -5,9 +5,6 @@
   "extension_description": {
     "message": "Swap the default cursor with a sleek and animated caret!"
   },
-  "title": {
-    "message": "Rainbow Cursor in Google Docs"
-  },
   "gradientLabel": {
     "message": "Gradient"
   },
@@ -15,13 +12,13 @@
     "message": "Thickness"
   },
   "BlinkLabel": {
-    "message": "Blink Mode"
+    "message": "Blinking Indicator"
   },
-  "SmoothAnimationLabel": {
-    "message": "Typewriter Mode"
+  "typewriterAnimationLabel": {
+    "message": "Typewriter Animation"
   },
   "TranslucentModeLabel": {
-    "message": "Translucent Mode"
+    "message": "Translucent Gradient"
   },
   "trueOption": {
     "message": "On"
@@ -29,19 +26,10 @@
   "falseOption": {
     "message": "Off"
   },
-  "livePreviewLabel": {
+  "PreviewLabel": {
     "message": "Live Preview"
   },
-  "infoMessage": {
-    "message": "If it doesn't work, reload Google Docs."
-  },
-  "openDocsButton": {
-    "message": "Open Google Docs"
-  },
-  "saveButton": {
-    "message": "Save & Exit"
-  },
-  "maker": {
+  "donation": {
     "message": "Enjoying the tool? Buy the dev a coffee! ☕"
   },
   "gradientDynamic": {
@@ -103,9 +91,6 @@
   },
   "gradientAurora": {
     "message": "Aurora"
-  },
-  "notInDocsMessage": {
-    "message": "You are not in Google Docs."
   },
   "thankYouTitle": {
     "message": "Thank you for downloading. Read the release notes on&nbsp;$githubLink$.",

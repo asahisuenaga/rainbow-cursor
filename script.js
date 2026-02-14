@@ -136,12 +136,12 @@
     }
 
     // Function to apply smooth animation from storage
-    function applySmoothAnimation() {
-        debouncedStorageGet(['SmoothAnimation'], (result) => {
-            const SmoothAnimation = result.SmoothAnimation || false;
+    function applytypewriterAnimation() {
+        debouncedStorageGet(['typewriterAnimation'], (result) => {
+            const typewriterAnimation = result.typewriterAnimation || false;
             const cursorElements = document.querySelectorAll('.docs-text-ui-cursor-blink, .kix-cursor, .CodeMirror-cursor, .monaco-editor .cursors-layer .cursor');
 
-            if (SmoothAnimation) {
+            if (typewriterAnimation) {
                 cursorElements.forEach(cursor => {
                     cursor.style.setProperty('transition', 'all 80ms ease', 'important');
                 });
@@ -197,8 +197,8 @@
             if (changes.Blink) {
                 applyBlinkRemoval();
             }
-            if (changes.SmoothAnimation) {
-                applySmoothAnimation();
+            if (changes.typewriterAnimation) {
+                applytypewriterAnimation();
             }
         }
     });
@@ -237,7 +237,7 @@
             applyBlinkRemoval();
 
             // Apply smooth animation if needed
-            applySmoothAnimation();
+            applytypewriterAnimation();
 
             // Listen for storage changes and apply new settings live
             chrome.storage.onChanged.addListener((changes, area) => {
@@ -254,8 +254,8 @@
                     if (changes.Blink) {
                         applyBlinkRemoval();
                     }
-                    if (changes.SmoothAnimation) {
-                        applySmoothAnimation();
+                    if (changes.typewriterAnimation) {
+                        applytypewriterAnimation();
                     }
                     if (changes.gradientStyle || changes.TranslucentMode) {
                         debouncedStorageGet(['gradientStyle', 'TranslucentMode'], (result) => {
@@ -311,11 +311,11 @@
     urlObserver.observe(document, { subtree: true, childList: true });
 
     function applyCaretStyling() {
-        debouncedStorageGet(['Thickness', 'Blink', 'SmoothAnimation', 'gradientStyle'], (result) => {
+        debouncedStorageGet(['Thickness', 'Blink', 'typewriterAnimation', 'gradientStyle'], (result) => {
 
             const Thickness = result.Thickness || '2';
             const Blink = result.Blink !== undefined ? result.Blink : 'false';
-            const SmoothAnimation = result.SmoothAnimation !== undefined ? result.SmoothAnimation : false;
+            const typewriterAnimation = result.typewriterAnimation !== undefined ? result.typewriterAnimation : false;
             const gradientStyle = result.gradientStyle || 'rainbow';
 
             // Apply caret width
@@ -335,9 +335,9 @@
             document.documentElement.classList.add(caretBlinkStyle);
 
             // Apply smooth animation styling
-            const smoothAnimationClass = SmoothAnimation ? 'smooth-animation-on' : 'smooth-animation-off';
-            document.documentElement.classList.remove('smooth-animation-on', 'smooth-animation-off');
-            document.documentElement.classList.add(smoothAnimationClass);
+            const typewriterAnimationClass = typewriterAnimation ? 'typewriter-animation-on' : 'typewriter-animation-off';
+            document.documentElement.classList.remove('typewriter-animation-on', 'typewriter-animation-off');
+            document.documentElement.classList.add(typewriterAnimationClass);
 
             // Apply gradient styling
             const gradientClass = `gradient-${gradientStyle}`;
@@ -381,15 +381,15 @@
         toast.tabIndex = -1;
         toast.style.cssText = `
         background: linear-gradient(145deg, #f0f2f5, #ffffff);
-        color: #5f6368;
+        color: #333;
         border-radius: 12px;
         box-shadow: 0 4px 16px rgba(0,0,0,0.18);
         min-width: 260px;
         max-width: 700px;
         padding: 12px 20px 12px 20px;
         margin: 0;
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
+        font-family: 'Google Sans', sans-serif;
+        font-size: 1rem;
         pointer-events: auto;
         position: relative;
         display: flex;
@@ -423,9 +423,9 @@
                 border: 1px solid #d0d0d0;
                 padding: 4px 8px;
                 border-radius: 8px;
-                font-family: 'Inter', sans-serif;
-                font-size: 14px;
-                color: #5f6368;
+                font-family: 'Google Sans', sans-serif;
+                font-size: 1rem;
+                color: #333;
                 cursor: pointer;
                 font-weight: 400;
                 text-decoration: none;
@@ -459,7 +459,7 @@
         background: none;
         border: none;
         color: #888;
-        font-size: 14px;
+        font-size: 1rem;
         cursor: pointer;
         line-height: 1;
         align-self: center;

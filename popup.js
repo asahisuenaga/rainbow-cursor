@@ -1,19 +1,14 @@
 const helloTranslations = [
   'Hello',       // English
-  '你好',        // Chinese
-  'नमस्ते',      // Hindi
-  'مرحبا',       // Arabic
-  'Hola',        // Spanish
   'こんにちは',    // Japanese
-  '안녕하세요',    // Korean
+  'Hola',        // Spanish
   'Olá',         // Portuguese
-  'Bonjour',     // French
-  'Ciao',        // Italian
   'Привет',      // Russian
-  'Γειά',        // Greek 
-  'سلام',         // Persian
-  'Hej',         // Swedish
-  'Hei',         // Norwegian
+  'Bonjour',     // French
+  'Hallo',       // German / Dutch
+  '你好',        // Chinese
+  'Xin chào',   // Vietnamese
+  'Ciao',        // Italian
 ];
 
 let helloIndex = 0;
@@ -22,10 +17,7 @@ let typingState = { text: '', phase: 'typing', charIndex: 0 };
 
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to elements
-  const saveButton = document.getElementById('saveButton');
-  const maker = document.getElementById('maker');
-  const infoMessage = document.getElementById("infoMessage");
-  const redirectContainer = document.getElementById("redirectContainer");
+  const donation = document.getElementById('donation');
   const optionsContainer = document.getElementById("optionsContainer");
   const livePreviewSection = document.getElementById('livePreviewSection');
 
@@ -38,35 +30,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Set localized text for all elements
-  setLocalizedText('closeUpgradePopup', 'closeButton');
-  setLocalizedText('submitCodeButton', 'submitButton');
-  setLocalizedText('title', 'title');
+  setLocalizedText('gradientLabel', 'gradientLabel');
   setLocalizedText('ThicknessLabel', 'ThicknessLabel');
   setLocalizedText('BlinkLabel', 'BlinkLabel');
-  setLocalizedText('SmoothAnimationLabel', 'SmoothAnimationLabel');
+  setLocalizedText('typewriterAnimationLabel', 'typewriterAnimationLabel');
   setLocalizedText('TranslucentModeLabel', 'TranslucentModeLabel');
-  setLocalizedText('gradientLabel', 'gradientLabel');
-  setLocalizedText('infoMessage', 'infoMessage');
-  setLocalizedText('redirectButton', 'openDocsButton');
-  setLocalizedText('saveButton', 'saveButton');
-  setLocalizedText('maker', 'maker');
+  setLocalizedText('donation', 'donation');
   setLocalizedText('settingsLivePreviewLabel', 'livePreviewLabel');
 
   // Load saved settings (only needed to trigger renderDropdown functions later)
-  chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle', 'TranslucentMode'], () => {
-    // No need to set values here as dropdowns are rendered later
+  chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle', 'typewriterAnimation', 'TranslucentMode'], () => {
   });
 
-  // Event listener for "Save" button to close the popup
-  if (saveButton) {
-    saveButton.addEventListener('click', () => {
-      window.close();
-    });
-  }
+
 
   // Event listener for "Feedback" button
-  if (maker) {
-    maker.addEventListener('click', () => {
+  if (donation) {
+    donation.addEventListener('click', () => {
       window.open('https://coff.ee/asahisuenaga', '_blank');
       window.close();
     });
@@ -80,23 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     isGoogleDocs = currentUrl.includes("docs.google.com/document");
 
     if (!isGoogleDocs) {
-      // Show message and button if not in Google Docs
-      infoMessage.innerHTML = `<p>${chrome.i18n.getMessage("notInDocsMessage")}</p>`;
-      redirectContainer.style.display = 'block';
-
-      // Hide settings elements
-      if (optionsContainer) optionsContainer.style.display = 'none';
-      if (saveButton) saveButton.style.display = 'none';
-      if (livePreviewSection) livePreviewSection.style.display = 'none';
-
-      // Event listener for "Open Google Docs" button
-      document.getElementById('redirectButton').addEventListener('click', () => {
-        window.open('https://docs.google.com/document', '_blank');
-        window.close();
-      });
+      // Auto-redirect if not in Google Docs
+      chrome.tabs.create({ url: 'https://docs.google.com/document' });
+      window.close();
     } else {
-      // Hide redirect message and show live preview if in Google Docs
-      if (redirectContainer) redirectContainer.style.display = 'none';
+      // Show live preview if in Google Docs
       if (livePreviewSection) livePreviewSection.style.display = 'block';
       updateSettingsLivePreview();
     }
@@ -142,37 +110,37 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSettingsLivePreview(updateCaretOnly = false) {
     if (!isGoogleDocs) return;
     const thicknessObj = thicknessOptions.find(o => o.value === currentThickness) || thicknessOptions[0];
-    const blinkObj = blinkOptions.find(o => o.value === currentBlink) || blinkOptions[0];
-    const smoothAnimationObj = smoothAnimationOptions.find(o => o.value === currentSmoothAnimation) || smoothAnimationOptions[0];
-    const translucentModeObj = translucentModeOptions.find(o => o.value === currentTranslucentMode) || translucentModeOptions[0];
-    const gradientColors = getGradientColors(currentGradient, translucentModeObj.translucent);
+
+    // Use current state variables directly
+    const blinkEnabled = currentBlink === 'false' || currentBlink === false; // 'false' means blinking is ON in storage logic
+    const typewriterEnabled = currenttypewriterAnimation === 'true' || currenttypewriterAnimation === true;
+    const translucentEnabled = currentTranslucentMode === 'true' || currentTranslucentMode === true;
+
+    const gradientColors = getGradientColors(currentGradient, translucentEnabled);
     const gradientCSS = `linear-gradient(-45deg, ${gradientColors.join(', ')})`;
     const previewBox = document.getElementById('settingsLivePreview');
-    const livePreviewLabel = chrome.i18n.getMessage('livePreviewLabel') || 'Live Preview';
+    const livePreviewLabel = chrome.i18n.getMessage('PreviewLabel') || 'Live Preview';
     const labelElement = previewBox.parentElement.querySelector('#settingsLivePreviewLabel');
     if (labelElement) labelElement.textContent = livePreviewLabel;
 
-    // Typing animation logic
     const helloText = helloTranslations[helloIndex % helloTranslations.length];
     if (!typingState.text || typingState.text !== helloText) {
       typingState = { text: helloText, phase: 'typing', charIndex: 0 };
     }
     let displayText = helloText.slice(0, typingState.charIndex);
 
-    // Calculate animation duration based on blink speed
     let animationStyle = '';
     let backgroundStyle = gradientCSS;
 
-    if (blinkObj.blink) {
-      const duration = blinkObj.speed === 0.5 ? '2.8s' : '1.4s';
+    if (blinkEnabled) {
+      const duration = '1.4s';
       animationStyle = `animation: caret-blink ${duration} steps(1) infinite, gradientAnimation 20s linear infinite;`;
     } else {
       animationStyle = `animation: gradientAnimation 20s linear infinite;`;
     }
 
-    // Add smooth transition if enabled
     let smoothTransition = '';
-    if (smoothAnimationObj.smooth) {
+    if (typewriterEnabled) {
       smoothTransition = 'transition: all 80ms ease;';
     }
 
@@ -180,22 +148,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let caretStyle = `display:inline-block;vertical-align:bottom;width:${thicknessObj.width}px;height:20px;margin-left:8px;border-radius:3px;background:${backgroundStyle};background-size:400% 400%;${animationStyle}${smoothTransition}`;
 
     previewBox.innerHTML = `
-      <style>
-        @keyframes gradientAnimation { 
-          0% { background-position: 0% 0%; }
-          50% { background-position: 100% 100%; }
-          100% { background-position: 0% 0%; }
-        }
-        @keyframes caret-blink {
-          0%, 49% { opacity: 1; }
-          50%, 100% { opacity: 0; }
-        }
-      </style>
-      <div class='cursor-dropdown-selected' style='overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 0; cursor: default;'>
-        <span style='font-size: 14px; font-family: inherit; letter-spacing: .2px; color: inherit; user-select: none;'>${displayText}</span>
-        <span class='${caretClass}' style='${caretStyle}'></span>
-      </div>
-    `;
+  <style>
+    @keyframes gradientAnimation { 
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+    @keyframes caret-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .cursor-dropdown-selected:hover {
+      background: #ededed;
+    }
+    @media (prefers-color-scheme: dark) {
+      .cursor-dropdown-selected:hover {
+        background: #303134;
+      }
+    }
+  </style>
+
+  <div class='cursor-dropdown-selected'
+       style='overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 0; cursor: default;'>
+    <span style='font-size: 1rem; font-family: inherit; letter-spacing: .2px; color: inherit; user-select: none;'>${displayText}</span>
+    <span class='${caretClass}' style='${caretStyle}'></span>
+  </div>
+`;
 
     if (updateCaretOnly) return;
     if (typingTimeout) clearTimeout(typingTimeout);
@@ -231,10 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Prevents the context menu from popping up
   document.addEventListener("contextmenu", (e) => e.preventDefault());
 
-  // --- Rainbow Dropdown for Thickness ---
   const thicknessOptions = [
     { value: '2', label: '2 px', width: 2 },
     { value: '4', label: '4 px', width: 4 },
@@ -261,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cursor-dropdown-selected" id="thicknessDropdownSelected">
         <span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${selected.width}px;height:20px;border-radius:3px;background:#111;"></span>
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">◀</span>
+        <span class="cursor-dropdown-arrow">▼</span>
       </div>
       <div class="cursor-dropdown-list" id="thicknessDropdownList">
         ${thicknessOptions.map(o => `
@@ -278,107 +255,74 @@ document.addEventListener('DOMContentLoaded', () => {
     renderThicknessDropdown(result.Thickness || '2');
   });
 
-  // --- Rainbow Dropdown for Blink ---
-  const blinkOptions = [
-    // Note: The value names are confusing ('false' means blink is TRUE, 'true' means blink is FALSE) but kept for compatibility
-    { value: 'false', label: chrome.i18n.getMessage("trueOption") || 'Yes', blink: true, speed: 1.0 },
-    { value: 'half', label: '0.5x', blink: true, speed: 0.5 },
-    { value: 'true', label: chrome.i18n.getMessage("falseOption") || 'No', blink: false, speed: 0 }
-  ];
-  const blinkDropdownContainer = document.getElementById('blinkDropdownContainer');
-  let currentBlink = 'false';
+  // --- Toggle Buttons ---
 
-  function createBlinkPreviewBar(option, thickness = 4) {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const animationDuration = option.speed === 0 ? '0s' : option.speed === 0.5 ? '2.8s' : '1.4s';
-    return `<span class="${isDark ? 'dark-preview-bar' : ''}" style="display:inline-block;vertical-align:middle;margin-right:8px;width:${thickness}px;height:20px;border-radius:3px;background:#111;${option.blink ? `animation:caret-blink ${animationDuration} steps(1) infinite;` : ''}"></span>`;
+  let currentBlink = 'false'; // 'false' means Blink is ON (Yes)
+  let currenttypewriterAnimation = 'false'; // 'false' means OFF (No)
+  let currentTranslucentMode = 'false'; // 'false' means OFF (No)
+
+  const blinkToggle = document.getElementById('blinkToggle');
+  const typewriterAnimationToggle = document.getElementById('typewriterAnimationToggle');
+  const translucentModeToggle = document.getElementById('translucentModeToggle');
+
+  const trueOption = chrome.i18n.getMessage("trueOption") || 'ON';
+  const falseOption = chrome.i18n.getMessage("falseOption") || 'OFF';
+
+  function updateToggleUI(button, isActive) {
+    if (isActive) {
+      button.classList.add('active');
+      button.innerText = trueOption;
+    } else {
+      button.classList.remove('active');
+      button.innerText = falseOption;
+    }
   }
 
-  function renderBlinkDropdown(selectedValue) {
-    currentBlink = selectedValue;
-    const selected = blinkOptions.find(o => o.value === selectedValue) || blinkOptions[0];
+  // Initialize Toggles
+  chrome.storage.sync.get(['Blink', 'typewriterAnimation', 'TranslucentMode'], (result) => {
+    // Blink logic: stored 'false' means blink ON. stored 'true' means blink OFF.
+    currentBlink = result.Blink !== undefined ? String(result.Blink) : 'false';
+    const isBlinkOn = currentBlink === 'false';
+    updateToggleUI(blinkToggle, isBlinkOn);
 
-    blinkDropdownContainer.innerHTML = `
-      <div class="cursor-dropdown-selected" id="blinkDropdownSelected">
-        <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">◀</span>
-      </div>
-      <div class="cursor-dropdown-list" id="blinkDropdownList">
-        ${blinkOptions.map(o => `
-          <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
-            <span class="cursor-label">${o.label}</span>
-          </div>
-        `).join('')}
-      </div>
-    `;
-    updateSettingsLivePreview(true);
-  }
-  chrome.storage.sync.get(['Blink'], (result) => {
-    renderBlinkDropdown(result.Blink !== undefined ? String(result.Blink) : 'false');
+    currenttypewriterAnimation = result.typewriterAnimation !== undefined ? String(result.typewriterAnimation) : 'false';
+    const isTypewriterOn = currenttypewriterAnimation === 'true';
+    updateToggleUI(typewriterAnimationToggle, isTypewriterOn);
+
+    currentTranslucentMode = result.TranslucentMode !== undefined ? String(result.TranslucentMode) : 'false';
+    const isTranslucentOn = currentTranslucentMode === 'true';
+    updateToggleUI(translucentModeToggle, isTranslucentOn);
   });
 
-  // --- Rainbow Dropdown for Smooth Animation ---
-  const smoothAnimationOptions = [
-    { value: 'true', label: chrome.i18n.getMessage("trueOption") || 'Yes', smooth: true },
-    { value: 'false', label: chrome.i18n.getMessage("falseOption") || 'No', smooth: false }
-  ];
-  const smoothAnimationDropdownContainer = document.getElementById('smoothAnimationDropdownContainer');
-  let currentSmoothAnimation = 'false';
-
-  function renderSmoothAnimationDropdown(selectedValue) {
-    currentSmoothAnimation = selectedValue;
-    const selected = smoothAnimationOptions.find(o => o.value === selectedValue) || smoothAnimationOptions[0];
-
-    smoothAnimationDropdownContainer.innerHTML = `
-      <div class="cursor-dropdown-selected" id="smoothAnimationDropdownSelected">
-        <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">◀</span>
-      </div>
-      <div class="cursor-dropdown-list" id="smoothAnimationDropdownList">
-        ${smoothAnimationOptions.map(o => `
-          <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
-            <span class="cursor-label">${o.label}</span>
-          </div>
-        `).join('')}
-      </div>
-    `;
+  // Blink Click Handler
+  blinkToggle.addEventListener('click', () => {
+    const isCurrentlyOn = currentBlink === 'false';
+    const newState = !isCurrentlyOn;
+    // Update state. If newState is ON (true), we store 'false'. If OFF (false), we store 'true'.
+    currentBlink = newState ? 'false' : 'true';
+    chrome.storage.sync.set({ Blink: currentBlink });
+    updateToggleUI(blinkToggle, newState);
     updateSettingsLivePreview(true);
-  }
-  chrome.storage.sync.get(['SmoothAnimation'], (result) => {
-    // Note: The result from storage can be a boolean, but dropdown values are strings. The original code
-    // handled this with a String() cast, which is preserved.
-    renderSmoothAnimationDropdown(result.SmoothAnimation !== undefined ? String(result.SmoothAnimation) : 'false');
   });
 
-  // --- Rainbow Dropdown for Translucent Mode ---
-  const translucentModeOptions = [
-    { value: 'true', label: chrome.i18n.getMessage("trueOption") || 'Yes', translucent: true },
-    { value: 'false', label: chrome.i18n.getMessage("falseOption") || 'No', translucent: false }
-  ];
-  const translucentModeDropdownContainer = document.getElementById('translucentModeDropdownContainer');
-  let currentTranslucentMode = 'false';
-
-  function renderTranslucentModeDropdown(selectedValue) {
-    currentTranslucentMode = selectedValue;
-    const selected = translucentModeOptions.find(o => o.value === selectedValue) || translucentModeOptions[0];
-
-    translucentModeDropdownContainer.innerHTML = `
-      <div class="cursor-dropdown-selected" id="translucentModeDropdownSelected">
-        <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">◀</span>
-      </div>
-      <div class="cursor-dropdown-list" id="translucentModeDropdownList">
-        ${translucentModeOptions.map(o => `
-          <div class="cursor-dropdown-option${o.value === selectedValue ? ' selected' : ''}" data-value="${o.value}">
-            <span class="cursor-label">${o.label}</span>
-          </div>
-        `).join('')}
-      </div>
-    `;
+  // Typewriter Animation Click Handler
+  typewriterAnimationToggle.addEventListener('click', () => {
+    const isCurrentlyOn = currenttypewriterAnimation === 'true';
+    const newState = !isCurrentlyOn;
+    currenttypewriterAnimation = newState ? 'true' : 'false';
+    chrome.storage.sync.set({ typewriterAnimation: newState }); // Storing boolean is fine, handled as string 'true'/'false' above
+    updateToggleUI(typewriterAnimationToggle, newState);
     updateSettingsLivePreview(true);
-  }
-  chrome.storage.sync.get(['TranslucentMode'], (result) => {
-    renderTranslucentModeDropdown(result.TranslucentMode !== undefined ? String(result.TranslucentMode) : 'false');
+  });
+
+  // Translucent Mode Click Handler
+  translucentModeToggle.addEventListener('click', () => {
+    const isCurrentlyOn = currentTranslucentMode === 'true';
+    const newState = !isCurrentlyOn;
+    currentTranslucentMode = newState ? 'true' : 'false';
+    chrome.storage.sync.set({ TranslucentMode: newState });
+    updateToggleUI(translucentModeToggle, newState);
+    updateSettingsLivePreview(true);
   });
 
   // --- Rainbow Dropdown for Gradient ---
@@ -417,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cursor-dropdown-selected" id="gradientDropdownSelected">
         <span style="display:inline-block;vertical-align:middle;margin-right:8px;width:6px;height:20px;border-radius:3px;background:${selectedGradCSS};background-size:400% 400%;animation:gradientAnimation 20s linear infinite;"></span>
         <span class="cursor-label">${selected.label}</span>
-        <span class="cursor-dropdown-arrow">◀</span>
+        <span class="cursor-dropdown-arrow">▼</span>
       </div>
       <div class="cursor-dropdown-list" id="gradientDropdownList">
         ${gradientOptions.map(o => {
@@ -462,41 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Blink dropdown listener
-  blinkDropdownContainer.addEventListener('click', (e) => {
-    if (e.target.closest('.cursor-dropdown-selected')) {
-      e.stopPropagation();
-      closeAllDropdowns('blinkDropdownList');
-      const listDiv = document.getElementById('blinkDropdownList');
-      const selectedDiv = document.getElementById('blinkDropdownSelected');
-      listDiv.classList.toggle('open');
-      selectedDiv.classList.toggle('open');
-    } else if (e.target.closest('.cursor-dropdown-option')) {
-      e.stopPropagation();
-      const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
-      chrome.storage.sync.set({ Blink: value });
-      renderBlinkDropdown(value);
-    }
-  });
-
-  // Smooth Animation dropdown listener
-  smoothAnimationDropdownContainer.addEventListener('click', (e) => {
-    if (e.target.closest('.cursor-dropdown-selected')) {
-      e.stopPropagation();
-      closeAllDropdowns('smoothAnimationDropdownList');
-      const listDiv = document.getElementById('smoothAnimationDropdownList');
-      const selectedDiv = document.getElementById('smoothAnimationDropdownSelected');
-      listDiv.classList.toggle('open');
-      selectedDiv.classList.toggle('open');
-    } else if (e.target.closest('.cursor-dropdown-option')) {
-      e.stopPropagation();
-      const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
-      // The original code converted the string 'true'/'false' to a boolean here, which is preserved.
-      chrome.storage.sync.set({ SmoothAnimation: value === 'true' });
-      renderSmoothAnimationDropdown(value);
-    }
-  });
-
   // Gradient dropdown listener
   gradientDropdownContainer.addEventListener('click', (e) => {
     if (e.target.closest('.cursor-dropdown-selected')) {
@@ -514,20 +423,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Translucent Mode dropdown listener
-  translucentModeDropdownContainer.addEventListener('click', (e) => {
-    if (e.target.closest('.cursor-dropdown-selected')) {
-      e.stopPropagation();
-      closeAllDropdowns('translucentModeDropdownList');
-      const listDiv = document.getElementById('translucentModeDropdownList');
-      const selectedDiv = document.getElementById('translucentModeDropdownSelected');
-      listDiv.classList.toggle('open');
-      selectedDiv.classList.toggle('open');
-    } else if (e.target.closest('.cursor-dropdown-option')) {
-      e.stopPropagation();
-      const value = e.target.closest('.cursor-dropdown-option').getAttribute('data-value');
-      chrome.storage.sync.set({ TranslucentMode: value === 'true' });
-      renderTranslucentModeDropdown(value);
-    }
-  });
+
 });

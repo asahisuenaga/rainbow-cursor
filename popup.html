@@ -5,40 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rainbow Cursor in Google Docs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Google Sans', sans-serif;
       letter-spacing: 0.2px;
       margin: 0;
-      padding: 16px 16px 14px;
-      box-sizing: border-box;
+      padding: 0 16px 14px;
       background: white;
       color: #333;
       text-align: center;
-      min-width: 400px;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      backdrop-filter: blur(8px);
-    }
-
-    .header img {
-      width: 24px;
-      height: 24px;
-      margin-right: 16px;
-    }
-
-    .header h1 {
-      font-size: 16px;
-      font-weight: 500;
-      margin: 0;
-      color: #333;
-      line-height: 1.2;
     }
 
     .options-container label,
@@ -47,40 +23,33 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 400;
-      color: #333;
-      font-size: 14px;
+      gap: 12px;
+      font-size: 1rem;
       margin-top: 12px;
     }
 
-    select,
-    input[type="text"],
+    label span,
+    .label-text {
+      flex: 0 0 auto;
+    }
+
     button {
       appearance: none;
-      background: white;
-      border: 1px solid #d0d0d0;
+      background: transparent;
+      border: 1px solid #444;
       padding: 10px;
-      font-family: 'Inter', sans-serif;
+      font-family: inherit;
       letter-spacing: 0.2px;
-      font-size: 14px;
-      color: #333;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      flex: 1;
     }
 
-    select,
-    input[type="text"] {
-      width: 50%;
-    }
-
-    select:hover,
-    input[type="text"]:hover,
     button:hover {
       background: #f7f7f7;
     }
 
-    select:focus,
-    input[type="text"]:focus,
     button:focus {
       outline: none;
       border-color: #4A90E2;
@@ -94,51 +63,21 @@
       transition: transform 0.2s ease;
     }
 
-    button:hover {
-      filter: brightness(1.05);
-    }
-
-    .save-button,
-    .redirect-button {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(6px);
-      border: 2px solid #333;
-      color: #333;
-      font-weight: 400;
-      padding: 14px 24px;
-      font-size: 14px;
-      border-radius: 4px;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    .save-button:hover,
-    .redirect-button:hover {
-      color: #4285F4;
-      border-color: #4285F4;
-    }
-
-    .maker-button,
-    .info-message {
-      width: auto;
-      border: none;
-      background: transparent;
-      font-size: 12px;
-      margin-top: 8px;
+    .donation-button {
+      font-size: 1rem;
+      margin-top: 16px;
       color: #757575;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      border: none;
+      background: none;
+      padding: 0;
+      filter: none;
     }
 
-    .info-message {
-      margin-bottom: 8px;
-      cursor: default;
-    }
-
-    .maker-button:hover {
+    .donation-button:hover {
+      background: none;
       text-decoration: underline;
       color: #7aaef7;
-      background: transparent;
     }
 
     .cursor-style-section {
@@ -147,12 +86,11 @@
 
     #cursorDropdownContainer {
       position: relative;
-      width: 220px;
-      margin: 0 auto 8px auto;
+      margin: 0 auto 8px;
     }
 
     .cursor-dropdown-selected {
-      width: 200px;
+      min-width: 200px;
       box-sizing: border-box;
       padding: 4px 10px;
       min-height: 32px;
@@ -164,8 +102,7 @@
       cursor: pointer;
       transition: border 0.2s;
       position: relative;
-      overflow: visible;
-      font-size: 14px;
+      font-size: 1rem;
     }
 
     .cursor-dropdown-selected.open {
@@ -176,13 +113,28 @@
       position: absolute;
       right: 10px;
       margin-left: 10px;
-      font-size: 8px;
+      font-size: 0.75rem;
       color: #888;
-      transition: transform 0.2s;
+      opacity: 1;
     }
 
     .cursor-dropdown-selected.open .cursor-dropdown-arrow {
-      transform: rotate(-90deg);
+      transform: rotate(-180deg);
+      animation: arrow-flash 0.2s ease-in-out;
+    }
+
+    @keyframes arrow-flash {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     .cursor-dropdown-list {
@@ -190,20 +142,14 @@
       top: 100%;
       left: 0;
       width: 100%;
-      min-width: 200px;
-      box-sizing: border-box;
       background: #fff;
       border: 1px solid #d0d0d0;
       border-radius: 4px;
       z-index: 9999;
       max-height: 220px;
       overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: thin;
-      scrollbar-color: #888 transparent;
       padding: 4px 0;
       display: none;
-      margin-top: 2px;
     }
 
     .cursor-dropdown-list.open {
@@ -211,28 +157,26 @@
     }
 
     .cursor-dropdown-option {
-      width: 100%;
-      min-width: 200px;
-      box-sizing: border-box;
       padding: 5px 12px;
-      min-height: 28px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      transition: 0.18s ease-in-out;
-      font-size: 14px;
+      font-size: 1rem;
     }
 
-    .cursor-dropdown-option:hover,
+    .cursor-dropdown-option:hover {
+      background: #ededed;
+    }
+
     .cursor-dropdown-option.selected {
-      background: #f0f6ff;
+      background: #e1e3e1;
     }
 
     .cursor-preview-box {
-      width: 32px;
+      width: auto;
       height: 32px;
       border-radius: 4px;
-      border: 1px solid #e0e0e0;
+      border: 1px solid #d0d0d0;
       margin-right: 12px;
       background: #fafbfc;
       display: flex;
@@ -241,42 +185,37 @@
     }
 
     .cursor-label {
-      font-size: 14px;
+      font-size: 1rem;
       color: #333;
       font-weight: 400;
       flex-grow: 1;
     }
 
-    /* Rainbow Caret Preview Styles for Dropdowns */
+    .caret-bar,
     .caret-preview-box {
-      width: 24px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 12px;
-    }
-
-    .caret-bar {
       display: inline-block;
-      height: 24px;
       background: #111;
       border-radius: 2px;
     }
 
-    .caret-blink {
+    .caret-bar {
+      height: 24px;
+    }
+
+    .live-caret-bar {
+      height: 48px;
+    }
+
+    .caret-blink,
+    .live-caret-blink {
       animation: caret-blink 1s steps(1) infinite;
     }
 
-    .caret-blink-half {
-      animation: caret-blink 1.4s steps(1) infinite;
-    }
-
-    .smooth-animation-on {
+    .typewriter-animation-on {
       transition: all 80ms ease;
     }
 
-    .smooth-animation-off {
+    .typewriter-animation-off {
       transition: none;
     }
 
@@ -301,25 +240,15 @@
 
     /* Live Preview Box Styles */
     .live-caret-preview-box {
-      width: 200px;
+      min-width: 200px;
       height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #f5f5f5;
       border-radius: 4px;
-      border: 1.5px solid #ccc;
+      border: 1px solid #d0d0d0;
       margin-bottom: 0;
-    }
-
-    .live-caret-bar {
-      display: inline-block;
-      height: 48px;
-      background: #111;
-    }
-
-    .live-caret-blink {
-      animation: caret-blink 0.7s steps(1) infinite;
     }
 
     .live-gradient-bar {
@@ -331,20 +260,18 @@
     .live-preview-hr {
       width: 100%;
       border: none;
-      border-top: 3px solid black;
+      border-top: 2px solid #747775;
       opacity: 10%;
-      margin: 8px 0 16px 0;
+      margin-bottom: 16px;
       border-radius: 4px;
     }
 
-    /* Dropdown Containers for width settings */
-    #thicknessDropdownContainer,
-    #blinkDropdownContainer,
-    #smoothAnimationDropdownContainer,
-    #translucentModeDropdownContainer,
-    #gradientDropdownContainer {
+    .toggle-button,
+    #gradientDropdownContainer,
+    #thicknessDropdownContainer {
       position: relative;
       width: 200px;
+      flex: 0 0 auto;
     }
 
     @keyframes gradientAnimation {
@@ -374,11 +301,26 @@
       animation: gradientAnimation 10s ease infinite !important;
     }
 
-    /* Style for the Live Preview Text, matching other labels */
     .live-preview-label {
-      font-size: 14px;
-      color: #333;
-      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    .dark-preview-bar {
+      background: #fff !important;
+    }
+
+    .toggle-button {
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      color: #3c4043;
+      padding: 6px 16px;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-button:hover,
+    #thicknessDropdownContainer:hover,
+    #gradientDropdownContainer:hover {
+      background: #ededed;
     }
 
     /* DARK MODE */
@@ -388,7 +330,6 @@
         color: #f5f5f5;
       }
 
-      .header h1,
       .options-container label,
       label,
       .live-preview-label,
@@ -397,55 +338,25 @@
         color: #f5f5f5 !important;
       }
 
-      .maker-button,
-      .info-message {
+      .donation-button {
         color: #8f8f8f;
       }
 
-      select,
-      input[type="text"],
       button {
-        background: #1a1a1a;
-        border: 1px solid #444;
+        border-color: #444;
         color: #f5f5f5;
       }
 
-      select:hover,
-      input[type="text"]:hover,
       button:hover {
         background-color: #333;
       }
 
-      select:focus,
-      input[type="text"]:focus,
       button:focus {
         border-color: #4285F4;
       }
 
-      button {
-        color: #fff;
-      }
-
-      .save-button,
-      .redirect-button {
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid #f5f5f5;
-        color: #f5f5f5;
-      }
-
-      .save-button:hover,
-      .redirect-button:hover {
-        color: #4285F4;
-        border-color: #4285F4;
-      }
-
-      .maker-button:hover {
+      .donation-button:hover {
         color: #7aaef7;
-      }
-
-      /* Cursor Dropdown Dark Mode */
-      #cursorDropdownContainer {
-        background: none;
       }
 
       .cursor-dropdown-selected,
@@ -455,9 +366,12 @@
         color: #f5f5f5;
       }
 
-      .cursor-dropdown-option:hover,
+      .cursor-dropdown-option:hover {
+        background: #787878;
+      }
+
       .cursor-dropdown-option.selected {
-        background: #2c3e50;
+        background: #404040;
       }
 
       .cursor-preview-box {
@@ -467,26 +381,29 @@
 
       .live-caret-preview-box {
         background: #1b1b1b;
-        border: 1.5px solid #444;
-      }
-
-      .dark-preview-bar {
-        background: #fff !important;
+        border: 1px solid #444;
       }
 
       .live-preview-hr {
         border-color: white;
+      }
+
+      .toggle-button {
+        background: #232323;
+        border-color: #5f6368;
+        color: #ededed;
+      }
+
+      .toggle-button:hover,
+      #thicknessDropdownContainer:hover,
+      #gradientDropdownContainer:hover {
+        background: #303134;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="header">
-    <img src="icons/icon128.png" alt="Icon">
-    <h1 id="title"></h1>
-  </div>
-
   <div class="content-container">
     <div class="options-container" id="optionsContainer">
       <label for="gradientStyle">
@@ -499,19 +416,19 @@
         <div id="thicknessDropdownContainer"></div>
       </label>
 
-      <label>
+      <label for="Blink">
         <span id="BlinkLabel"></span>
-        <div id="blinkDropdownContainer"></div>
+        <button id="blinkToggle" class="toggle-button"></button>
       </label>
 
-      <label>
-        <span id="SmoothAnimationLabel"></span>
-        <div id="smoothAnimationDropdownContainer"></div>
+      <label for="typewriterAnimation">
+        <span id="typewriterAnimationLabel"></span>
+        <button id="typewriterAnimationToggle" class="toggle-button"></button>
       </label>
 
-      <label>
+      <label for="TranslucentMode">
         <span id="TranslucentModeLabel"></span>
-        <div id="translucentModeDropdownContainer"></div>
+        <button id="translucentModeToggle" class="toggle-button"></button>
       </label>
 
     </div>
@@ -527,21 +444,10 @@
       </div>
     </div>
 
-    <div class="info-message" id="infoMessage">
-    </div>
+    <button class="donation-button" id="donation"></button>
+  </div>
 
-    <div class="redirect-container" id="redirectContainer">
-      <button class="redirect-button" id="redirectButton">
-        <span id="openDocsButton"></span>
-      </button>
-    </div>
-
-    <div class="action-buttons">
-      <button class="save-button" id="saveButton"></button>
-      <button class="maker-button" id="maker"></button>
-    </div>
-
-    <script src="popup.js"></script>
+  <script src="popup.js"></script>
 </body>
 
 </html>
