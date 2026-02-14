@@ -101,10 +101,10 @@
     }
   },
   "ratingTitle": {
-    "message": "拡張機能を楽しんでいますか？&nbsp;$chromeWebStoreLink$で評価してください！",
+    "message": "拡張機能を楽しんでいますか？開発者に&nbsp;$chromeWebStoreLink$を一杯！☕",
     "placeholders": {
       "chromeWebStoreLink": {
-        "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome ウェブストア</a>"
+        "content": "<a href='coff.ee/asahisuenaga' target='_blank'>コーヒー</a>"
       }
     }
   }

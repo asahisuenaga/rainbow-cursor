@@ -101,10 +101,10 @@
     }
   },
   "ratingTitle": {
-    "message": "Enjoying the extension? Rate the extension on the&nbsp;$chromeWebStoreLink$!",
+    "message": "Enjoying the extension? Buy the dev a&nbsp;$chromeWebStoreLink$! ☕",
     "placeholders": {
       "chromeWebStoreLink": {
-        "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome Web Store</a>"
+        "content": "<a href='coff.ee/asahisuenaga' target='_blank'>coffee</a>"
       }
     }
   }
