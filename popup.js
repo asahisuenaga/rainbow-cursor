@@ -16,12 +16,10 @@ let typingTimeout = null;
 let typingState = { text: '', phase: 'typing', charIndex: 0 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Get references to elements
   const donation = document.getElementById('donation');
   const optionsContainer = document.getElementById("optionsContainer");
   const livePreviewSection = document.getElementById('livePreviewSection');
 
-  // Helper function to set localized text
   function setLocalizedText(id, messageKey) {
     const element = document.getElementById(id);
     if (element) {
@@ -38,13 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setLocalizedText('donation', 'donation');
   setLocalizedText('settingsLivePreviewLabel', 'livePreviewLabel');
 
-  // Load saved settings (only needed to trigger renderDropdown functions later)
+  // Load saved settings
   chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle', 'typewriterAnimation', 'TranslucentMode'], () => {
   });
 
-
-
-  // Event listener for "Feedback" button
   if (donation) {
     donation.addEventListener('click', () => {
       window.open('https://coff.ee/asahisuenaga', '_blank');
@@ -60,18 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
     isGoogleDocs = currentUrl.includes("docs.google.com/document");
 
     if (!isGoogleDocs) {
-      // Auto-redirect if not in Google Docs
       chrome.tabs.create({ url: 'https://docs.google.com/document' });
       window.close();
     } else {
-      // Show live preview if in Google Docs
       if (livePreviewSection) livePreviewSection.style.display = 'block';
       updateSettingsLivePreview();
     }
   });
 
   function getGradientColors(gradientValue, applyTranslucent = false) {
-    // Match the color arrays from script.js
     const gradientStyles = {
       rainbow: ['#ffb6c1', '#ff69b4', '#da70d6', '#9370db', '#48c9b0', '#f0e68c', '#ffd700'],
       red: ['#ff0000', '#c43a3a', '#8b0000', '#e34e5b', '#ff6347'],
@@ -96,10 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     let colors = gradientStyles[gradientValue] || gradientStyles.rainbow;
 
-    // Apply translucent mode if enabled
     if (applyTranslucent) {
       colors = colors.map(color => {
-        // Add 80 hex opacity to each color
         return color + '80';
       });
     }
@@ -111,8 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isGoogleDocs) return;
     const thicknessObj = thicknessOptions.find(o => o.value === currentThickness) || thicknessOptions[0];
 
-    // Use current state variables directly
-    const blinkEnabled = currentBlink === 'false' || currentBlink === false; // 'false' means blinking is ON in storage logic
+    const blinkEnabled = currentBlink === 'false' || currentBlink === false; // 'false' = blinking is ON
     const typewriterEnabled = currenttypewriterAnimation === 'true' || currenttypewriterAnimation === true;
     const translucentEnabled = currentTranslucentMode === 'true' || currentTranslucentMode === true;
 
@@ -327,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Rainbow Dropdown for Gradient ---
   const gradientOptions = [
-    // Removed the 'gradient' property since it's redundant; colors are fetched by getGradientColors
     { value: 'dynamic', label: chrome.i18n.getMessage("gradientDynamic") || 'Dynamic' },
     { value: 'rainbow', label: chrome.i18n.getMessage("gradientRainbow") || 'Rainbow' },
     { value: 'red', label: chrome.i18n.getMessage("gradientRed") || 'Red' },
