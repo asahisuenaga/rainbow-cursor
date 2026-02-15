@@ -5,9 +5,6 @@
   "extension_description": {
     "message": "規定の設定のキャレットを洗練されたアニメーションキャレットに交換します。"
   },
-  "title": {
-    "message": "GoogleDocsの虹色キャレット"
-  },
   "gradientLabel": {
     "message": "グラデーション"
   },
@@ -15,13 +12,13 @@
     "message": "太さ"
   },
   "BlinkLabel": {
-    "message": "点滅モード"
+    "message": "点滅インジケーター"
   },
-  "SmoothAnimationLabel": {
-    "message": "タイプライターモード"
+  "typewriterAnimationLabel": {
+    "message": "タイピングアニメーション"
   },
   "TranslucentModeLabel": {
-    "message": "半透明モード"
+    "message": "半透明グラデーション"
   },
   "trueOption": {
     "message": "オン"
@@ -29,20 +26,11 @@
   "falseOption": {
     "message": "オフ"
   },
-  "livePreviewLabel": {
+  "PreviewLabel": {
     "message": "ライブプレビュー"
   },
-  "infoMessage": {
-    "message": "動作しない場合は、Google Docsを再読み込みしてください。"
-  },
-  "openDocsButton": {
-    "message": "Google Docsを開く"
-  },
-  "saveButton": {
-    "message": "保存して終了"
-  },
-  "maker": {
-    "message": "このツールを気に入ってくれましたか？開発者にコーヒーをご馳走しましょう！☕"
+  "donation": {
+    "message": "気に入った？開発者にコーヒーを買ってあげて！☕"
   },
   "gradientDynamic": {
     "message": "ダイナミック"
@@ -104,9 +92,6 @@
   "gradientAurora": {
     "message": "オーロラ"
   },
-  "notInDocsMessage": {
-    "message": "Google Docsにいません。"
-  },
   "thankYouTitle": {
     "message": "ダウンロードありがとうございます。リリースノートは&nbsp;$githubLink$でご覧ください。",
     "placeholders": {
@@ -116,10 +101,10 @@
     }
   },
   "ratingTitle": {
-    "message": "拡張機能を楽しんでいますか？&nbsp;$chromeWebStoreLink$で評価してください！",
+    "message": "拡張機能を楽しんでいますか？開発者に&nbsp;$chromeWebStoreLink$を一杯！☕",
     "placeholders": {
       "chromeWebStoreLink": {
-        "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome ウェブストア</a>"
+        "content": "<a href='coff.ee/asahisuenaga' target='_blank'>コーヒー</a>"
       }
     }
   }

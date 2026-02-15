@@ -5,9 +5,6 @@
   "extension_description": {
     "message": "Swap the default cursor with a sleek and animated caret!"
   },
-  "title": {
-    "message": "Rainbow Cursor in Google Docs"
-  },
   "gradientLabel": {
     "message": "Gradient"
   },
@@ -15,13 +12,13 @@
     "message": "Thickness"
   },
   "BlinkLabel": {
-    "message": "Blink Mode"
+    "message": "Blinking Indicator"
   },
-  "SmoothAnimationLabel": {
-    "message": "Typewriter Mode"
+  "typewriterAnimationLabel": {
+    "message": "Typewriter Animation"
   },
   "TranslucentModeLabel": {
-    "message": "Translucent Mode"
+    "message": "Translucent Gradient"
   },
   "trueOption": {
     "message": "On"
@@ -29,19 +26,10 @@
   "falseOption": {
     "message": "Off"
   },
-  "livePreviewLabel": {
+  "PreviewLabel": {
     "message": "Live Preview"
   },
-  "infoMessage": {
-    "message": "If it doesn't work, reload Google Docs."
-  },
-  "openDocsButton": {
-    "message": "Open Google Docs"
-  },
-  "saveButton": {
-    "message": "Save & Exit"
-  },
-  "maker": {
+  "donation": {
     "message": "Enjoying the tool? Buy the dev a coffee! ☕"
   },
   "gradientDynamic": {
@@ -104,9 +92,6 @@
   "gradientAurora": {
     "message": "Aurora"
   },
-  "notInDocsMessage": {
-    "message": "You are not in Google Docs."
-  },
   "thankYouTitle": {
     "message": "Thank you for downloading. Read the release notes on&nbsp;$githubLink$.",
     "placeholders": {
@@ -116,10 +101,10 @@
     }
   },
   "ratingTitle": {
-    "message": "Enjoying the extension? Rate the extension on the&nbsp;$chromeWebStoreLink$!",
+    "message": "Enjoying the extension? Buy the dev a&nbsp;$chromeWebStoreLink$! ☕",
     "placeholders": {
       "chromeWebStoreLink": {
-        "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome Web Store</a>"
+        "content": "<a href='coff.ee/asahisuenaga' target='_blank'>coffee</a>"
       }
     }
   }
