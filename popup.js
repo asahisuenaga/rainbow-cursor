@@ -29,6 +29,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const optionsContainer = document.getElementById("optionsContainer");
   const livePreviewSection = document.getElementById('livePreviewSection');
 
+  // --- Language Deprecation Overlay ---
+  function maybeShowLangOverlay() {
+    const uiLang = (chrome.i18n.getUILanguage() || '').toLowerCase().replace('-', '_');
+    const supportedLangs = ['en', 'ja'];
+    const isSupported = supportedLangs.some(lang => uiLang === lang || uiLang.startsWith(lang + '_'));
+    if (isSupported) return;
+
+    chrome.storage.sync.get(['langOverlayDismissed'], (result) => {
+      if (result.langOverlayDismissed) return;
+
+      const overlay = document.getElementById('langOverlay');
+      if (!overlay) return;
+
+      overlay.classList.add('visible');
+
+      document.getElementById('langOverlayDismiss').addEventListener('click', () => {
+        overlay.classList.remove('visible');
+      });
+
+      document.getElementById('langOverlayDontShow').addEventListener('click', () => {
+        chrome.storage.sync.set({ langOverlayDismissed: true });
+        overlay.classList.remove('visible');
+      });
+    });
+  }
+
   // Helper function to set localized text
   function setLocalizedText(id, messageKey) {
     const element = document.getElementById(id);
@@ -99,6 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (redirectContainer) redirectContainer.style.display = 'none';
       if (livePreviewSection) livePreviewSection.style.display = 'block';
       updateSettingsLivePreview();
+
+      // Show language deprecation overlay only in Google Docs
+      maybeShowLangOverlay();
     }
   });
 
