@@ -3,7 +3,7 @@
     "message": "Rainbow Cursor in Google Docs"
   },
   "extension_description": {
-    "message": "Swap the default cursor with a sleek and animated caret!"
+    "message": "Swap the cursor in Google Docs with an animated caret! Great for students, writers, or anyone who wants a better editing experience."
   },
   "gradientLabel": {
     "message": "Gradient"
@@ -92,20 +92,19 @@
   "gradientAurora": {
     "message": "Aurora"
   },
-  "thankYouTitle": {
-    "message": "Thank you for downloading. Read the release notes on&nbsp;$githubLink$.",
-    "placeholders": {
-      "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>"
-      }
-    }
+  "WelcomeTitle": {
+    "message": "Thanks for installing! Open a Google Docs document to get started."
   },
-  "ratingTitle": {
-    "message": "Enjoying the extension? Buy the dev a&nbsp;$chromeWebStoreLink$! ☕",
-    "placeholders": {
-      "chromeWebStoreLink": {
-        "content": "<a href='coff.ee/asahisuenaga' target='_blank'>coffee</a>"
-      }
-    }
+  "PinTheExtensionTitle": {
+    "message": "One last thing: Click the puzzle icon to pin the extension."
+  },
+  "onboardingMessage": {
+    "message": "Personalize the cursor to your liking and exit the popup when you are done."
+  },
+  "onboardingNote": {
+    "message": "Note: You can always go back and change these settings by selecting the extension from the puzzle icon in the toolbar."
+  },
+  "continueButton": {
+    "message": "Continue"
   }
 }

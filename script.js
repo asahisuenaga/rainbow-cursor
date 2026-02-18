@@ -1,8 +1,8 @@
 (function () {
-    if (window.stylishCursorLoaded) {
+    if (window.rainbowCursorLoaded) {
         return;
     }
-    window.stylishCursorLoaded = true;
+    window.rainbowCursorLoaded = true;
 
     const cache = {
         cursorElements: null,
@@ -178,7 +178,7 @@
     // Function to apply caret width from storage
     function applyCaretWidth(cursor) {
         debouncedStorageGet(['Thickness'], (result) => {
-            const width = result.Thickness || '2';  
+            const width = result.Thickness || '2';
             cursor.style.width = `${width}px`;
         });
     }
@@ -228,12 +228,21 @@
                     }
                 }
             });
-            showThankYouOverlay();
-            scheduleRatingOverlay();
         } else {
             setTimeout(initialize, 500);
         }
     }
+
+    // Show Thank You overlay ONLY on Dashboard (not in editor)
+    chrome.storage.sync.get(['welcomeShown', 'pinNoteShown'], (result) => {
+        if (!window.location.href.includes('/document/d/')) {
+            showWelcomeOverlay(result.welcomeShown);
+        } else {
+            if (result.welcomeShown && !result.pinNoteShown) {
+                chrome.runtime.sendMessage({ action: "open_popup" });
+            }
+        }
+    });
 
     initialize();
 
@@ -298,10 +307,10 @@
         const old = document.getElementById(id);
         if (old) old.remove();
 
-        let toastContainer = document.getElementById('stylish-cursor-toast-container');
+        let toastContainer = document.getElementById('rainbow-cursor-toast-container');
         if (!toastContainer) {
             toastContainer = document.createElement('div');
-            toastContainer.id = 'stylish-cursor-toast-container';
+            toastContainer.id = 'rainbow-cursor-toast-container';
             toastContainer.style.cssText = `
             position: fixed;
             top: 32px;
@@ -324,11 +333,11 @@
         toast.style.cssText = `
         background: linear-gradient(145deg, #f0f2f5, #ffffff);
         color: #333;
-        border-radius: 12px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-        min-width: 260px;
-        max-width: 700px;
-        padding: 12px 20px 12px 20px;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.18);
+        min-width: 16.25rem;
+        max-width: 43.75rem;
+        padding: 0.75rem 1.25rem 0.75rem 1.25rem;
         margin: 0;
         font-family: 'Google Sans', sans-serif;
         font-size: 1rem;
@@ -338,13 +347,13 @@
         flex-direction: row;
         align-items: center;
         gap: 16px;
-        animation: stylish-cursor-toast-in 0.3s ease;
+        animation: rainbow-cursor-toast-in 0.3s ease;
         white-space: nowrap;
     `;
         if (message && message.trim() !== '') {
             const textSpan = document.createElement('span');
             textSpan.style.cssText = 'font-weight: 400; display: flex; align-items: center; gap: 0px;';
-            textSpan.innerHTML = message; 
+            textSpan.innerHTML = message;
             toast.appendChild(textSpan);
         }
 
@@ -362,8 +371,8 @@
                 appearance: none;
                 background: linear-gradient(145deg, #e8e8e8, #ffffff);
                 border: 1px solid #d0d0d0;
-                padding: 4px 8px;
-                border-radius: 8px;
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.5rem;
                 font-family: 'Google Sans', sans-serif;
                 font-size: 1rem;
                 color: #333;
@@ -417,11 +426,11 @@
             closeBtn.style.color = '#bbb';
         }
 
-        if (!document.getElementById('stylish-cursor-toast-anim')) {
+        if (!document.getElementById('rainbow-cursor-toast-anim')) {
             const style = document.createElement('style');
-            style.id = 'stylish-cursor-toast-anim';
+            style.id = 'rainbow-cursor-toast-anim';
             style.textContent = `
-        @keyframes stylish-cursor-toast-in {
+        @keyframes rainbow-cursor-toast-in {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -436,70 +445,43 @@
         }, 15000);
     }
 
-    function showThankYouOverlay() {
-        if (localStorage.getItem('stylishCursorOverlayShown')) return;
-        const githubLinkHTML = "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>";
-        const thankYouMessage = chrome.i18n.getMessage('thankYouTitle', [githubLinkHTML]);
+    function showWelcomeOverlay(alreadyShown) {
+        if (alreadyShown) return;
+        const WelcomeMessage = chrome.i18n.getMessage('WelcomeTitle');
         showToast({
-            id: 'stylish-cursor-overlay',
-            message: thankYouMessage,
+            id: 'rainbow-cursor-overlay',
+            message: WelcomeMessage,
             actions: []
         });
-        localStorage.setItem('stylishCursorOverlayShown', 'true');
+        chrome.storage.sync.set({ welcomeShown: true });
     }
 
-    function showRatingOverlay() {
-        if (localStorage.getItem('stylishCursorRatingShown')) return;
+    function showPinTheExtensionOverlay(alreadyShown) {
+        if (alreadyShown) return;
         if (!window.location.href.includes('docs.google.com/document')) return;
-        const chromeWebStoreLinkHTML = "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/reviews' target='_blank'>Chrome Web Store</a>";
-        const ratingMessage = chrome.i18n.getMessage('ratingTitle', [chromeWebStoreLinkHTML]);
+        const PinTheExtensionMessage = chrome.i18n.getMessage('PinTheExtensionTitle');
         showToast({
-            id: 'stylish-cursor-rating-overlay',
-            message: ratingMessage,
+            id: 'rainbow-cursor-PinTheExtension-overlay',
+            message: PinTheExtensionMessage,
             actions: []
         });
-        localStorage.setItem('stylishCursorRatingShown', 'true');
+        chrome.storage.sync.set({ pinNoteShown: true });
     }
 
-    // Function to track time spent in Google Docs and schedule rating overlay
-    function scheduleRatingOverlay() {
-        if (localStorage.getItem('stylishCursorRatingShown')) {
-            return;
+    // Listen for popup connection to handle onboarding flow
+    chrome.runtime.onConnect.addListener((port) => {
+        if (port.name === 'rainbow-cursor-popup') {
+            const WelcomeOverlay = document.getElementById('rainbow-cursor-overlay');
+            if (WelcomeOverlay) WelcomeOverlay.remove();
+
+            const PinTheExtensionOverlay = document.getElementById('rainbow-cursor-PinTheExtension-overlay');
+            if (PinTheExtensionOverlay) PinTheExtensionOverlay.remove();
+
+            port.onDisconnect.addListener(() => {
+                chrome.storage.sync.get(['pinNoteShown'], (result) => {
+                    showPinTheExtensionOverlay(result.pinNoteShown);
+                });
+            });
         }
-
-        let timeSpent = parseInt(localStorage.getItem('stylishCursorTimeSpent') || '0');
-
-        if (cache.timeTracker) {
-            clearInterval(cache.timeTracker);
-        }
-
-        cache.timeTracker = setInterval(() => {
-            if (window.location.href.includes('docs.google.com/document')) {
-                timeSpent += 60000; // Add 1 minute (60,000 ms)
-                localStorage.setItem('stylishCursorTimeSpent', timeSpent.toString());
-
-                if (timeSpent >= 300000) {
-                    clearInterval(cache.timeTracker);
-                    cache.timeTracker = null;
-                    showRatingOverlay();
-                }
-            } else {
-                clearInterval(cache.timeTracker);
-                cache.timeTracker = null;
-            }
-        }, 60000);
-
-        if (cache.visibilityHandler) {
-            document.removeEventListener('visibilitychange', cache.visibilityHandler);
-        }
-
-        cache.visibilityHandler = () => {
-            if (document.visibilityState === 'visible' &&
-                window.location.href.includes('docs.google.com/document')) {
-                scheduleRatingOverlay();
-            }
-        };
-
-        document.addEventListener('visibilitychange', cache.visibilityHandler);
-    }
+    });
 })();

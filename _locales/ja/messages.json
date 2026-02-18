@@ -3,7 +3,7 @@
     "message": "GoogleDocsの虹色キャレット"
   },
   "extension_description": {
-    "message": "規定の設定のキャレットを洗練されたアニメーションキャレットに交換します。"
+    "message": "GoogleDocsのキャレットにアニメーションを加えましょう！学生、作家、その他より快適な編集体験を求める方に最適です。"
   },
   "gradientLabel": {
     "message": "グラデーション"
@@ -92,20 +92,19 @@
   "gradientAurora": {
     "message": "オーロラ"
   },
-  "thankYouTitle": {
-    "message": "ダウンロードありがとうございます。リリースノートは&nbsp;$githubLink$でご覧ください。",
-    "placeholders": {
-      "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>GitHub</a>"
-      }
-    }
+  "WelcomeTitle": {
+    "message": "インストールありがとうございます。ツールバーのアイコンをクリックして、キャリットをカスタマイズしましょう！"
   },
-  "ratingTitle": {
-    "message": "拡張機能を楽しんでいますか？開発者に&nbsp;$chromeWebStoreLink$を一杯！☕",
-    "placeholders": {
-      "chromeWebStoreLink": {
-        "content": "<a href='coff.ee/asahisuenaga' target='_blank'>コーヒー</a>"
-      }
-    }
+  "PinTheExtensionTitle": {
+    "message": "最後に一つ：拡張機能をピンするには、パズルアイコンをクリックします。"
+  },
+  "onboardingMessage": {
+    "message": "キャリットを自分好みにカスタマイズして、終わったらこのポップアップを閉じてください。"
+  },
+  "onboardingNote": {
+    "message": "注: ツールバーのパズルアイコンから拡張機能を選択すれば、いつでも設定を変更できます。"
+  },
+  "continueButton": {
+    "message": "続ける"
   }
 }

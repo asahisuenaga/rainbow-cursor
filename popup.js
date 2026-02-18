@@ -37,7 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
   setLocalizedText('settingsLivePreviewLabel', 'livePreviewLabel');
 
   // Load saved settings
-  chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle', 'typewriterAnimation', 'TranslucentMode'], () => {
+  chrome.storage.sync.get(['Thickness', 'Blink', 'gradientStyle', 'typewriterAnimation', 'TranslucentMode', 'onboardingComplete'], (result) => {
+    // Onboarding Overlay Logic
+    const onboardingOverlay = document.getElementById('onboardingOverlay');
+    const continueButton = document.getElementById('continueButton');
+
+    // If onboardingComplete is undefined (fresh install/reset) or false, show overlay
+    if (!result.onboardingComplete) {
+      if (onboardingOverlay) {
+        onboardingOverlay.style.display = 'flex';
+        setLocalizedText('onboardingMessage', 'onboardingMessage');
+        setLocalizedText('onboardingNote', 'onboardingNote');
+        setLocalizedText('continueButton', 'continueButton');
+      }
+      chrome.storage.sync.set({ onboardingComplete: true });
+    }
+
+    if (continueButton) {
+      continueButton.addEventListener('click', () => {
+        if (onboardingOverlay) onboardingOverlay.style.display = 'none';
+      });
+    }
   });
 
   if (donation) {
@@ -53,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const currentUrl = tabs[0].url;
     isGoogleDocs = currentUrl.includes("docs.google.com/document");
+    actualDocs = currentUrl.includes("docs.google.com/document/d");
+
+    if (actualDocs) {
+      chrome.tabs.connect(tabs[0].id, { name: 'rainbow-cursor-popup' });
+    }
 
     if (!isGoogleDocs) {
       chrome.tabs.create({ url: 'https://docs.google.com/document' });
@@ -121,49 +146,52 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationStyle = '';
     let backgroundStyle = gradientCSS;
 
-    if (blinkEnabled) {
-      const duration = '1.4s';
-      animationStyle = `animation: caret-blink ${duration} steps(1) infinite, gradientAnimation 20s linear infinite;`;
+    // Only blink when stationary (paused)
+    const shouldBlink = blinkEnabled && typingState.phase === 'pause';
+
+    if (shouldBlink) {
+      animationStyle = `animation: caret-blink 1s step-end infinite, gradientAnimation 10s linear infinite;`;
     } else {
-      animationStyle = `animation: gradientAnimation 20s linear infinite;`;
+      animationStyle = `animation: gradientAnimation 10s linear infinite;`;
     }
 
     let smoothTransition = '';
     if (typewriterEnabled) {
-      smoothTransition = 'transition: all 80ms ease;';
+      smoothTransition = 'transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);';
     }
 
-    let caretClass = `live-gradient-bar live-gradient-animated`;
-    let caretStyle = `display:inline-block;vertical-align:bottom;width:${thicknessObj.width}px;height:1.25rem;margin-left:0.5rem;border-radius:0.1875rem;background:${backgroundStyle};background-size:400% 400%;${animationStyle}${smoothTransition}`;
+    let caretStyle = `display:inline-block;vertical-align:bottom;width:${thicknessObj.width}px;height:1.25rem;margin-left:2px;border-radius:0.1875rem;background:${backgroundStyle};background-size:400% 400%;${animationStyle}${smoothTransition}`;
 
-    previewBox.innerHTML = `
-  <style>
-    @keyframes gradientAnimation { 
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-    @keyframes caret-blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
+    // Track character count to detect changes for typewriter lag
+    const charCount = typingState.charIndex;
+    const prevCharCount = window.lastPreviewCharCount || 0;
+    window.lastPreviewCharCount = charCount;
 
-    .cursor-dropdown-selected:hover {
-      background: #ededed;
-    }
-    @media (prefers-color-scheme: dark) {
-      .cursor-dropdown-selected:hover {
-        background: #303134;
+    const previewText = document.getElementById('previewText');
+    const previewCaret = document.getElementById('previewCaret');
+    if (previewText) previewText.textContent = displayText;
+    if (previewCaret) previewCaret.style.cssText = caretStyle;
+
+
+    // Implement typewriter lag effect
+    if (typewriterEnabled && charCount !== prevCharCount) {
+      const caret = document.getElementById('previewCaret');
+      if (caret) {
+        const isAdding = charCount > prevCharCount;
+        const offset = isAdding ? -8 : 8;
+
+        // 1. Set the initial "lagged" position (no transition)
+        caret.style.transition = 'none';
+        caret.style.transform = `translateX(${offset}px)`;
+
+        // 2. Force reflow
+        void caret.offsetWidth;
+
+        // 3. Enable transition and slide to target (0)
+        caret.style.transition = 'transform 0.25s cubic-bezier(0.2, 0, 0.2, 1)';
+        caret.style.transform = 'translateX(0)';
       }
     }
-  </style>
-
-  <div class='cursor-dropdown-selected'
-       style='overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 0; cursor: default;'>
-    <span style='font-size: 1rem; font-family: inherit; letter-spacing: .2px; color: inherit; user-select: none;'>${displayText}</span>
-    <span class='${caretClass}' style='${caretStyle}'></span>
-  </div>
-`;
 
     if (updateCaretOnly) return;
     if (typingTimeout) clearTimeout(typingTimeout);
@@ -177,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 180);
       } else {
         typingState.phase = 'pause';
+        updateSettingsLivePreview(); // Trigger blink immediately on pause
         typingTimeout = setTimeout(() => {
           typingState.phase = 'erasing';
           updateSettingsLivePreview();
@@ -205,7 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { value: '2', label: '2 px', width: 2 },
     { value: '4', label: '4 px', width: 4 },
     { value: '6', label: '6 px', width: 6 },
-    { value: '8', label: '8 px', width: 8 }
+    { value: '8', label: '8 px', width: 8 },
+    { value: '10', label: '10 px', width: 10 }
   ];
   const thicknessDropdownContainer = document.getElementById('thicknessDropdownContainer');
   let currentThickness = '2';
