@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gradientColors = getGradientColors(currentGradient, translucentEnabled);
     const gradientCSS = `linear-gradient(-45deg, ${gradientColors.join(', ')})`;
     const previewBox = document.getElementById('settingsLivePreview');
+    if (previewBox) previewBox.style.cursor = 'pointer';
     const livePreviewLabel = chrome.i18n.getMessage('PreviewLabel') || 'Live Preview';
     const labelElement = previewBox.parentElement.querySelector('#settingsLivePreviewLabel');
     if (labelElement) labelElement.textContent = livePreviewLabel;
