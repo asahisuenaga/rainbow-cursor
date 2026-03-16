@@ -3,10 +3,7 @@
     "message": "Rainbow Cursor in Google Docs"
   },
   "extension_description": {
-    "message": "Swap the default cursor with a sleek and animated caret!"
-  },
-  "title": {
-    "message": "Rainbow Cursor in Google Docs"
+    "message": "Swap the cursor in Google Docs with an animated caret! Great for students, writers, or anyone who wants a better editing experience."
   },
   "gradientLabel": {
     "message": "Gradient"
@@ -15,13 +12,13 @@
     "message": "Thickness"
   },
   "BlinkLabel": {
-    "message": "Blink Mode"
+    "message": "Blinking Indicator"
   },
-  "SmoothAnimationLabel": {
-    "message": "Typewriter Mode"
+  "typewriterAnimationLabel": {
+    "message": "Typewriter Animation"
   },
   "TranslucentModeLabel": {
-    "message": "Translucent Mode"
+    "message": "Translucent Gradient"
   },
   "trueOption": {
     "message": "On"
@@ -29,19 +26,10 @@
   "falseOption": {
     "message": "Off"
   },
-  "livePreviewLabel": {
+  "PreviewLabel": {
     "message": "Live Preview"
   },
-  "infoMessage": {
-    "message": "If it doesn't work, reload Google Docs."
-  },
-  "openDocsButton": {
-    "message": "Open Google Docs"
-  },
-  "saveButton": {
-    "message": "Save & Exit"
-  },
-  "maker": {
+  "donation": {
     "message": "Enjoying the tool? Buy the dev a coffee! ☕"
   },
   "gradientDynamic": {
@@ -104,23 +92,19 @@
   "gradientAurora": {
     "message": "Aurora"
   },
-  "notInDocsMessage": {
-    "message": "You are not in Google Docs."
+  "WelcomeTitle": {
+    "message": "Thanks for installing! Open a Google Docs document to get started."
   },
-  "thankYouTitle": {
-    "message": "Thank you for downloading. Read the release notes on&nbsp;$githubLink$.",
-    "placeholders": {
-      "githubLink": {
-        "content": "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>"
-      }
-    }
+  "PinTheExtensionTitle": {
+    "message": "One last thing: Click the puzzle icon to pin the extension."
   },
-  "ratingTitle": {
-    "message": "Enjoying the extension? Rate the extension on the&nbsp;$chromeWebStoreLink$!",
-    "placeholders": {
-      "chromeWebStoreLink": {
-        "content": "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/' target='_blank'>Chrome Web Store</a>"
-      }
-    }
+  "onboardingMessage": {
+    "message": "Personalize the cursor to your liking and exit the popup when you are done."
+  },
+  "onboardingNote": {
+    "message": "Note: You can always go back and change these settings by selecting the extension from the puzzle icon in the toolbar."
+  },
+  "continueButton": {
+    "message": "Continue"
   }
 }

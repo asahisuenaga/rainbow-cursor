@@ -20,3 +20,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
   }
 });
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "open_popup") {
+    chrome.action.openPopup().catch(err => {
+      console.warn("Could not open popup automatically (likely due to browser restrictions):", err);
+    });
+  }
+});

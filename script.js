@@ -1,13 +1,9 @@
-// Wrap the main script logic in an IIFE to prevent duplicate execution
 (function () {
-    // Prevent duplicate script injection
-    if (window.stylishCursorLoaded) {
-        // Script already loaded, exit early
+    if (window.rainbowCursorLoaded) {
         return;
     }
-    window.stylishCursorLoaded = true;
+    window.rainbowCursorLoaded = true;
 
-    // Cache for DOM elements and computed values
     const cache = {
         cursorElements: null,
         lastStorageCheck: 0,
@@ -16,12 +12,10 @@
         visibilityHandler: null
     };
 
-    // Debounced storage operations to reduce CPU usage
     function debouncedStorageGet(keys, callback, delay = 100) {
         const cacheKey = Array.isArray(keys) ? keys.join(',') : keys;
         const now = Date.now();
 
-        // Return cached result if recent
         if (cache.storageCache[cacheKey] && (now - cache.lastStorageCheck) < delay) {
             callback(cache.storageCache[cacheKey]);
             return;
@@ -34,12 +28,10 @@
         });
     }
 
-    // Function to convert RGB color to an array of values
     function rgbToArray(rgb) {
         return rgb.match(/\d+/g).map(Number);
     }
 
-    // Function to adjust color (lighter or darker)
     function adjustColor(color, amount) {
         return `rgb(${color.map(value => Math.min(255, Math.max(0, value + amount))).join(', ')})`;
     }
@@ -50,13 +42,12 @@
         const borderColor = computedStyle.borderColor || 'rgb(0, 0, 0)';
         const borderColorArray = rgbToArray(borderColor);
 
-        // Define gradient styles
         const gradientStyles = {
             rainbow: ['#ffb6c1', '#ff69b4', '#da70d6', '#9370db', '#48c9b0', '#f0e68c', '#ffd700'],
             red: ['#ff0000', '#c43a3a', '#8b0000', '#e34e5b', '#ff6347'],
             dynamic: [
-                adjustColor(borderColorArray, 100), // lighter
-                adjustColor(borderColorArray, -50) // darker
+                adjustColor(borderColorArray, 100),
+                adjustColor(borderColorArray, -50)
             ],
             snow: ['#00bfff', '#1e90ff', '#4682b4', '#add8e6', '#e0f0ff'],
             ocean: ['#2193b0', '#6dd5ed', '#b2fefa', '#2f80ed', '#56ccf2'],
@@ -77,23 +68,18 @@
             aurora: ['#00c9ff', '#92fe9d', '#00f260', '#0575e6']
         };
 
-        // Select the gradient based on the color scheme
         let gradientColors = gradientStyles[colorScheme] || gradientStyles.dynamic;
 
-        // Apply translucent mode if enabled
         if (applyTranslucent) {
             gradientColors = gradientColors.map(color => {
                 if (color.startsWith('rgb')) {
-                    // Convert rgb to rgba with 0.5 opacity
                     return color.replace('rgb', 'rgba').replace(')', ', 0.5)');
                 } else {
-                    // Add 80 hex opacity to hex colors
                     return color + '80';
                 }
             });
         }
 
-        // Apply gradient animation
         const styleSheet = document.createElement('style');
         document.head.appendChild(styleSheet);
 
@@ -123,7 +109,6 @@
             if (currentBorderColor !== lastBorderColor) {
                 lastBorderColor = currentBorderColor;
 
-                // Retrieve the stored gradient style and reapply it
                 debouncedStorageGet(['gradientStyle', 'TranslucentMode'], (result) => {
                     const gradientStyle = result.gradientStyle || 'rainbow';
                     const translucentMode = result.TranslucentMode || false;
@@ -135,13 +120,12 @@
         observer.observe(cursor, { attributes: true, attributeFilter: ['style'] });
     }
 
-    // Function to apply smooth animation from storage
-    function applySmoothAnimation() {
-        debouncedStorageGet(['SmoothAnimation'], (result) => {
-            const SmoothAnimation = result.SmoothAnimation || false;
+    function applytypewriterAnimation() {
+        debouncedStorageGet(['typewriterAnimation'], (result) => {
+            const typewriterAnimation = result.typewriterAnimation || false;
             const cursorElements = document.querySelectorAll('.docs-text-ui-cursor-blink, .kix-cursor, .CodeMirror-cursor, .monaco-editor .cursors-layer .cursor');
 
-            if (SmoothAnimation) {
+            if (typewriterAnimation) {
                 cursorElements.forEach(cursor => {
                     cursor.style.setProperty('transition', 'all 80ms ease', 'important');
                 });
@@ -160,23 +144,12 @@
             const cursorElements = document.querySelectorAll('.docs-text-ui-cursor-blink, .kix-cursor, .CodeMirror-cursor, .monaco-editor .cursors-layer .cursor');
 
             if (Blink === 'true') {
-                // Blink disabled - cursor stays visible
                 cursorElements.forEach(cursor => {
                     cursor.style.setProperty('-webkit-animation-iteration-count', '0', 'important');
                     cursor.style.setProperty('animation-iteration-count', '0', 'important');
                     cursor.style.setProperty('visibility', 'visible', 'important');
                 });
-            } else if (Blink === 'half') {
-                // 0.5x blink speed - slower blinking
-                cursorElements.forEach(cursor => {
-                    cursor.style.removeProperty('-webkit-animation-iteration-count');
-                    cursor.style.removeProperty('animation-iteration-count');
-                    cursor.style.removeProperty('visibility');
-                    cursor.style.setProperty('-webkit-animation-duration', '1.4s', 'important');
-                    cursor.style.setProperty('animation-duration', '1.4s', 'important');
-                });
             } else {
-                // Normal blink speed (default)
                 cursorElements.forEach(cursor => {
                     cursor.style.removeProperty('-webkit-animation-iteration-count');
                     cursor.style.removeProperty('animation-iteration-count');
@@ -191,14 +164,13 @@
     // Listen for storage changes and apply new settings live
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area === 'sync') {
-            // Clear cache when storage changes
             cache.storageCache = {};
 
             if (changes.Blink) {
                 applyBlinkRemoval();
             }
-            if (changes.SmoothAnimation) {
-                applySmoothAnimation();
+            if (changes.typewriterAnimation) {
+                applytypewriterAnimation();
             }
         }
     });
@@ -206,19 +178,16 @@
     // Function to apply caret width from storage
     function applyCaretWidth(cursor) {
         debouncedStorageGet(['Thickness'], (result) => {
-            const width = result.Thickness || '2';  // Default to 2 pixels if unset
+            const width = result.Thickness || '2';
             cursor.style.width = `${width}px`;
         });
     }
 
     // Updated initialize function to retrieve and apply gradient style on load
     function initialize() {
-        // Only get the current user's caret by id
         const currentUserCaret = document.getElementById('kix-current-user-cursor-caret');
         cache.cursorElements = currentUserCaret ? [currentUserCaret] : [];
-
         if (cache.cursorElements.length > 0) {
-            // Retrieve the stored gradient style and apply it to all cursor elements
             debouncedStorageGet(['gradientStyle', 'TranslucentMode'], (result) => {
                 const gradientStyle = result.gradientStyle || 'rainbow';
                 const translucentMode = result.TranslucentMode || false;
@@ -227,22 +196,13 @@
                 });
             });
 
-            // Apply caret width from storage
             applyCaretWidth(cache.cursorElements[0]);
-
-            // Monitor for any color changes or mutations in the cursor element
             monitorColorChange(cache.cursorElements[0]);
-
-            // Apply blink removal if needed
             applyBlinkRemoval();
+            applytypewriterAnimation();
 
-            // Apply smooth animation if needed
-            applySmoothAnimation();
-
-            // Listen for storage changes and apply new settings live
             chrome.storage.onChanged.addListener((changes, area) => {
                 if (area === 'sync') {
-                    // Clear cache when storage changes
                     cache.storageCache = {};
 
                     if (changes.Thickness) {
@@ -254,8 +214,8 @@
                     if (changes.Blink) {
                         applyBlinkRemoval();
                     }
-                    if (changes.SmoothAnimation) {
-                        applySmoothAnimation();
+                    if (changes.typewriterAnimation) {
+                        applytypewriterAnimation();
                     }
                     if (changes.gradientStyle || changes.TranslucentMode) {
                         debouncedStorageGet(['gradientStyle', 'TranslucentMode'], (result) => {
@@ -268,23 +228,26 @@
                     }
                 }
             });
-
-            // Show thank you overlay (only once)
-            showThankYouOverlay();
-
-            // Schedule rating overlay (only once, after delay)
-            scheduleRatingOverlay();
         } else {
-            setTimeout(initialize, 500);     // Retry if cursor element is not found
+            setTimeout(initialize, 500);
         }
     }
 
-    // Start the initialization process
+    // Show Thank You overlay ONLY on Dashboard (not in editor)
+    chrome.storage.sync.get(['welcomeShown', 'pinNoteShown'], (result) => {
+        if (!window.location.href.includes('/document/d/')) {
+            showWelcomeOverlay(result.welcomeShown);
+        } else {
+            if (result.welcomeShown && !result.pinNoteShown) {
+                chrome.runtime.sendMessage({ action: "open_popup" });
+            }
+        }
+    });
+
     initialize();
 
     // Listen for Google Docs tab switches
     window.addEventListener('googleDocsTabSwitch', (event) => {
-        // Clear cache and reinitialize after a short delay to allow DOM to update
         cache.cursorElements = null;
         cache.storageCache = {};
         setTimeout(() => {
@@ -292,13 +255,11 @@
         }, 100);
     });
 
-    // Also listen for URL changes within the same page (for tab switches)
     let lastUrl = window.location.href;
     const urlObserver = new MutationObserver(() => {
         const currentUrl = window.location.href;
         if (currentUrl !== lastUrl && currentUrl.includes('docs.google.com/document')) {
             lastUrl = currentUrl;
-            // Clear cache and reinitialize after a short delay
             cache.cursorElements = null;
             cache.storageCache = {};
             setTimeout(() => {
@@ -307,59 +268,49 @@
         }
     });
 
-    // Start observing URL changes
     urlObserver.observe(document, { subtree: true, childList: true });
 
     function applyCaretStyling() {
-        debouncedStorageGet(['Thickness', 'Blink', 'SmoothAnimation', 'gradientStyle'], (result) => {
+        debouncedStorageGet(['Thickness', 'Blink', 'typewriterAnimation', 'gradientStyle'], (result) => {
 
             const Thickness = result.Thickness || '2';
             const Blink = result.Blink !== undefined ? result.Blink : 'false';
-            const SmoothAnimation = result.SmoothAnimation !== undefined ? result.SmoothAnimation : false;
+            const typewriterAnimation = result.typewriterAnimation !== undefined ? result.typewriterAnimation : false;
             const gradientStyle = result.gradientStyle || 'rainbow';
 
-            // Apply caret width
             document.documentElement.style.setProperty('--caret-width', `${Thickness}px`);
 
-            // Apply blink setting
             let caretBlinkStyle;
             if (Blink === 'true') {
-                caretBlinkStyle = 'blink-off-class'; // Blink disabled
-            } else if (Blink === 'half') {
-                caretBlinkStyle = 'blink-half-class'; // 0.5x blink speed
+                caretBlinkStyle = 'blink-off-class';
             } else {
-                caretBlinkStyle = 'blink-on-class'; // Normal blink speed
+                caretBlinkStyle = 'blink-on-class';
             }
 
-            document.documentElement.classList.remove('blink-off-class', 'blink-on-class', 'blink-half-class');
+            document.documentElement.classList.remove('blink-off-class', 'blink-on-class',);
             document.documentElement.classList.add(caretBlinkStyle);
 
-            // Apply smooth animation styling
-            const smoothAnimationClass = SmoothAnimation ? 'smooth-animation-on' : 'smooth-animation-off';
-            document.documentElement.classList.remove('smooth-animation-on', 'smooth-animation-off');
-            document.documentElement.classList.add(smoothAnimationClass);
+            const typewriterAnimationClass = typewriterAnimation ? 'typewriter-animation-on' : 'typewriter-animation-off';
+            document.documentElement.classList.remove('typewriter-animation-on', 'typewriter-animation-off');
+            document.documentElement.classList.add(typewriterAnimationClass);
 
-            // Apply gradient styling
             const gradientClass = `gradient-${gradientStyle}`;
             document.documentElement.classList.remove(...Array.from(document.documentElement.classList).filter(cls => cls.startsWith('gradient-')));
             document.documentElement.classList.add(gradientClass);
         });
     }
 
-    // Apply caret styling when the script runs
     applyCaretStyling();
 
     // === TOAST UTILITY ===
     function showToast({ id, message, actions }) {
-        // Remove any existing toast with the same id
         const old = document.getElementById(id);
         if (old) old.remove();
 
-        // Create toast container if not present
-        let toastContainer = document.getElementById('stylish-cursor-toast-container');
+        let toastContainer = document.getElementById('rainbow-cursor-toast-container');
         if (!toastContainer) {
             toastContainer = document.createElement('div');
-            toastContainer.id = 'stylish-cursor-toast-container';
+            toastContainer.id = 'rainbow-cursor-toast-container';
             toastContainer.style.cssText = `
             position: fixed;
             top: 32px;
@@ -381,29 +332,28 @@
         toast.tabIndex = -1;
         toast.style.cssText = `
         background: linear-gradient(145deg, #f0f2f5, #ffffff);
-        color: #5f6368;
-        border-radius: 12px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-        min-width: 260px;
-        max-width: 700px;
-        padding: 12px 20px 12px 20px;
+        color: #333;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.18);
+        min-width: 16.25rem;
+        max-width: 43.75rem;
+        padding: 0.75rem 1.25rem 0.75rem 1.25rem;
         margin: 0;
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
+        font-family: 'Google Sans', sans-serif;
+        font-size: 1rem;
         pointer-events: auto;
         position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 16px;
-        animation: stylish-cursor-toast-in 0.3s ease;
+        animation: rainbow-cursor-toast-in 0.3s ease;
         white-space: nowrap;
     `;
-        // Only show the message (no title)
         if (message && message.trim() !== '') {
             const textSpan = document.createElement('span');
             textSpan.style.cssText = 'font-weight: 400; display: flex; align-items: center; gap: 0px;';
-            textSpan.innerHTML = message; // Use innerHTML for clickable links
+            textSpan.innerHTML = message;
             toast.appendChild(textSpan);
         }
 
@@ -421,11 +371,11 @@
                 appearance: none;
                 background: linear-gradient(145deg, #e8e8e8, #ffffff);
                 border: 1px solid #d0d0d0;
-                padding: 4px 8px;
-                border-radius: 8px;
-                font-family: 'Inter', sans-serif;
-                font-size: 14px;
-                color: #5f6368;
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.5rem;
+                font-family: 'Google Sans', sans-serif;
+                font-size: 1rem;
+                color: #333;
                 cursor: pointer;
                 font-weight: 400;
                 text-decoration: none;
@@ -459,7 +409,7 @@
         background: none;
         border: none;
         color: #888;
-        font-size: 14px;
+        font-size: 1rem;
         cursor: pointer;
         line-height: 1;
         align-self: center;
@@ -470,19 +420,17 @@
         };
         toast.appendChild(closeBtn);
 
-        // Dark mode support
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             toast.style.background = 'linear-gradient(145deg, #1b1b1b, #232323)';
             toast.style.color = '#f5f5f5';
             closeBtn.style.color = '#bbb';
         }
 
-        // Animation keyframes
-        if (!document.getElementById('stylish-cursor-toast-anim')) {
+        if (!document.getElementById('rainbow-cursor-toast-anim')) {
             const style = document.createElement('style');
-            style.id = 'stylish-cursor-toast-anim';
+            style.id = 'rainbow-cursor-toast-anim';
             style.textContent = `
-        @keyframes stylish-cursor-toast-in {
+        @keyframes rainbow-cursor-toast-in {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -492,86 +440,48 @@
 
         toastContainer.appendChild(toast);
 
-        // Auto-dismiss after 15 seconds
         setTimeout(() => {
             toast.remove();
         }, 15000);
     }
 
-    function showThankYouOverlay() {
-        if (localStorage.getItem('stylishCursorOverlayShown')) return;
-        const githubLinkHTML = "<a href='https://github.com/asahisuenaga/rainbow-cursor' target='_blank'>Github</a>";
-        const thankYouMessage = chrome.i18n.getMessage('thankYouTitle', [githubLinkHTML]);
+    function showWelcomeOverlay(alreadyShown) {
+        if (alreadyShown) return;
+        const WelcomeMessage = chrome.i18n.getMessage('WelcomeTitle');
         showToast({
-            id: 'stylish-cursor-overlay',
-            message: thankYouMessage,
+            id: 'rainbow-cursor-overlay',
+            message: WelcomeMessage,
             actions: []
         });
-        localStorage.setItem('stylishCursorOverlayShown', 'true');
+        chrome.storage.sync.set({ welcomeShown: true });
     }
 
-    function showRatingOverlay() {
-        if (localStorage.getItem('stylishCursorRatingShown')) return;
+    function showPinTheExtensionOverlay(alreadyShown) {
+        if (alreadyShown) return;
         if (!window.location.href.includes('docs.google.com/document')) return;
-        const chromeWebStoreLinkHTML = "<a href='https://chromewebstore.google.com/detail/custom-cursor-in-google-d/nnmghknojpihdnofejbocdcnmhibkfdc/reviews' target='_blank'>Chrome Web Store</a>";
-        const ratingMessage = chrome.i18n.getMessage('ratingTitle', [chromeWebStoreLinkHTML]);
+        const PinTheExtensionMessage = chrome.i18n.getMessage('PinTheExtensionTitle');
         showToast({
-            id: 'stylish-cursor-rating-overlay',
-            message: ratingMessage,
+            id: 'rainbow-cursor-PinTheExtension-overlay',
+            message: PinTheExtensionMessage,
             actions: []
         });
-        localStorage.setItem('stylishCursorRatingShown', 'true');
+        chrome.storage.sync.set({ pinNoteShown: true });
     }
 
-    // Function to track time spent in Google Docs and schedule rating overlay
-    function scheduleRatingOverlay() {
-        // Check if rating overlay has already been shown
-        if (localStorage.getItem('stylishCursorRatingShown')) {
-            return;
+    // Listen for popup connection to handle onboarding flow
+    chrome.runtime.onConnect.addListener((port) => {
+        if (port.name === 'rainbow-cursor-popup') {
+            const WelcomeOverlay = document.getElementById('rainbow-cursor-overlay');
+            if (WelcomeOverlay) WelcomeOverlay.remove();
+
+            const PinTheExtensionOverlay = document.getElementById('rainbow-cursor-PinTheExtension-overlay');
+            if (PinTheExtensionOverlay) PinTheExtensionOverlay.remove();
+
+            port.onDisconnect.addListener(() => {
+                chrome.storage.sync.get(['pinNoteShown'], (result) => {
+                    showPinTheExtensionOverlay(result.pinNoteShown);
+                });
+            });
         }
-
-        // Get current time spent in Google Docs
-        let timeSpent = parseInt(localStorage.getItem('stylishCursorTimeSpent') || '0');
-
-        // Clear any existing timer
-        if (cache.timeTracker) {
-            clearInterval(cache.timeTracker);
-        }
-
-        // Update time spent every minute
-        cache.timeTracker = setInterval(() => {
-            // Only track time if we're still in Google Docs
-            if (window.location.href.includes('docs.google.com/document')) {
-                timeSpent += 60000; // Add 1 minute (60,000 ms)
-                localStorage.setItem('stylishCursorTimeSpent', timeSpent.toString());
-
-                // Check if we've reached 5 minutes (300,000 ms)
-                if (timeSpent >= 300000) {
-                    clearInterval(cache.timeTracker);
-                    cache.timeTracker = null;
-                    showRatingOverlay();
-                }
-            } else {
-                // If we're not in Google Docs, pause tracking
-                clearInterval(cache.timeTracker);
-                cache.timeTracker = null;
-            }
-        }, 60000); // Check every minute
-
-        // Remove existing visibility handler to prevent duplicates
-        if (cache.visibilityHandler) {
-            document.removeEventListener('visibilitychange', cache.visibilityHandler);
-        }
-
-        // Also check when the page becomes visible again (user returns to tab)
-        cache.visibilityHandler = () => {
-            if (document.visibilityState === 'visible' &&
-                window.location.href.includes('docs.google.com/document')) {
-                // Resume tracking when user returns to Google Docs
-                scheduleRatingOverlay();
-            }
-        };
-
-        document.addEventListener('visibilitychange', cache.visibilityHandler);
-    }
+    });
 })();

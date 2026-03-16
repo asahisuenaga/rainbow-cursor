@@ -5,205 +5,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rainbow Cursor in Google Docs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Google Sans', sans-serif;
       letter-spacing: 0.2px;
       margin: 0;
-      padding: 16px 16px 14px;
-      box-sizing: border-box;
+      padding: 0 1rem;
       background: white;
       color: #333;
       text-align: center;
-      min-width: 400px;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      backdrop-filter: blur(8px);
-    }
-
-    .header img {
-      width: 24px;
-      height: 24px;
-      margin-right: 16px;
-    }
-
-    .header h1 {
-      font-size: 16px;
-      font-weight: 500;
-      margin: 0;
-      color: #333;
-      line-height: 1.2;
     }
 
     .options-container label,
     label {
-      width: auto;
+      width: 25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 400;
-      color: #333;
-      font-size: 14px;
-      margin-top: 12px;
+      gap: 0.75rem;
+      font-size: 1rem;
+      margin-top: 0.75rem;
     }
 
-    select,
-    input[type="text"],
+    label span,
+    .label-text {
+      flex: 0 0 auto;
+    }
+
+    #BlinkLabel, #gradientLabel, #TranslucentModeLabel, #typewriterAnimationLabel, #ThicknessLabel{cursor: text;}
+
     button {
       appearance: none;
-      background: white;
-      border: 1px solid #d0d0d0;
-      padding: 10px;
-      font-family: 'Inter', sans-serif;
+      background: transparent;
+      border: 1px solid #444;
+      padding: 0.625rem;
+      font-family: inherit;
       letter-spacing: 0.2px;
-      font-size: 14px;
-      color: #333;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      flex: 1;
     }
 
-    select,
-    input[type="text"] {
-      width: 50%;
-    }
-
-    select:hover,
-    input[type="text"]:hover,
     button:hover {
       background: #f7f7f7;
     }
 
-    select:focus,
-    input[type="text"]:focus,
-    button:focus {
-      outline: none;
-      border-color: #4A90E2;
-    }
-
-    button {
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: transform 0.2s ease;
-    }
-
-    button:hover {
-      filter: brightness(1.05);
-    }
-
-    .save-button,
-    .redirect-button {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(6px);
-      border: 2px solid #333;
-      color: #333;
-      font-weight: 400;
-      padding: 14px 24px;
-      font-size: 14px;
-      border-radius: 4px;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    .save-button:hover,
-    .redirect-button:hover {
-      color: #4285F4;
-      border-color: #4285F4;
-    }
-
-    .maker-button,
-    .info-message {
-      width: auto;
-      border: none;
-      background: transparent;
-      font-size: 12px;
-      margin-top: 8px;
+    .donation-button {
+      font-size: 1rem;
+      margin-top: 0.25rem;
       color: #757575;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      border: none;
+      background: none;
+      filter: none;
     }
 
-    .info-message {
-      margin-bottom: 8px;
-      cursor: default;
+    .donation-button:focus {
+      outline: none;
     }
 
-    .maker-button:hover {
+    .donation-button:hover {
+      background: none;
       text-decoration: underline;
       color: #7aaef7;
-      background: transparent;
     }
 
     .cursor-style-section {
-      margin-bottom: 18px;
+      margin-bottom: 1rem;
     }
 
     #cursorDropdownContainer {
       position: relative;
-      width: 220px;
-      margin: 0 auto 8px auto;
+      margin: 0 auto 0.5rem;
     }
 
     .cursor-dropdown-selected {
-      width: 200px;
+      min-width: 12.5rem;
       box-sizing: border-box;
-      padding: 4px 10px;
-      min-height: 32px;
+      padding: 0.25rem 0.625rem;
+      min-height: 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border: 1px solid #d0d0d0;
-      border-radius: 4px;
+      border-radius: 0.25rem;
       cursor: pointer;
-      transition: border 0.2s;
+      transition: border 0.2s, background 0.2s ease;
       position: relative;
-      overflow: visible;
-      font-size: 14px;
+      font-size: 1rem;
     }
 
-    .cursor-dropdown-selected.open {
-      border-color: #4A90E2;
+    .cursor-dropdown-selected.open,
+    .cursor-dropdown-selected:focus,
+    button:focus,
+    .cursor-dropdown-option:focus,
+    .cursor-dropdown-list:focus {
+      outline: 2px solid #4A90E2;
     }
 
     .cursor-dropdown-arrow {
       position: absolute;
-      right: 10px;
-      margin-left: 10px;
-      font-size: 8px;
+      right: 0.625rem;
+      margin-left: 0.625rem;
+      font-size: 0.75rem;
       color: #888;
-      transition: transform 0.2s;
+      opacity: 1;
     }
 
     .cursor-dropdown-selected.open .cursor-dropdown-arrow {
-      transform: rotate(-90deg);
+      transform: rotate(-180deg);
+      animation: arrow-flash 0.2s ease-in-out;
+    }
+
+    @keyframes arrow-flash {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     .cursor-dropdown-list {
       position: absolute;
       top: 100%;
       left: 0;
-      width: 100%;
-      min-width: 200px;
-      box-sizing: border-box;
+      width: 97.5%;
       background: #fff;
       border: 1px solid #d0d0d0;
-      border-radius: 4px;
+      border-radius: 0.25rem;
+      padding: 0.125rem;
       z-index: 9999;
-      max-height: 220px;
+      max-height: 16.25rem;
       overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: thin;
-      scrollbar-color: #888 transparent;
-      padding: 4px 0;
       display: none;
-      margin-top: 2px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .cursor-dropdown-list::-webkit-scrollbar {
+      display: none;
     }
 
     .cursor-dropdown-list.open {
@@ -211,29 +159,27 @@
     }
 
     .cursor-dropdown-option {
-      width: 100%;
-      min-width: 200px;
-      box-sizing: border-box;
-      padding: 5px 12px;
-      min-height: 28px;
+      padding: 0.375rem 0.75rem;
       display: flex;
       align-items: center;
       cursor: pointer;
-      transition: 0.18s ease-in-out;
-      font-size: 14px;
+      font-size: 1rem;
     }
 
-    .cursor-dropdown-option:hover,
+    .cursor-dropdown-option:hover {
+      background: #ededed;
+    }
+
     .cursor-dropdown-option.selected {
-      background: #f0f6ff;
+      background: #e1e3e1;
     }
 
     .cursor-preview-box {
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
-      border: 1px solid #e0e0e0;
-      margin-right: 12px;
+      width: auto;
+      height: 2rem;
+      border-radius: 0.25rem;
+      border: 1px solid #d0d0d0;
+      margin-right: 0.75rem;
       background: #fafbfc;
       display: flex;
       align-items: center;
@@ -241,42 +187,36 @@
     }
 
     .cursor-label {
-      font-size: 14px;
+      font-size: 1rem;
       color: #333;
       font-weight: 400;
       flex-grow: 1;
     }
 
-    /* Rainbow Caret Preview Styles for Dropdowns */
+    .caret-bar,
     .caret-preview-box {
-      width: 24px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 12px;
+      display: inline-block;
+      background: #111;
     }
 
     .caret-bar {
-      display: inline-block;
-      height: 24px;
-      background: #111;
-      border-radius: 2px;
+      height: 1.5rem;
     }
 
-    .caret-blink {
+    .live-caret-bar {
+      height: 3rem;
+    }
+
+    .caret-blink,
+    .live-caret-blink {
       animation: caret-blink 1s steps(1) infinite;
     }
 
-    .caret-blink-half {
-      animation: caret-blink 1.4s steps(1) infinite;
-    }
-
-    .smooth-animation-on {
+    .typewriter-animation-on {
       transition: all 80ms ease;
     }
 
-    .smooth-animation-off {
+    .typewriter-animation-off {
       transition: none;
     }
 
@@ -295,56 +235,46 @@
 
     .gradient-bar {
       display: inline-block;
-      height: 24px;
-      width: 8px;
+      height: 1.5rem;
+      width: 0.5rem;
     }
 
     /* Live Preview Box Styles */
     .live-caret-preview-box {
-      width: 200px;
-      height: 40px;
+      min-width: 12.5rem;
+      height: 2.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #f5f5f5;
-      border-radius: 4px;
-      border: 1.5px solid #ccc;
+      border-radius: 0.25rem;
+      border: 1px solid #d0d0d0;
       margin-bottom: 0;
-    }
-
-    .live-caret-bar {
-      display: inline-block;
-      height: 48px;
-      background: #111;
-    }
-
-    .live-caret-blink {
-      animation: caret-blink 0.7s steps(1) infinite;
     }
 
     .live-gradient-bar {
       display: inline-block;
-      height: 32px;
-      width: 8px;
+      height: 2rem;
+      width: 0.5rem;
     }
 
     .live-preview-hr {
       width: 100%;
       border: none;
-      border-top: 3px solid black;
+      border-top: 2px solid #747775;
       opacity: 10%;
-      margin: 8px 0 16px 0;
-      border-radius: 4px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      border-radius: 0.25rem;
     }
 
-    /* Dropdown Containers for width settings */
+    .toggle-button,
+    #gradientDropdownContainer,
     #thicknessDropdownContainer,
-    #blinkDropdownContainer,
-    #smoothAnimationDropdownContainer,
-    #translucentModeDropdownContainer,
-    #gradientDropdownContainer {
+    #settingsLivePreview {
       position: relative;
-      width: 200px;
+      width: 12.5rem;
+      flex: 0 0 auto;
     }
 
     @keyframes gradientAnimation {
@@ -374,11 +304,28 @@
       animation: gradientAnimation 10s ease infinite !important;
     }
 
-    /* Style for the Live Preview Text, matching other labels */
     .live-preview-label {
-      font-size: 14px;
-      color: #333;
-      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    .dark-preview-bar {
+      background: #fff !important;
+    }
+
+    .toggle-button {
+      border: 1px solid #d0d0d0;
+      border-radius: 0.25rem;
+      color: #3c4043;
+      padding: 0.3125rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-button:hover,
+    .cursor-dropdown-selected:hover,
+    #thicknessDropdownContainer:hover,
+    #gradientDropdownContainer:hover,
+    #settingsLivePreview:hover {
+      background: #ededed;
     }
 
     /* DARK MODE */
@@ -388,7 +335,6 @@
         color: #f5f5f5;
       }
 
-      .header h1,
       .options-container label,
       label,
       .live-preview-label,
@@ -397,55 +343,25 @@
         color: #f5f5f5 !important;
       }
 
-      .maker-button,
-      .info-message {
+      .donation-button {
         color: #8f8f8f;
       }
 
-      select,
-      input[type="text"],
       button {
-        background: #1a1a1a;
-        border: 1px solid #444;
+        border-color: #444;
         color: #f5f5f5;
       }
 
-      select:hover,
-      input[type="text"]:hover,
       button:hover {
         background-color: #333;
       }
 
-      select:focus,
-      input[type="text"]:focus,
       button:focus {
         border-color: #4285F4;
       }
 
-      button {
-        color: #fff;
-      }
-
-      .save-button,
-      .redirect-button {
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid #f5f5f5;
-        color: #f5f5f5;
-      }
-
-      .save-button:hover,
-      .redirect-button:hover {
-        color: #4285F4;
-        border-color: #4285F4;
-      }
-
-      .maker-button:hover {
+      .donation-button:hover {
         color: #7aaef7;
-      }
-
-      /* Cursor Dropdown Dark Mode */
-      #cursorDropdownContainer {
-        background: none;
       }
 
       .cursor-dropdown-selected,
@@ -455,9 +371,12 @@
         color: #f5f5f5;
       }
 
-      .cursor-dropdown-option:hover,
+      .cursor-dropdown-option:hover {
+        background: #5b5b5b;
+      }
+
       .cursor-dropdown-option.selected {
-        background: #2c3e50;
+        background: #404040;
       }
 
       .cursor-preview-box {
@@ -467,162 +386,31 @@
 
       .live-caret-preview-box {
         background: #1b1b1b;
-        border: 1.5px solid #444;
-      }
-
-      .dark-preview-bar {
-        background: #fff !important;
+        border: 1px solid #444;
       }
 
       .live-preview-hr {
         border-color: white;
       }
 
-      /* Language deprecation overlay dark mode */
-      .lang-overlay-backdrop {
-        background: rgba(0, 0, 0, 0.75);
+      .toggle-button {
+        background: #232323;
+        border-color: #5f6368;
+        color: #ededed;
       }
 
-      .lang-overlay-card {
-        background: #2a2a2a;
-        border-color: #444;
+      .toggle-button:hover,
+      .cursor-dropdown-selected:hover,
+      #thicknessDropdownContainer:hover,
+      #gradientDropdownContainer:hover,
+      #settingsLivePreview:hover {
+        background: #303134 !important;
       }
-
-      .lang-overlay-card h2 {
-        color: #f5f5f5;
-      }
-
-      .lang-overlay-card p {
-        color: #ccc;
-      }
-
-      .lang-overlay-card a {
-        color: #6db3f2;
-      }
-
-      .lang-overlay-dismiss {
-        background: #f5f5f5 !important;
-        color: #232323 !important;
-      }
-
-      .lang-overlay-dismiss:hover {
-        background: #e0e0e0 !important;
-      }
-
-      .lang-overlay-dont-show {
-        color: #999;
-      }
-
-      .lang-overlay-dont-show:hover {
-        color: #ccc;
-      }
-    }
-
-    /* Language Deprecation Overlay */
-    .lang-overlay-backdrop {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      z-index: 99999;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-      box-sizing: border-box;
-    }
-
-    .lang-overlay-backdrop.visible {
-      display: flex;
-    }
-
-    .lang-overlay-card {
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      padding: 28px 24px 24px;
-      max-width: 380px;
-      width: 100%;
-      text-align: left;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    }
-
-    .lang-overlay-card h2 {
-      font-size: 16px;
-      font-weight: 600;
-      color: #222;
-      margin: 0 0 14px 0;
-      line-height: 1.4;
-    }
-
-    .lang-overlay-card p {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.65;
-      margin: 0 0 20px 0;
-    }
-
-    .lang-overlay-card a {
-      color: #4285F4;
-      text-decoration: underline;
-    }
-
-    .lang-overlay-card a:hover {
-      color: #1a5dc7;
-    }
-
-    .lang-overlay-dismiss {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      border: none;
-      border-radius: 8px;
-      background: #333;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      text-align: center;
-    }
-
-    .lang-overlay-dismiss:hover {
-      background: #555;
-    }
-
-    .lang-overlay-dont-show {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      font-size: 12px;
-      font-family: 'Inter', sans-serif;
-      border: none;
-      border-radius: 8px;
-      background: transparent;
-      color: #888;
-      cursor: pointer;
-      transition: color 0.2s ease;
-      text-align: center;
-    }
-
-    .lang-overlay-dont-show:hover {
-      color: #555;
-      text-decoration: underline;
-      background: transparent;
     }
   </style>
 </head>
 
 <body>
-  <div class="header">
-    <img src="icons/icon128.png" alt="Icon">
-    <h1 id="title"></h1>
-  </div>
-
   <div class="content-container">
     <div class="options-container" id="optionsContainer">
       <label for="gradientStyle">
@@ -635,66 +423,73 @@
         <div id="thicknessDropdownContainer"></div>
       </label>
 
-      <label>
+      <label for="Blink">
         <span id="BlinkLabel"></span>
-        <div id="blinkDropdownContainer"></div>
+        <button id="blinkToggle" class="toggle-button"></button>
       </label>
 
-      <label>
-        <span id="SmoothAnimationLabel"></span>
-        <div id="smoothAnimationDropdownContainer"></div>
+      <label for="typewriterAnimation">
+        <span id="typewriterAnimationLabel"></span>
+        <button id="typewriterAnimationToggle" class="toggle-button"></button>
       </label>
 
-      <label>
+      <label for="TranslucentMode">
         <span id="TranslucentModeLabel"></span>
-        <div id="translucentModeDropdownContainer"></div>
+        <button id="translucentModeToggle" class="toggle-button"></button>
       </label>
 
     </div>
 
-    <div id="livePreviewSection" style="width:100%; display:none; margin-top: 16px;">
+    <div id="livePreviewSection" style="width:100%; display:none; margin-top: 0;">
       <hr class="live-preview-hr">
       <div id="livePreviewRow"
-        style="display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%;">
+        style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
 
         <div id="settingsLivePreviewLabel" class="live-preview-label"></div>
+        <div id="settingsLivePreview" class="cursor-dropdown-selected"
+          style="display: flex; align-items: center; justify-content: center; gap: 0; cursor: default; height: 2rem; width: 12.5rem; box-sizing: border-box; overflow: hidden;">
+          <span id="previewText"
+            style='font-size: 1rem; font-family: "Google Sans", sans-serif; letter-spacing: .2px; color: inherit; user-select: none; white-space: nowrap; line-height: 1;'></span>
+          <span id="previewCaret"></span>
+        </div>
 
-        <div id="settingsLivePreview" style="display: flex; align-items: center;"></div>
       </div>
     </div>
 
-    <div class="info-message" id="infoMessage">
+    <!-- Onboarding Overlay -->
+    <div id="onboardingOverlay"
+      style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background:white; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; padding: 1rem; box-sizing: border-box; text-align: center;">
+      <p id="onboardingMessage" style="font-size: 1rem; margin-bottom: 1.5rem; color: #333; line-height: 1.5;"></p>
+      <button id="continueButton" class="toggle-button"
+        style="width: auto; padding: 0.4rem 1.5rem; background: #4285F4; color: white; border: none; margin-bottom: 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 0.25rem;"></button>
+      <p id="onboardingNote" style="font-size: 1rem; color: #757575; line-height: 1.5;"></p>
     </div>
 
-    <div class="redirect-container" id="redirectContainer">
-      <button class="redirect-button" id="redirectButton">
-        <span id="openDocsButton"></span>
-      </button>
-    </div>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        #onboardingOverlay {
+          background: #232323 !important;
+        }
 
-    <div class="action-buttons">
-      <button class="save-button" id="saveButton"></button>
-      <button class="maker-button" id="maker"></button>
-    </div>
+        #onboardingMessage {
+          color: #f5f5f5 !important;
+        }
 
-    <!-- Language Deprecation Overlay -->
-    <div class="lang-overlay-backdrop" id="langOverlay">
-      <div class="lang-overlay-card">
-        <h2>Upcoming Language Removal</h2>
-        <p>
-          I'm a solo developer, and while I've enjoyed offering many language options, maintaining them has become
-          difficult. The current AI translations are not very accurate, and I don't want to give you a confusing
-          experience. Because of this, support for your language will be removed in the coming weeks. If you'd like to
-          help by providing a translation for your language, you can <a
-            href="https://github.com/asahisuenaga/rainbow-cursor/issues/3#issue-3935173407" target="_blank">learn
-            more</a>.
-        </p>
-        <button class="lang-overlay-dismiss" id="langOverlayDismiss">OK</button>
-        <button class="lang-overlay-dont-show" id="langOverlayDontShow">Don't show again</button>
-      </div>
-    </div>
+        #onboardingNote {
+          color: #8f8f8f !important;
+        }
 
-    <script src="popup.js"></script>
+        #continueButton {
+          background: #7aaef7 !important;
+          color: #202124 !important;
+        }
+      }
+    </style>
+
+    <button class="donation-button" id="donation" style="margin-top: 0.25rem;"></button>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
 
 </html>
