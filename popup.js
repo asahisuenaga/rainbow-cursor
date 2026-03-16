@@ -85,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       if (livePreviewSection) livePreviewSection.style.display = 'block';
       updateSettingsLivePreview();
+
+      // Show language deprecation overlay only in Google Docs
+      maybeShowLangOverlay();
     }
   });
 
