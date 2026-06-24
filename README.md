@@ -23,4 +23,4 @@ Swap the default cursor in Google Docs with an animated caret! Great for people 
 Check the latest updates and availability for your browser on the [releases page](https://github.com/asahisuenaga/rainbow-cursor/releases).
 
 If you run into issues, please [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) on GitHub or send a message on [Twitter](https://twitter.com/asahisuenaga).
-*Please include screenshots, video recordings, your browser name, version number, and any relevant URLs when submitting a bug report.*
+*Please include screenshots, video recordings, your browser name, version number, and any relevant URLs.*
