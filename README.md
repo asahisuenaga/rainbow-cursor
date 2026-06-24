@@ -1,33 +1,26 @@
-# Rainbow Cursor in Google Docs
+<h1 style="border-bottom: none">
+  <div>
+    <a href="[https://www.docuseal.com](https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc)">
+      <img  alt="Rainbow Cursor" src="icons/icon128.png" width="64" />
+      <br>
+    </a>
+    Rainbow Cursor in Google Docs
+  </div>
+</h1>
 
-<img src="icons/icon128.png" width="64" height="64">
+Swap the default cursor in Google Docs with an animated caret! Great for people who wants a better editing experience.
 
-**Swap the default cursor in Google Docs with a sleek, animated caret! Great for students, writers, and anyone who wants a better editing experience.**
+![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/nnmghknojpihdnofejbocdcnmhibkfdc?color=4285F4)
+![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/rating/nnmghknojpihdnofejbocdcnmhibkfdc?color=4285F4)
+![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/nnmghknojpihdnofejbocdcnmhibkfdc?color=4285F4)
 
-<kbd>
-<div style="border: 1 solid black; padding: 10;">
-  <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc">
-    <img src="https://fwextensions.github.io/QuicKey/img/webstore.png" width="186" height="56.25">
-  </a>
-</div>
-</kbd>
+<p float="left">
+  <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc" target="_blank"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/iNEddTyWiMfLSwFD6qGq.png" alt="Chrome Web Store" height="60"/></a>
+</p>
 
-<p></p>
-
-> [!NOTE]
 > If you're using another browser based on Chromium, like [Microsoft Edge](https://support.microsoft.com/en-us/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026#ID0EDL), [Opera](https://forums.opera.com/topic/72036/duplicated-install-chrome-extensions-is-no-longer-available-in-opera-extensions-store/2), or [Brave](https://brave.com/learn/using-chrome-extensions-in-brave/#how-to-install-chrome-extensions-in-brave), you can install the extension by visiting the Chrome Web Store through that browser.
 
-## Manual Installation
+Check the latest updates and availability for your browser on the [releases page](https://github.com/asahisuenaga/rainbow-cursor/releases).
 
-1. Download the repository and unzip the downloaded folder.
-
-2. Vist to `about:debugging#/runtime/this-firefox` in Firefox or `chrome://extensions/` in Chrome.
-
-3. For Firefox, click 'Load Temporary Add-on' and select the `manifest.json`. For Chrome, enable Developer Mode and click 'Load unpacked' and select the directory where you unzipped the extension files.
-
-> [!WARNING]
-> For Firefox users, this temporary install is only active until Firefox is closed.
-
-## Support
-
-To report a bug, [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) or send me a message on [X (formerly Twitter)](https://twitter.com/asahisuenaga).
+If you run into issues, please [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) on GitHub or send a message on [Twitter](https://twitter.com/asahisuenaga).
+*Please include screenshots, video recordings, your browser name, version number, and any relevant URLs when submitting a bug report.*
