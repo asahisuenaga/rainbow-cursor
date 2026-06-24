@@ -18,9 +18,8 @@ Swap the cursor in Google Docs with an animated caret! Great for people who want
   <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc" target="_blank"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Chrome Web Store" height="60"/></a>
 </p>
 
-> If you're using another browser based on Chromium, like [Microsoft Edge](https://support.microsoft.com/en-us/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026#ID0EDL), [Opera](https://forums.opera.com/topic/72036/duplicated-install-chrome-extensions-is-no-longer-available-in-opera-extensions-store/2), or [Brave](https://brave.com/learn/using-chrome-extensions-in-brave/#how-to-install-chrome-extensions-in-brave), you can install the extension by visiting the Chrome Web Store through that browser.
+> If you use Chromium-based browsers like Edge, Opera, or Brave you can install the extension by visiting the Chrome Web Store link above. Otherwise, you can use [temporary installation](https://support.mfscripts.com/public/kb_view/88/) to load the add-on on Firefox. Safari is not yet supported.
 
-Check the latest updates and availability for your browser on the [releases page](https://github.com/asahisuenaga/rainbow-cursor/releases).
+You can also check the latest updates and files on the [releases page](https://github.com/asahisuenaga/rainbow-cursor/releases).
 
-If you run into issues, please [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) on GitHub or send a message on [Twitter](https://twitter.com/asahisuenaga).
-*Please include screenshots, video recordings, your browser name, version number, and any relevant URLs.*
+If you run into issues, please [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) on GitHub or send a message on [Twitter](https://twitter.com/asahisuenaga). Please include screenshots, video recordings, your browser name, version number, and any relevant URLs.
