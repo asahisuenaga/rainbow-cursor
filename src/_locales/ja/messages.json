@@ -1,0 +1,52 @@
+{
+  "extension_name": { "message": "GoogleDocsのレインボーカーソル" },
+  "extension_description": { "message": "GoogleDocsのキャレットにアニメーションを加えましょう！学生、作家、その他より快適な編集体験を求める方に最適です。" },
+  "gradientLabel": { "message": "グラデーション" },
+  "gradientTypeLabel": { "message": "スタイル" },
+  "ThicknessLabel": { "message": "カーソルのサイズ" },
+  "BlinkLabel": { "message": "点滅を表示する" },
+  "typewriterAnimationLabel": { "message": "滑らかなタイピングアニメーション" },
+  "TranslucentModeLabel": { "message": "半透明のカーソル" },
+
+  "gradientMulticolor": { "message": "マルチカラー" },
+  "gradientRainbow": { "message": "レインボー" },
+
+  "gradientMicroRed": { "message": "クリムゾン・デプス" },
+  "gradientMicroOrange": { "message": "タンジェリン・グロウ" },
+  "gradientMicroYellow": { "message": "ソーラー・フレア" },
+  "gradientMicroGreen": { "message": "フォレスト・シェード" },
+  "gradientMicroBlue": { "message": "ディープ・コバルト" },
+  "gradientMicroPurple": { "message": "ミッドナイト・プラム" },
+
+  "gradientRadicalRed": { "message": "レーザー・ストライク" },
+  "gradientRadicalOrange": { "message": "マグマ・クラック" },
+  "gradientRadicalYellow": { "message": "ライトニング・ストライク" },
+  "gradientRadicalGreen": { "message": "マトリックス・ネオン" },
+  "gradientRadicalBlue": { "message": "エレクトリック・ヴォイド" },
+  "gradientRadicalPurple": { "message": "サイバー・バイオレット" },
+
+  "gradientExtremeRed": { "message": "ハートビート・パルサー" },
+  "gradientExtremeOrange": { "message": "ソーラー・ウィンド" },
+  "gradientExtremeYellow": { "message": "キネティック・エナジー" },
+  "gradientExtremeGreen": { "message": "アシッド・ウェーブ" },
+  "gradientExtremeBlue": { "message": "ソニック・ブーム" },
+  "gradientExtremePurple": { "message": "ガンマ・レイ" },
+
+  "gradientHarmonicRed": { "message": "サンセット・ローズ" },
+  "gradientHarmonicOrange": { "message": "オータム・ゴールド" },
+  "gradientHarmonicYellow": { "message": "シトラス・グローヴ" },
+  "gradientHarmonicGreen": { "message": "バイオ・ルミナ" },
+  "gradientHarmonicBlue": { "message": "ディープ・オーシャン" },
+  "gradientHarmonicPurple": { "message": "コズミック・ベルベット" },
+
+  "gradientInvertedRed": { "message": "クリムゾン・ティール" },
+  "gradientInvertedOrange": { "message": "アンバー・インディゴ" },
+  "gradientInvertedYellow": { "message": "マリーゴールド・バイオレット" },
+  "gradientInvertedGreen": { "message": "エメラルド・マゼンタ" },
+  "gradientInvertedBlue": { "message": "サファイア・タンジェリン" },
+  "gradientInvertedPurple": { "message": "アメジスト・ライム" },
+
+  "gradientLinear": { "message": "線形" },
+  "gradientSegmented": { "message": "セグメント化" },
+  "gradientFade": { "message": "フェード" }
+}

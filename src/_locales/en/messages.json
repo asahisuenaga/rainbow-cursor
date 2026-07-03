@@ -1,0 +1,53 @@
+{
+  "extension_name": { "message": "Rainbow Cursor for Google Docs" },
+  "extension_description": { "message": "Swap the cursor in Google Docs with an animated caret! Great for students, writers, or anyone who wants a better editing experience." },
+
+  "gradientLabel": { "message": "Gradient" },
+  "gradientTypeLabel": { "message": "Style" },
+  "ThicknessLabel": { "message": "Cursor size" },
+  "BlinkLabel": { "message": "Show cursor blink" },
+  "typewriterAnimationLabel": { "message": "Smooth typing animation" },
+  "TranslucentModeLabel": { "message": "Semi-transparent cursor" },
+  
+  "gradientMulticolor": { "message": "Multicolor" },
+  "gradientRainbow": { "message": "Rainbow" },
+
+  "gradientMicroRed": { "message": "Crimson Depth" },
+  "gradientMicroOrange": { "message": "Tangerine Glow" },
+  "gradientMicroYellow": { "message": "Solar Flare" },
+  "gradientMicroGreen": { "message": "Forest Shade" },
+  "gradientMicroBlue": { "message": "Deep Cobalt" },
+  "gradientMicroPurple": { "message": "Midnight Plum" },
+
+  "gradientRadicalRed": { "message": "Laser Strike" },
+  "gradientRadicalOrange": { "message": "Magma Crack" },
+  "gradientRadicalYellow": { "message": "Lightning Strike" },
+  "gradientRadicalGreen": { "message": "Matrix Neon" },
+  "gradientRadicalBlue": { "message": "Electric Void" },
+  "gradientRadicalPurple": { "message": "Cyber Violet" },
+
+  "gradientExtremeRed": { "message": "Heartbeat Pulsar" },
+  "gradientExtremeOrange": { "message": "Solar Wind" },
+  "gradientExtremeYellow": { "message": "Kinetic Energy" },
+  "gradientExtremeGreen": { "message": "Acid Wave" },
+  "gradientExtremeBlue": { "message": "Sonic Boom" },
+  "gradientExtremePurple": { "message": "Gamma Ray" },
+
+  "gradientHarmonicRed": { "message": "Sunset Rose" },
+  "gradientHarmonicOrange": { "message": "Autumn Gold" },
+  "gradientHarmonicYellow": { "message": "Citrus Grove" },
+  "gradientHarmonicGreen": { "message": "Bio Lumina" },
+  "gradientHarmonicBlue": { "message": "Deep Ocean" },
+  "gradientHarmonicPurple": { "message": "Cosmic Velvet" },
+
+  "gradientInvertedRed": { "message": "Crimson Teal" },
+  "gradientInvertedOrange": { "message": "Amber Indigo" },
+  "gradientInvertedYellow": { "message": "Marigold Violet" },
+  "gradientInvertedGreen": { "message": "Emerald Magenta" },
+  "gradientInvertedBlue": { "message": "Sapphire Tangerine" },
+  "gradientInvertedPurple": { "message": "Amethyst Lime" },
+
+  "gradientLinear": { "message": "Linear" },
+  "gradientSegmented": { "message": "Segmented" },
+  "gradientFade": { "message": "Fade" }
+}
