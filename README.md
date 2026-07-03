@@ -4,7 +4,7 @@
       <img  alt="Rainbow Cursor" src="src/assetsicons/icon128.png" width="64"/>
       <br>
     </a>
-    Rainbow Cursor in Google Docs
+    Rainbow Cursor for Google Docs
   </div>
 </h1>
 
