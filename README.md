@@ -1,7 +1,7 @@
 <h1 style="border-bottom: none">
   <div>
     <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc">
-      <img  alt="Rainbow Cursor" src="src/assetsicons/icon128.png" width="64"/>
+      <img  alt="Rainbow Cursor" src="src/assets/icons/icon128.png" width="64"/>
       <br>
     </a>
     Rainbow Cursor for Google Docs
