@@ -1,10 +1,10 @@
 <h1 style="border-bottom: none">
   <div>
     <a href="https://chromewebstore.google.com/detail/nnmghknojpihdnofejbocdcnmhibkfdc">
-      <img  alt="Rainbow Cursor" src="icons/icon128.png" width="64"/>
+      <img  alt="Rainbow Cursor" src="src/assetsicons/icon128.png" width="64"/>
       <br>
     </a>
-    Rainbow Cursor in Google Docs
+    Rainbow Cursor for Google Docs
   </div>
 </h1>
 
@@ -22,4 +22,4 @@ Swap the cursor in Google Docs with an animated caret! Great for people who want
 
 You can also check the latest updates and files on the [releases page](https://github.com/asahisuenaga/rainbow-cursor/releases).
 
-If you run into issues, please [create a new issue](https://github.com/asahisuenaga/hide-google-ai/issues/new) on GitHub or send a message on [Twitter](https://twitter.com/asahisuenaga). Please include screenshots, video recordings, your browser name, version number, and any relevant URLs.
+If you run into issues, please [create a new issue](https://github.com/asahisuenaga/rainbow-cursor/issues/new). Please provide a description of the bug, instructions for reproducing the problem, screenshots, device information, browser, and extension version.
