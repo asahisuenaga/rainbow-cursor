@@ -3,11 +3,11 @@
   "extension_description": { "message": "Swap the cursor in Google Docs with an animated caret! Great for students, writers, or anyone who wants a better editing experience." },
 
   "gradientLabel": { "message": "Gradient" },
-  "gradientTypeLabel": { "message": "Style" },
-  "ThicknessLabel": { "message": "Cursor size" },
-  "BlinkLabel": { "message": "Show cursor blink" },
-  "typewriterAnimationLabel": { "message": "Smooth typing animation" },
-  "TranslucentModeLabel": { "message": "Semi-transparent cursor" },
+  "animationLabel": { "message": "Animation" },
+  "sizeLabel": { "message": "Cursor size" },
+  "blinkLabel": { "message": "Show cursor blink" },
+  "smoothTypingLabel": { "message": "Smooth typing animation" },
+  "translucentLabel": { "message": "Semi-transparent cursor" },
   
   "gradientMulticolor": { "message": "Multicolor" },
   "gradientRainbow": { "message": "Rainbow" },
@@ -47,7 +47,8 @@
   "gradientInvertedBlue": { "message": "Sapphire Tangerine" },
   "gradientInvertedPurple": { "message": "Amethyst Lime" },
 
-  "gradientLinear": { "message": "Linear" },
-  "gradientSegmented": { "message": "Segmented" },
-  "gradientFade": { "message": "Fade" }
+  "noneStyle": {"message": "None"},
+  "linearStyle": { "message": "Linear" },
+  "invertedStyle": { "message": "Inverted" },
+  "stripesStyle": { "message": "Stripes" }
 }

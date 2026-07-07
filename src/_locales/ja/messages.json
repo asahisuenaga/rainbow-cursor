@@ -2,11 +2,11 @@
   "extension_name": { "message": "GoogleDocsのレインボーカーソル" },
   "extension_description": { "message": "GoogleDocsのキャレットにアニメーションを加えましょう！学生、作家、その他より快適な編集体験を求める方に最適です。" },
   "gradientLabel": { "message": "グラデーション" },
-  "gradientTypeLabel": { "message": "スタイル" },
-  "ThicknessLabel": { "message": "カーソルのサイズ" },
-  "BlinkLabel": { "message": "点滅を表示する" },
-  "typewriterAnimationLabel": { "message": "滑らかなタイピングアニメーション" },
-  "TranslucentModeLabel": { "message": "半透明のカーソル" },
+  "animationLabel": { "message": "アニメーション" },
+  "sizeLabel": { "message": "カーソルのサイズ" },
+  "blinkLabel": { "message": "点滅を表示する" },
+  "smoothTypingLabel": { "message": "滑らかなタイピングアニメーション" },
+  "translucentLabel": { "message": "半透明のカーソル" },
 
   "gradientMulticolor": { "message": "マルチカラー" },
   "gradientRainbow": { "message": "レインボー" },
@@ -46,7 +46,8 @@
   "gradientInvertedBlue": { "message": "サファイア・タンジェリン" },
   "gradientInvertedPurple": { "message": "アメジスト・ライム" },
 
-  "gradientLinear": { "message": "線形" },
-  "gradientSegmented": { "message": "セグメント化" },
-  "gradientFade": { "message": "フェード" }
+  "noneStyle": { "message": "なし"},
+  "linearStyle": { "message": "線形" },
+  "invertedStyle": { "message": "逆向き" },
+  "stripesStyle": { "message": "ストライプ" }
 }

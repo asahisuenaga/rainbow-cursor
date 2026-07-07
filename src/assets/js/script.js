@@ -53,10 +53,7 @@
     function buildGradientBackground(colorScheme = 'multicolor', applyTranslucent = true, gradientType = 'linear', borderColorArray = [0, 0, 0]) {
         const gradientStyles = {
             rainbow: ['#ff69b4', '#9370db', '#48c9b0', '#ffd700', '#ff69b4'],
-            multicolor: [
-                adjustColor(borderColorArray, 100),
-                adjustColor(borderColorArray, -50)
-            ],
+            multicolor: [adjustColor(borderColorArray, 100), adjustColor(borderColorArray, -50)],
 
             microRed: ['#d32f2f', '#c62828', '#b71c1c', '#c62828', '#d32f2f'],
             microOrange: ['#f57c00', '#ef6c00', '#e65100', '#ef6c00', '#f57c00'],
@@ -107,17 +104,21 @@
 
         const [firstColor, secondColor, thirdColor, fourthColor] = gradientColors;
         const typeMap = {
+            'none': {
+                background: `linear-gradient(135deg, ${firstColor}, ${secondColor || firstColor}, ${thirdColor || secondColor || firstColor}, ${fourthColor || thirdColor || firstColor}, ${firstColor}, ${secondColor || firstColor}, ${thirdColor || secondColor || firstColor})`,
+                animation: 'none'
+            },
             'linear': {
-                background: `linear-gradient(180deg, ${firstColor}, ${secondColor || firstColor}, ${thirdColor || secondColor || firstColor}, ${fourthColor || thirdColor || firstColor})`,
-                animation: 'caretLinear 10s ease infinite'
+                background: `linear-gradient(180deg, ${firstColor}, ${secondColor || firstColor}, ${thirdColor || secondColor || firstColor}, ${fourthColor || thirdColor || firstColor}, ${firstColor}, ${secondColor || firstColor}, ${thirdColor || secondColor || firstColor})`,
+                animation: 'loop 10s linear infinite'
             },
-            'segmented': {
-                background: `linear-gradient(180deg, ${firstColor} 20%, ${secondColor || firstColor} 20% 40%, ${thirdColor || secondColor || firstColor} 40% 60%, ${secondColor || firstColor} 60% 80%, ${fourthColor || thirdColor || firstColor} 80%)`,
-                animation: 'caretLinear 10s ease infinite'
+            'inverted': {
+                background: `linear-gradient(180deg, ${fourthColor}, ${thirdColor || fourthColor}, ${secondColor || thirdColor || fourthColor}, ${firstColor || secondColor || fourthColor}, ${fourthColor}, ${thirdColor || fourthColor}, ${secondColor || thirdColor || fourthColor})`,
+                animation: 'loop 10s linear infinite'
             },
-            'fade': {
-                background: `radial-gradient(circle at 50% -100%, ${firstColor}, ${secondColor || firstColor} 50%, transparent 100%), radial-gradient(circle at 50% 200%, ${fourthColor || thirdColor || firstColor}, ${thirdColor || secondColor || firstColor} 50%, transparent 100%)`,
-                animation: 'caretFade 10s ease infinite'
+            'stripes': {
+                background: `repeating-linear-gradient(45deg, ${firstColor}, ${firstColor} 5%, ${secondColor || firstColor} 5%, ${secondColor || firstColor} 10%, ${thirdColor || firstColor} 10%, ${thirdColor || firstColor} 15%, ${fourthColor || secondColor} 15%, ${fourthColor || secondColor} 20%)`,
+                animation: 'loop 10s linear infinite'
             }
         };
 
@@ -139,16 +140,9 @@
             styleSheet = document.createElement('style');
             styleSheet.id = 'rainbow-cursor-keyframes';
             styleSheet.textContent = `
-            @keyframes caretLinear {
-                0% { background-position: 50% 0%; }
-                25% { background-position: 50% 100%; }
-                50% { background-position: 50% 100%; }
-                75% { background-position: 50% 0%; }
-                100% { background-position: 50% 0%; }
-            }
-            @keyframes caretFade {
-                0%, 100% { background-position: 50% 0%; } 
-                50% { background-position: 50% 100%; }
+            @keyframes loop {
+                0% { background-position: 0 0; }
+                100% { background-position: 0 100%; }
             }
         `;
             document.head.appendChild(styleSheet);
@@ -174,11 +168,11 @@
             if (currentBorderColor !== lastBorderColor) {
                 lastBorderColor = currentBorderColor;
 
-                debouncedStorageGet(['gradientStyle', 'TranslucentMode', 'GradientType'], (result) => {
+                debouncedStorageGet(['gradientStyle', 'translucent', 'GradientType'], (result) => {
                     const gradientStyle = result.gradientStyle || 'rainbow';
-                    const translucentMode = result.TranslucentMode || false;
+                    const translucent = result.translucent || false;
                     const gradientType = result.GradientType || 'linear';
-                    applyGradientAnimation(cursor, gradientStyle, translucentMode, gradientType);
+                    applyGradientAnimation(cursor, gradientStyle, translucent, gradientType);
                 });
             }
         });
@@ -255,11 +249,11 @@
         if (currentUserCaret) {
             cache.cursorElements = [currentUserCaret];
 
-            debouncedStorageGet(['gradientStyle', 'TranslucentMode', 'GradientType'], (result) => {
+            debouncedStorageGet(['gradientStyle', 'translucent', 'GradientType'], (result) => {
                 const gradientStyle = result.gradientStyle || 'rainbow';
-                const translucentMode = result.TranslucentMode || false;
+                const translucent = result.translucent || false;
                 const gradientType = result.GradientType || 'linear';
-                applyGradientAnimation(currentUserCaret, gradientStyle, translucentMode, gradientType);
+                applyGradientAnimation(currentUserCaret, gradientStyle, translucent, gradientType);
             });
 
             applyCaretWidth(currentUserCaret);
@@ -279,12 +273,12 @@
                         const newWidth = changes.Thickness.newValue || '2';
                         currentUserCaret.style.width = `${newWidth}px`;
                     }
-                    if (changes.gradientStyle || changes.TranslucentMode || changes.GradientType) {
-                        debouncedStorageGet(['gradientStyle', 'TranslucentMode', 'GradientType' ], (result) => {
+                    if (changes.gradientStyle || changes.translucent || changes.GradientType) {
+                        debouncedStorageGet(['gradientStyle', 'translucent', 'GradientType' ], (result) => {
                             const gradientStyle = changes.gradientStyle ? changes.gradientStyle.newValue : (result.gradientStyle || 'rainbow');
-                            const translucentMode = normalizeStoredBoolean(changes.TranslucentMode ? changes.TranslucentMode.newValue : result.TranslucentMode, false);
+                            const translucent = normalizeStoredBoolean(changes.translucent ? changes.translucent.newValue : result.translucent, false);
                             const gradientType = changes.GradientType ? changes.GradientType.newValue : (result.GradientType || 'linear');
-                            applyGradientAnimation(currentUserCaret, gradientStyle, translucentMode, gradientType);
+                            applyGradientAnimation(currentUserCaret, gradientStyle, translucent, gradientType);
                         });
                     }
                 }
