@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setLocalizedText('gradientLabel', 'gradientLabel');
-  setLocalizedText('gradientTypeLabel', 'gradientTypeLabel');
-  setLocalizedText('ThicknessLabel', 'ThicknessLabel');
-  setLocalizedText('BlinkLabel', 'BlinkLabel');
-  setLocalizedText('typewriterAnimationLabel', 'typewriterAnimationLabel');
-  setLocalizedText('TranslucentModeLabel', 'TranslucentModeLabel');
+  setLocalizedText('animationLabel', 'animationLabel');
+  setLocalizedText('sizeLabel', 'sizeLabel');
+  setLocalizedText('blinkLabel', 'blinkLabel');
+  setLocalizedText('smoothTypingLabel', 'smoothTypingLabel');
+  setLocalizedText('translucentLabel', 'translucentLabel');
 
   function getGradientColors(gradientValue, applyTranslucent = false) {
     const gradientStyles = {
@@ -63,23 +63,24 @@ document.addEventListener('DOMContentLoaded', () => {
     return colors;
   }
 
-  const thicknessInput = document.getElementById('thicknessInput');
+  const sizeInput = document.getElementById('sizeInput');
   const gradientTypeInput = document.getElementById('gradientTypeInput');
-  const ThicknessKey = 'Thickness';
+  const sizeKey = 'Thickness';
 
   const BlinkKey = 'Blink';
   const TypewriterAnimationKey = 'typewriterAnimation';
-  const TranslucentModeKey = 'TranslucentMode';
+  const translucentKey = 'translucent';
   const GradientTypeKey = 'GradientType';
 
   const blinkToggle = document.getElementById('blinkToggle');
   const typewriterAnimationToggle = document.getElementById('typewriterAnimationToggle');
-  const translucentModeToggle = document.getElementById('translucentModeToggle');
+  const translucentToggle = document.getElementById('translucentToggle');
 
   const gradientTypeOptions = [
-    { value: 'linear', label: chrome.i18n.getMessage('gradientLinear') || 'Linear' },
-    { value: 'segmented', label: chrome.i18n.getMessage('gradientSegmented') || 'Segmented' },
-    { value: 'fade', label: chrome.i18n.getMessage('gradientFade') || 'Fade' },
+    { value: 'none', label: chrome.i18n.getMessage('noneStyle') || 'None' },
+    { value: 'linear', label: chrome.i18n.getMessage('linearStyle') || 'Linear' },
+    { value: 'inverted', label: chrome.i18n.getMessage('invertedStyle') || 'Inverted' },
+    { value: 'stripes', label: chrome.i18n.getMessage('stripesStyle') || 'Stripes' },
   ];
 
   function resizeSelect(select) {
@@ -87,12 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedOption = select.options[select.selectedIndex];
     if (selectedOption) {
       const temp = document.createElement('span');
-      temp.style.cssText = 'visibility:hidden;position:fixed;font-size:1rem;font-family:inherit;white-space:nowrap;padding:0 .5rem';
+      temp.style.cssText = 'visibility:hidden;position:fixed;font-size:1rem;font-family:inherit;white-space:nowrap;padding:0 .25rem';
       temp.textContent = selectedOption.text;
       document.body.appendChild(temp);
       const width = temp.offsetWidth;
       document.body.removeChild(temp);
-      select.style.width = `${Math.max(width + 16, 40)}px`;
+      select.style.width = `${Math.max(width + 16, 20)}px`;
     }
   }
 
@@ -108,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
     await chrome.storage.sync.set({
       [BlinkKey]: blinkToggle.checked,
       [TypewriterAnimationKey]: typewriterAnimationToggle.checked,
-      [TranslucentModeKey]: translucentModeToggle.checked,
-      [ThicknessKey]: thicknessInput.value || '2',
+      [translucentKey]: translucentToggle.checked,
+      [sizeKey]: sizeInput.value || '2',
       [GradientTypeKey]: gradientTypeInput.value || 'linear',
     });
   };
@@ -118,22 +119,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const result = await chrome.storage.sync.get({
       [BlinkKey]: true,
       [TypewriterAnimationKey]: false,
-      [TranslucentModeKey]: false,
-      [ThicknessKey]: '2',
+      [translucentKey]: false,
+      [sizeKey]: '2',
       [GradientTypeKey]: 'linear',
     });
 
     blinkToggle.checked = result[BlinkKey];
     typewriterAnimationToggle.checked = result[TypewriterAnimationKey];
-    translucentModeToggle.checked = result[TranslucentModeKey];
-    thicknessInput.value = result[ThicknessKey] || '2';
+    translucentToggle.checked = result[translucentKey];
+    sizeInput.value = result[sizeKey] || '2';
     renderSelectOptions(gradientTypeInput, gradientTypeOptions, result[GradientTypeKey] || 'linear');
   };
 
   blinkToggle.addEventListener('change', saveOptions);
   typewriterAnimationToggle.addEventListener('change', saveOptions);
-  translucentModeToggle.addEventListener('change', saveOptions);
-  thicknessInput.addEventListener('change', () => { saveOptions(); resizeSelect(thicknessInput); });
+  translucentToggle.addEventListener('change', saveOptions);
+  sizeInput.addEventListener('change', () => { saveOptions(); resizeSelect(sizeInput); });
   gradientTypeInput?.addEventListener('change', () => { saveOptions(); resizeSelect(gradientTypeInput); });
   
 
